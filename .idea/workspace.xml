@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd962a31-51a7-4cc5-a16f-d2670659db69" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/_util/type.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/grid/style/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/col/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/row/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/style/themes/default.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demos/grid/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demos/grid/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demos/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Hello.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/RowContext.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/grid/RowContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/grid/RowContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/grid/col.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/grid/col.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/grid/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/grid/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/grid/row.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/grid/row.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/grid/style/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/grid/style/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +29,9 @@
         <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="Less File" />
+        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
         <option value="SCSS File" />
-        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -167,7 +175,8 @@
       <workItem from="1575515453636" duration="2574000" />
       <workItem from="1575901493228" duration="1171000" />
       <workItem from="1575966969358" duration="2962000" />
-      <workItem from="1575988175503" duration="1640000" />
+      <workItem from="1575988175503" duration="1870000" />
+      <workItem from="1576048064056" duration="4627000" />
     </task>
     <servers />
   </component>
@@ -184,22 +193,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1409" height="423" key="GridCell.Tab.0.bottom" timestamp="1575970565744">
+    <state width="1409" height="60" key="GridCell.Tab.0.bottom" timestamp="1576054753825">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1409" height="423" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1575970565744" />
-    <state width="1409" height="423" key="GridCell.Tab.0.center" timestamp="1575970565743">
+    <state width="1409" height="60" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1576054753825" />
+    <state width="1409" height="60" key="GridCell.Tab.0.center" timestamp="1576054753824">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1409" height="423" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1575970565743" />
-    <state width="1409" height="423" key="GridCell.Tab.0.left" timestamp="1575970565743">
+    <state width="1409" height="60" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1576054753824" />
+    <state width="1409" height="60" key="GridCell.Tab.0.left" timestamp="1576054753823">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1409" height="423" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1575970565743" />
-    <state width="1409" height="423" key="GridCell.Tab.0.right" timestamp="1575970565743">
+    <state width="1409" height="60" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1576054753823" />
+    <state width="1409" height="60" key="GridCell.Tab.0.right" timestamp="1576054753825">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1409" height="423" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1575970565743" />
+    <state width="1409" height="60" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1576054753825" />
     <state x="229" y="216" key="com.intellij.ide.util.TipDialog" timestamp="1575901496323">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -208,5 +217,9 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="217" y="203" key="run.anything.popup/0.23.1440.877@0.23.1440.877" timestamp="1575969285598" />
+    <state x="217" y="23" width="1005" height="1466" key="search.everywhere.popup" timestamp="1576051224540">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="217" y="23" width="1005" height="1466" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1576051224540" />
   </component>
 </project>

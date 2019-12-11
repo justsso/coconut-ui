@@ -1,13 +1,12 @@
 import * as React from 'react';
-
 import './index.scss';
+import GridDemo from "./demos/grid/index";
 
 class App extends React.Component {
     render() {
         return (
             <div>
-               <h2>123</h2>
-                <h3>h3</h3>
+                <GridDemo/>
             </div>
         )
     }

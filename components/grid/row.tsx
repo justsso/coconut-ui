@@ -2,15 +2,15 @@ import React from 'react';
 import * as PropTypes from "prop-types";
 import RowContext from "./RowContext";
 import classNames from 'classnames';
-
 import {tuple} from "../_util/type";
+import './style/index.scss';
 
 export type Gutter = number;
 const RowAligns = tuple('top', 'middle', 'bottom', 'stretch');
 const RowJustify = tuple('start', 'center', 'end', 'space-around', 'space-between');
 
 export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
-    gutter?: number,
+    gutter: number,
     type?: 'flex',
     align?: (typeof RowAligns)[number],
     justify?: (typeof RowJustify)[number],
