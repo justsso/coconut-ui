@@ -66,4 +66,9 @@ $yellow: #f2bf43;
   .#{$coconut-prefix}-col-offset-#{$i} {
     margin-left: (1/24 * $i *100) * 1%;
   }
+
+  .#{$coconut-prefix}-col-order-#{$i} {
+    order: $i;
+  }
+
 }

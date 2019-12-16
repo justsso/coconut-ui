@@ -2,3 +2,24 @@ $yellow: #f2bf43;
 .my-col {
   background: $yellow;
 }
+
+h3 {
+  color: blue;
+}
+
+.flex {
+  display: flex;
+
+  .flex-item {
+    padding: 0 30px;
+  }
+  .flex-4{
+    order: 1;
+  }
+  .flex-1{
+    order: 2;
+  }
+  .flex-3{
+    order: -1;
+  }
+}

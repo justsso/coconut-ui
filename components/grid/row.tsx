@@ -11,7 +11,7 @@ const RowJustify = tuple('start', 'center', 'end', 'space-around', 'space-betwee
 
 export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
     gutter: number,
-    type?: 'flex',
+    type?: string,
     align?: (typeof RowAligns)[number],
     justify?: (typeof RowJustify)[number],
     prefixCls?: string

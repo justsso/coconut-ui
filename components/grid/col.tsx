@@ -9,7 +9,8 @@ type ColSpanType = number | string;
 export interface ColProps extends React.HTMLAttributes<HTMLDivElement> {
     span?: ColSpanType,
     offset?: ColSpanType,
-    prefixCls?: string
+    prefixCls?: string,
+    order?: number
 }
 
 class Col extends React.Component<ColProps, {}> {
@@ -17,7 +18,8 @@ class Col extends React.Component<ColProps, {}> {
         span: PropTypes.number,
         offset: PropTypes.number,
         className: PropTypes.string,
-        children: PropTypes.node
+        children: PropTypes.node,
+        order: PropTypes.number
     };
 
     constructor(props: any) {
@@ -27,19 +29,24 @@ class Col extends React.Component<ColProps, {}> {
         }
     }
 
+    static defaultProps = {
+        offset: 0
+    };
+
     componentDidMount(): void {
     }
 
 
     render() {
-        const {children, className, span, offset, ...others} = this.props;
+        const {children, className, span, offset, order, ...others} = this.props;
         const prefixCls = 'coconut-col';
         //分析classes
         const classes = classNames(
             prefixCls,
             {
                 [`${prefixCls}-span-${span}`]: span !== undefined,
-                [`${prefixCls}-offset-${offset}`]: offset
+                [`${prefixCls}-offset-${offset}`]: offset,
+                [`${prefixCls}-order-${order}`]:  order
             },
             className
         );
@@ -49,7 +56,6 @@ class Col extends React.Component<ColProps, {}> {
                 {
                     ({gutter}) => {
                         let style = {};
-                        console.log(gutter, 52);
 
                         if (gutter) {
                             style = {
