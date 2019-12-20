@@ -123,6 +123,8 @@ function Index() {
                 </Col>
             </Row>
 
+            <h3>待做：响应式</h3>
+
 
             <h4>order 显示顺序, order作用在子元素上，默认是0，可以为负值。值越小的越靠前</h4>
             <div className="flex">
