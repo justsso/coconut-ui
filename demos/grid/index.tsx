@@ -123,7 +123,19 @@ function Index() {
                 </Col>
             </Row>
 
-            <h3>待做：响应式</h3>
+            <h3>响应式，支持xs , sm , md , lg , xl , xxl</h3>
+
+            <Row gutter={16} >
+                <Col xs={2} sm={4} md={6} lg={8} xl={10} xxl={10}>
+                    <div className="my-col">1a</div>
+                </Col>
+                <Col xs={20} sm={16} md={12} lg={8} xl={4} xxl={4}>
+                    <div className="my-col">1c</div>
+                </Col>
+                <Col xs={2} sm={4} md={6} lg={8} xl={10} xxl={10}>
+                    <div className="my-col">1</div>
+                </Col>
+            </Row>
 
 
             <h4>order 显示顺序, order作用在子元素上，默认是0，可以为负值。值越小的越靠前</h4>

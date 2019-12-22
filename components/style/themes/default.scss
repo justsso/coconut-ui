@@ -5,4 +5,26 @@ $coconut-prefix: coconut;
 $screen-xs: 480px;
 $screen-xs-min: $screen-xs;
 
+$screen-sm: 576px;
+$screen-sm-min: $screen-sm;
 
+$screen-md: 768px;
+$screen-md-min: $screen-md;
+
+$screen-lg: 992px;
+$screen-lg-min: $screen-lg;
+
+$screen-xl: 1200px;
+$screen-xl-min: $screen-xl;
+
+$screen-xxl: 1600px;
+$screen-xxl-min: $screen-xxl;
+
+$--breakpoints: (
+        'xs' : (max-width: $screen-sm), //max-width: 576px,包括576px
+        'sm' : (min-width: $screen-sm), //min-width: 576px ，不包括576px
+        'md' : (min-width: $screen-md),
+        'lg' : (min-width: $screen-lg),
+        'xl' : (min-width: $screen-xl),
+        'xxl': (min-width: $screen-xxl)
+);
