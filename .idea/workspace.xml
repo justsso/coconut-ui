@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd962a31-51a7-4cc5-a16f-d2670659db69" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/grid/style/mixin.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/grid/style/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/grid/style/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/style/themes/default.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/style/themes/default.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/grid/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/demos/grid/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +176,9 @@
       <workItem from="1576831473992" duration="1632000" />
       <workItem from="1576856479685" duration="1845000" />
       <workItem from="1576915021514" duration="2902000" />
-      <workItem from="1577020057840" duration="4249000" />
+      <workItem from="1577020057840" duration="4448000" />
+      <workItem from="1577107916238" duration="167000" />
+      <workItem from="1577111170892" duration="609000" />
     </task>
     <servers />
   </component>
@@ -196,26 +195,26 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1409" height="211" key="GridCell.Tab.0.bottom" timestamp="1577028541745">
+    <state width="1409" height="211" key="GridCell.Tab.0.bottom" timestamp="1577028776499">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1409" height="211" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1577028541745" />
-    <state width="1409" height="211" key="GridCell.Tab.0.center" timestamp="1577028541744">
+    <state width="1409" height="211" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1577028776499" />
+    <state width="1409" height="211" key="GridCell.Tab.0.center" timestamp="1577028776498">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1409" height="211" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1577028541744" />
-    <state width="1409" height="211" key="GridCell.Tab.0.left" timestamp="1577028541743">
+    <state width="1409" height="211" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1577028776498" />
+    <state width="1409" height="211" key="GridCell.Tab.0.left" timestamp="1577028776497">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1409" height="211" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1577028541743" />
-    <state width="1409" height="211" key="GridCell.Tab.0.right" timestamp="1577028541744">
+    <state width="1409" height="211" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1577028776497" />
+    <state width="1409" height="211" key="GridCell.Tab.0.right" timestamp="1577028776498">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1409" height="211" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1577028541744" />
-    <state x="229" y="216" key="com.intellij.ide.util.TipDialog" timestamp="1577020088511">
+    <state width="1409" height="211" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1577028776498" />
+    <state x="229" y="216" key="com.intellij.ide.util.TipDialog" timestamp="1577107916962">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="229" y="216" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1577020088511" />
+    <state x="229" y="216" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1577107916962" />
     <state x="100" y="123" width="1240" height="677" key="dock-window-1" timestamp="1576924377413">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
