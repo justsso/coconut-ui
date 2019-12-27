@@ -125,7 +125,7 @@ function Index() {
 
             <h3>响应式，支持xs , sm , md , lg , xl , xxl</h3>
 
-            <Row gutter={16} >
+            <Row gutter={16}>
                 <Col xs={2} sm={4} md={6} lg={8} xl={10} xxl={10}>
                     <div className="my-col">1a</div>
                 </Col>
@@ -133,6 +133,22 @@ function Index() {
                     <div className="my-col">1c</div>
                 </Col>
                 <Col xs={2} sm={4} md={6} lg={8} xl={10} xxl={10}>
+                    <div className="my-col">1</div>
+                </Col>
+            </Row>
+
+            <h3>其他属性的响应式</h3>
+            <Row gutter={16}>
+                <Col xs={{span: 5, offset: 1}} lg={{span: 6, offset: 2}} md={{span: 4}}
+                     sm={{span: 3, offset: 3}}>
+                    <div className="my-col">1</div>
+                </Col>
+                <Col xs={{span: 11, offset: 1}} lg={{span: 6, offset: 2}} md={{span: 4, offset: 4}}
+                     sm={{span: 3, offset: 3}}>
+                    <div className="my-col">1</div>
+                </Col>
+                <Col xs={{span: 5, offset: 1}} lg={{span: 6, offset: 2}} md={{span: 4, offset: 8}}
+                     sm={{span: 3, offset: 3}}>
                     <div className="my-col">1</div>
                 </Col>
             </Row>

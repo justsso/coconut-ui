@@ -70,7 +70,7 @@ class Col extends React.Component<ColProps, {}> {
             if (typeof propSize === "number") {
                 sizeProps.span = propSize
             } else if (typeof propSize === "object") {
-                sizeProps.span = propSize || {}
+                sizeProps = propSize || {}
             }
             delete (others as any)[size];
 
