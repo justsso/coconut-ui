@@ -66,7 +66,7 @@ class Col extends React.Component<ColProps, {}> {
         let sizeClassObj = {};
         ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].forEach(size => {
             let sizeProps: ColSize = {};
-            const propSize = (this.props as any)[size];
+            const propSize = (this.props as any)[size];   //取响应式的值
             if (typeof propSize === "number") {
                 sizeProps.span = propSize
             } else if (typeof propSize === "object") {
@@ -111,7 +111,6 @@ class Col extends React.Component<ColProps, {}> {
                                 paddingRight: gutter / 2 + 'px'
                             }
                         }
-                        console.log(style, 60);
                         return <div {...others} style={style} className={classes}>
                             {children}
                         </div>

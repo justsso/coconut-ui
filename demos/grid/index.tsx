@@ -7,12 +7,16 @@ function Index() {
         <div>
             &lt;Row&gt;
             <table>
+                <thead>
                 <tr>
                     <th>成员</th>
                     <th>说明</th>
                     <th>类型</th>
                     <th>默认值</th>
                 </tr>
+                </thead>
+                <tbody>
+
                 <tr>
                     <td>gutter</td>
                     <td>栅格间隔</td>
@@ -29,15 +33,21 @@ function Index() {
                 <tr>
                     <td>align</td>
                 </tr>
+                </tbody>
             </table>
             &lt;Col&gt;
             <table>
+                <thead>
                 <tr>
                     <th>成员</th>
                     <th>说明</th>
                     <th>类型</th>
                     <th>默认值</th>
                 </tr>
+                </thead>
+                <tbody>
+
+
                 <tr>
                     <td>span</td>
                     <td>宽度</td>
@@ -57,6 +67,7 @@ function Index() {
                 <tr>
                     <td>align</td>
                 </tr>
+                </tbody>
             </table>
 
 
