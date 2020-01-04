@@ -14,6 +14,18 @@ $black: #000;
 $light: #f2f2f5;
 $black: #232830;
 
+
+
+
+
+$text-color: fade($black, 65%);
+$font-size-base: 14px;
+$font-feature-settings-base: 'tnum';
+$font-variant-base: tabular-nums;
+$line-height-base: 1.5;
+
+
+
 //媒体查询
 $screen-xs: 480px;
 $screen-xs-min: $screen-xs;
