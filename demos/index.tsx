@@ -1,5 +1,4 @@
 import React from 'react';
-
 class Demos extends React.Component<{}, {}> {
     render() {
         return (
