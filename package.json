@@ -5,7 +5,7 @@
   "main": "index.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cross-env NODE_ENV=production webpack --config config/webpack.base.js --color --progress",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js --color --progress",
     "start": "cross-env NODE_ENV=production webpack-dev-server --config config/webpack.dev.js --color",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.dev.js --color"
   },

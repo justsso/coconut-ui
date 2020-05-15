@@ -6,7 +6,7 @@ const baseConfig = require('./webpack.base');
 module.exports = merge(baseConfig, {
     mode: "production",
     devtool: "source-map",
-    externals: {
-        "react": "react"
-    }
+    // externals: {
+    //     "react": "react"
+    // }
 });
