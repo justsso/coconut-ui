@@ -4,6 +4,7 @@ import {apiData as data} from './data';
 
 export default function Index() {
     return <div>
+        <h2>Button</h2>
         <p>
             类型type:
             <Button type={"primary"}>primary</Button>
@@ -45,7 +46,14 @@ export default function Index() {
             <Button type={"primary"} circle>circle</Button>
             <Button type={"primary"} circle size={"large"} plain>大circle</Button>
             <Button type={"primary"} circle size={"small"}>小circle</Button>
+            <Button type={"secondary"} circle>secondary</Button>
+            <Button type={"danger"} plain circle>danger</Button>
         </p>
+        <p>
+            加载loading:
+            <Button type={"primary"} loading>加载中</Button>
+        </p>
+        <h2>API</h2>
         <div>
             <table>
                 <tbody>
@@ -61,6 +69,5 @@ export default function Index() {
                 </tbody>
             </table>
         </div>
-
     </div>
 }

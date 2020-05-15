@@ -82,7 +82,6 @@
         background-color: transparent;
         border-color: fade_out($primary-button-color, 0.1);
       }
-
     }
 
     &.#{$coconut-prefix}-button-disable {
@@ -308,15 +307,16 @@
     //  font-size: 17px;
     //}
 
-    //&.cooButton--circle {
-    //  border-radius: 29px;
-    //  width: 48px;
-    //  padding: 10px 0px;
-    //
-    //  .cooIcon {
-    //    font-size: 22px;
-    //  }
-    //}
+    &.#{$coconut-prefix}-button-circle {
+      //圆角应该是高度的一半
+      border-radius: 0.5 * $button-height-lg;
+      //width: 48px;
+      //padding: 10px 0px;
+
+      .cooIcon {
+        font-size: 22px;
+      }
+    }
   }
 
   &-small {
@@ -324,6 +324,12 @@
     padding: 4px 8px;
     line-height: $button-height-sm - 16;
     font-size: $button-font-size-sm;
+
+    &.#{$coconut-prefix}-button-circle {
+      //圆角应该是高度的一半
+      border-radius: 0.5 * $button-height-sm;
+    }
+
   }
 
   &-disable {
@@ -362,5 +368,9 @@
       pointer-events: none;
       background-color: rgba(255, 255, 255, .3);
     }
+  }
+
+  &-circle {
+    border-radius: 0.5 * $button-height;
   }
 }

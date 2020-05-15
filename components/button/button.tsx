@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import classnames from 'classnames';
+import classes from 'classnames';
+import Icon from "../icon";
 import './style/index.scss';
 
 interface ButtonProps {
@@ -33,7 +34,7 @@ class Button extends Component<ButtonProps, ButtonState> {
 
     render() {
         const {prefixCls, loading, className, size, type, disabled, circle, plain, children} = this.props;
-        const buttonClassName = classnames({
+        const buttonClassName = classes({
             [prefixCls]: true,
             [`${prefixCls}-${type}`]: true,
             [`${prefixCls}-${size}`]: true,
@@ -49,7 +50,7 @@ class Button extends Component<ButtonProps, ButtonState> {
                 className={buttonClassName}
             >
                 {
-                    loading ? ('loading') : null
+                    loading ? <Icon style={{marginRight: '.5rem'}} className='icon-load' spin /> : null
                 }
                 {children}
             </button>

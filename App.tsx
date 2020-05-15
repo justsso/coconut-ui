@@ -5,6 +5,7 @@ import {Route, Switch, Link, BrowserRouter as Router} from 'react-router-dom';
 import './index.scss';
 import GridDemo from "./demos/grid/index";
 import ButtonDemo from "./demos/button/index"
+import IconDemo from "./demos/icon";
 
 const routes = [
     {
@@ -14,6 +15,10 @@ const routes = [
     {
         path: '/button',
         main: <ButtonDemo/>,
+    },
+    {
+        path: '/icon',
+        main: <IconDemo />
     },
     {
         path: '/',
@@ -28,9 +33,12 @@ class App extends React.Component {
             <Router>
                 <nav>
                     <ul>
-                        <li><Link to={'/'}>首页</Link></li>
-                        <li><Link to={'/grid'}>Grid </Link></li>
-                        <li><Link to={'/button'}>Button</Link></li>
+                        {/*<li><Link to={'/'}>首页</Link></li>*/}
+                        {/*<li><Link to={'/grid'}>Grid </Link></li>*/}
+                        {/*<li><Link to={'/button'}>Button</Link></li>*/}
+                        {routes.map((item,index) => {
+                           return <li key={index}><Link to={item.path} >{item.path}</Link> </li>
+                        })}
                     </ul>
                 </nav>
 

@@ -71,6 +71,17 @@ $link-button-fill-tap: #ddd;
 $link-button-font-size: 16 * $hd;
 
 
+// 图标尺寸
+// ---
+$icon-size-xxs: 16 * $hd;
+$icon-size-xs: 18 * $hd;
+$icon-size-sm: 22 * $hd;
+$icon-size-md: 26 * $hd; // 导航条上的图标、grid的图标大小
+$icon-size-lg: 36 * $hd;
+
+
+
+
 //媒体查询
 $screen-xs: 480px;
 $screen-xs-min: $screen-xs;

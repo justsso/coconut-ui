@@ -5,6 +5,7 @@ export const apiData = [
     ["size", "大小", "string", "large、small", "--"],
     ["disabled", "是否禁用", "boolean", "true、false", "false"],
     ["circle", "是否圆角", "boolean", "true、false", "false"],
-    ["icon", "icon的名称", "string", "--", "--"]
+    ["loading", "是否加载中", "boolean", "true、false", "false"],
+    ["icon", "icon的名称", "string", "详情见Icon组件", "--"]
 ]
 
