@@ -1,6 +1,6 @@
 // mixins for clearfix
 // ------------------------
-.clearfix() {
+@mixin clearfix() {
   zoom: 1;
 &::before,
 &::after {

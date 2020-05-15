@@ -1,7 +1,8 @@
+@import '../themes/default';
 // Compatibility for browsers.
 
 // Placeholder text
-.placeholder($color: $input-placeholder-color) {
+@mixin placeholder($color: $input-placeholder-color) {
   // Firefox
   &::-moz-placeholder {
     color: $color;

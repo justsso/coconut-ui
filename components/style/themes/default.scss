@@ -1,29 +1,48 @@
 $coconut-prefix: coconut;
-
+$hd: 1px; // 基本单位
 // -------- Colors -----------
 $primary-color: #568eef;
 $info-color: #4ba0b5;
 $success-color: #53a451;
 $processing-color: #1890ff;
 $error-color: #cb444b;
-$highlight-color:#fcf8e5;
+$highlight-color: #fcf8e5;
 $warning-color: #f6c344;
 $normal-color: #d9d9d9;
 $white: #fff;
 $black: #000;
 $light: #f2f2f5;
 $black: #232830;
-
-
-
-
+$gray: #606266;
+$grayHover: #606266;
+$grayActive: #606266;
+$grayDark: #606266;
 
 $text-color: fade($black, 65%);
 $font-size-base: 14px;
 $font-feature-settings-base: 'tnum';
 $font-variant-base: tabular-nums;
 $line-height-base: 1.5;
+$input-placeholder-color:fade_in($black, 0.4);
 
+//button
+$button-height: 47 * $hd;
+$button-font-size: 18 * $hd;
+
+$button-height-sm: 30 * $hd;
+$button-font-size-sm: 13 * $hd;
+
+$primary-button-fill: $primary-color;
+$primary-button-fill-tap: $primary-color;
+
+$ghost-button-color: $primary-color; // 同时应用于背景、文字颜色、边框色
+$ghost-button-fill-tap: fade($primary-color, 60%);
+
+$warning-button-fill: #e94f4f;
+$warning-button-fill-tap: #d24747;
+
+$link-button-fill-tap: #ddd;
+$link-button-font-size: 16 * $hd;
 
 
 //媒体查询

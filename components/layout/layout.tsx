@@ -66,7 +66,7 @@ class BasicLayout extends React.Component<BasicPropsWithTagName, any> {
     getSiderHook() {
         return {
             addSider: (id: string) => {
-                this.setState((state) => {
+                this.setState((state: any) => {
                     return {siders: [...state.siders, id]}
                 })
             },

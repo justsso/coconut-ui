@@ -3,3 +3,5 @@ node_modules
 build
 docs
 .docz
+yarn-error.log
+yarn.lock
