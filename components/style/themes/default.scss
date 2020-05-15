@@ -12,7 +12,7 @@ $normal-color: #d9d9d9;
 $white: #fff;
 $black: #000;
 $light: #f2f2f5;
-$black: #232830;
+$dark: #232830;
 $gray: #606266;
 $grayHover: #606266;
 $grayActive: #606266;
@@ -20,26 +20,52 @@ $grayDark: #606266;
 
 $text-color: fade($black, 65%);
 $font-size-base: 14px;
+$font-size-large: 16px;
+$font-size-small: 12px;
+
+
 $font-feature-settings-base: 'tnum';
 $font-variant-base: tabular-nums;
 $line-height-base: 1.5;
-$input-placeholder-color:fade_in($black, 0.4);
+$input-placeholder-color: fade_in($black, 0.4);
 
 //button
-$button-height: 47 * $hd;
-$button-font-size: 18 * $hd;
+$button-height: 40 * $hd;
+$button-font-size: 16 * $hd;
 
 $button-height-sm: 30 * $hd;
 $button-font-size-sm: 13 * $hd;
 
-$primary-button-fill: $primary-color;
-$primary-button-fill-tap: $primary-color;
+$button-height-lg: 48 *$hd;
+$button-font-size-lg: 18 * $hd;
+
+$primary-button-color: #568eef;
+$primary-button-fill-tap: fade_out($primary-button-color, 0.5);
+
+$secondary-button-color: #3a3e45;
+$secondary-button-fill-tap: fade_out($secondary-button-color, 0.5);
+
+$success-button-color: #53a451;
+$success-button-fill-tap: fade_out($success-button-color, 0.5);
+
+$danger-button-color: $error-color;
+$danger-button-fill-tap: #b83539;
+
+$info-button-color: #4ba0b5;
+$info-button-fill-tap: fade_out($info-button-color, 0.5);
+
+$light-button-color: #f2f2f5;
+$light-button-fill-tap: fade_out($light-button-color, 0.5);
+
+$dark-button-color: $dark;
+$dark-button-fill-tap: fade_out($dark-button-color, 0.5);
 
 $ghost-button-color: $primary-color; // 同时应用于背景、文字颜色、边框色
 $ghost-button-fill-tap: fade($primary-color, 60%);
 
-$warning-button-fill: #e94f4f;
-$warning-button-fill-tap: #d24747;
+$warning-button-color: $warning-color;
+$warning-button-fill-tap: fade_out($warning-button-color, 0.5);
+
 
 $link-button-fill-tap: #ddd;
 $link-button-font-size: 16 * $hd;

@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
-import propTypes from 'prop-types';
-import className from 'classnames';
+import classnames from 'classnames';
 import './style/index.scss';
 
-interface ButtonProps{
+interface ButtonProps {
     prefixCls: string,
-    type: string,
-    size: string,
-    disabled: boolean,
-    circle: boolean,
-    fill: boolean,
+    type?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark',
+    size?: 'large' | 'small',
+    disabled?: boolean,
+    circle?: boolean,
+    plain: boolean,
     loading: boolean,
     className: string,
     onClick?: React.MouseEventHandler<HTMLAnchorElement>
@@ -22,39 +21,27 @@ interface ButtonState {
 class Button extends Component<ButtonProps, ButtonState> {
     static defaultProps = {
         prefixCls: 'coconut-button',
-        size: 'default',
+        size: '',
         disabled: false,
         type: 'primary',
         circle: false,
-        fill: false,
+        plain: false,
         loading: false,
         className: '',
-    };
-    static propTypes = {
-        size: propTypes.oneOf(['small', 'large', 'default']),
-        type: propTypes.oneOf(['primary', 'success', 'normal', 'danger']),
-        disabled: propTypes.bool,
-        circle: propTypes.bool,
-        fill: propTypes.bool,
-        onClick: propTypes.func,
-        icon: propTypes.string,
-        loading: propTypes.bool,
-        className: propTypes.string,
     };
 
 
     render() {
-        const props = this.props;
-        const {prefixCls} = this.props;
-        const buttonClassName = className({
+        const {prefixCls, loading, className, size, type, disabled, circle, plain, children} = this.props;
+        const buttonClassName = classnames({
             [prefixCls]: true,
-            [`${prefixCls}--${props.type}`]: true,
-            [`${prefixCls}--${props.size}`]: true,
-            [`${prefixCls}--disable`]: props.disabled,
-            [`${prefixCls}--circle`]: props.circle,
-            [`${prefixCls}--fill`]: props.fill,
-            [`${prefixCls}--loading`]: props.loading,
-            [props.className]: true
+            [`${prefixCls}-${type}`]: true,
+            [`${prefixCls}-${size}`]: true,
+            [`${prefixCls}-disable`]: disabled,
+            [`${prefixCls}-circle`]: circle,
+            [`${prefixCls}-plain`]: plain,
+            [`${prefixCls}-loading`]: loading,
+            [className]: true
         });
 
         return (
@@ -62,9 +49,9 @@ class Button extends Component<ButtonProps, ButtonState> {
                 className={buttonClassName}
             >
                 {
-                    props.loading ? ('loding') : null
+                    loading ? ('loading') : null
                 }
-                {this.props.children}
+                {children}
             </button>
         );
     }

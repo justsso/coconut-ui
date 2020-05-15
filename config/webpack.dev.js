@@ -13,7 +13,8 @@ module.exports = merge(baseConfig, {
             '/api': {
                 target: "http://localhost:3000"
             }
-        }
+        },
+        historyApiFallback: true
     },
     devtool: "inline-source-map"
 });
