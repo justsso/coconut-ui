@@ -6,8 +6,14 @@ import './index.scss';
 import GridDemo from "./demos/grid/index";
 import ButtonDemo from "./demos/button/index"
 import IconDemo from "./demos/icon";
+import Demos from "./demos";
+import CollapseDemo from './demos/collapse/index';
 
 const routes = [
+    {
+        path: '/collapse',
+        main: <CollapseDemo />
+    },
     {
         path: '/grid',
         main: <GridDemo/>,
@@ -18,11 +24,11 @@ const routes = [
     },
     {
         path: '/icon',
-        main: <IconDemo />
+        main: <IconDemo/>
     },
     {
         path: '/',
-        main: <h1>Home</h1>,
+        main: <Demos/>,
         exact: true
     }
 ]
@@ -36,8 +42,8 @@ class App extends React.Component {
                         {/*<li><Link to={'/'}>首页</Link></li>*/}
                         {/*<li><Link to={'/grid'}>Grid </Link></li>*/}
                         {/*<li><Link to={'/button'}>Button</Link></li>*/}
-                        {routes.map((item,index) => {
-                           return <li key={index}><Link to={item.path} >{item.path}</Link> </li>
+                        {routes.map((item, index) => {
+                            return <li key={index}><Link to={item.path}>{item.path}</Link></li>
                         })}
                     </ul>
                 </nav>
