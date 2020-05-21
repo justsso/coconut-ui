@@ -34,6 +34,9 @@ const routes = [
 ]
 
 class App extends React.Component {
+
+
+
     render() {
         return (
             <Router>
@@ -54,8 +57,16 @@ class App extends React.Component {
                             return <Route path={item.path} children={item.main} exact={item.exact} key={index}/>
                         })
                     }
-
                 </Switch>
+
+
+                <div className="mydiv">
+                    <div className="content">
+                        contentcontentcontentcontentcontentcontentcontentcontentcontentcontent
+                        contentcontentcontentcontentcontentcontentcontentcontentcontentcontent
+                    </div>
+
+                </div>
             </Router>
         )
     }
