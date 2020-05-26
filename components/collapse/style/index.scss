@@ -3,15 +3,24 @@ $prefixCls: 'coconut';
 
 .#{$prefixCls}-collapse {
   border: 1px solid #e5e5e5;
+  border-bottom: 0;
 }
 
 .#{$prefixCls}-collapsePanle {
+  box-sizing: border-box;
+  border-bottom: 1px solid #d6d6d6;
   &-title{
     padding: 10px;
   }
   &-body {
     transition: all .3s ease-in;
     overflow: hidden;
+    box-sizing: border-box;
+    border-top: 1px solid #d6d6d6;
+
+    &-content{
+      padding: 20px;
+    }
 
     &-active{
       display: block;
@@ -19,8 +28,6 @@ $prefixCls: 'coconut';
     &-inactive{
       display: none;
     }
-
-    border-bottom: 1px solid #e5e5e5;
   }
 }
 

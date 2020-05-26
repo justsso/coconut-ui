@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import {Route, Switch, Link, BrowserRouter as Router} from 'react-router-dom';
 
 import './index.scss';
@@ -8,6 +7,7 @@ import ButtonDemo from "./demos/button/index"
 import IconDemo from "./demos/icon";
 import Demos from "./demos";
 import CollapseDemo from './demos/collapse/index';
+import TransitionDemo from './demos/transition/index';
 
 const routes = [
     {
@@ -25,6 +25,10 @@ const routes = [
     {
         path: '/icon',
         main: <IconDemo/>
+    },
+    {
+        path: '/transition',
+        main: <TransitionDemo in={true} />
     },
     {
         path: '/',

@@ -3,7 +3,7 @@ import {Collapse} from "../../components/collapse/index";
 import {collapseData} from './data'
 import {collapsePanelData} from "./data";
 
-const {Panle} = Collapse;
+const {Panel} = Collapse;
 
 export default function Index() {
     return (
@@ -17,20 +17,14 @@ export default function Index() {
             <p>
                 是否手风琴模式：
             </p>
-            <Collapse>
-
-                <Panle title={"This is Title 2"}>
+            <Collapse defaultActiveKey={['1']}>
+                <Panel title={"This is Title 2"}  panel_key='1'>
                     123124
-                </Panle>
-
-                <Panle title={"This is Title 2"}>
-                    e.json   45 bytes          [emitted] [immutable] [hmr]
-                    app.84454ff3772941fac73c.hot-update.js   6.79 KiB     app  [emitted] [immutable] [hmr]  app
-                    app.js   3.89 MiB     app  [emitted]                    app
-                    index.html  365 bytes          [emitted]
-                    Entrypoint app = app.js app.84454ff3772941fac73c.hot-update.js
-                </Panle>
-
+                </Panel>
+                <Panel title={"This is Title 3"}  panel_key='2'>
+                    <p>进口货</p>
+                    <p>就看</p>
+                </Panel>
             </Collapse>
             <p>
                 手动设置激活的面板：
