@@ -10,13 +10,14 @@ import Container from "./container";
 let prefix = 'coconut-ui';
 
 interface LayoutPropInterface {
-    children: ReactChild[]
+    children: ReactChild[] | ReactChild,
+    hasSider?: boolean
 }
 
 function Layout(props: LayoutPropInterface) {
     let children = props.children
+    let {hasSider} = props
 
-    let hasSider = false
 
     //查看children中有没有sider，如果有，那么layout-has-sider将生效
     let MyChildren = React.Children.map(children, ((child) => {
@@ -34,7 +35,6 @@ function Layout(props: LayoutPropInterface) {
 
     return (
         <div className={layoutCls}>
-            Layout
             {MyChildren}
         </div>
     )

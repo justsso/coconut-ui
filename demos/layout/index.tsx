@@ -32,13 +32,25 @@ class LayoutDemo extends React.Component {
                 </div>
                 <div>
                     <h3>侧边栏：</h3>
-                    <Layout>
+                    <Layout hasSider={true}>
                         <Sider/>
                         <Layout>
                             <Layout.Header/>
                             <Layout.Container/>
                             <Layout.Footer/>
                         </Layout>
+
+                    </Layout>
+                </div>
+                <div>
+                    <h3>常见布局：</h3>
+                    <Layout hasSider={false}>
+                        <Layout.Header/>
+                        <Layout hasSider={true}>
+                            <Layout.Container/>
+                            <Sider/>
+                        </Layout>
+                        <Layout.Footer/>
 
                     </Layout>
                 </div>
