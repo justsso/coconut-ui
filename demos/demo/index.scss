@@ -1,0 +1,39 @@
+p {
+  margin: 0;
+}
+
+@mixin boxSizing {
+  box-sizing: border-box;
+}
+
+.collapse {
+
+}
+
+.collapse__item {
+
+}
+
+.collapse-item__title {
+  background-color: #7d7e80;
+  @include boxSizing();
+  padding: 5px;
+}
+
+.collapse-item__body {
+  background: #d7d7d9;
+  @include boxSizing();
+  padding: 20px 10px;
+  transition: height .3s ease-in;
+  overflow: hidden;
+
+
+  &_active {
+    display: block;
+  }
+
+  &_inactive {
+    display: none;
+  }
+
+}

@@ -6,44 +6,46 @@ import './style/index.scss';
 import Icon from "../icon";
 import {panelKey} from "./panel";
 
-//active是外层父组件可以控制打开的属性
-//collapsePanle组件内部的展示是根据hidden属性控制
-interface CollapsePanleProp {
+//active是外层父组件响应到的展开/关闭属性
+//collapsePanel 组件内部的展示是根据hidden属性控制
+interface CollapsePanelProp {
     prefixCls: string,
     title?: string | ReactNode,
     children?: ReactNode,
-    disabled?: boolean,
     active: boolean,
-    onOpen?: (key: panelKey, active: boolean) => void,
+    onOpen?: (key: panelKey) => void,
     panel_key: number | string
 
 }
 
-function CollapsePanle(props: CollapsePanleProp) {
-    const {prefixCls, children, title, active} = props;
-    const duration = 300
+function CollapsePanel(props: CollapsePanelProp) {
+    const {prefixCls, children, title, active, onOpen, panel_key} = props;
+    const duration = 500
 
-    let [isActive, setActive] = useState(active)
-    let [hidden, setHidden] = useState(!isActive)
+    let [isActive, setActive] = useState(active) //设置初始化
+    let [hidden, setHidden] = useState(!isActive)  //设置初始化
     let [panelHeight, setPanelHeight] = useState(-999)
 
-    const bodyRef = useRef<HTMLDivElement>(null)
+    const bodyRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
 
     //只会运行一次的
     useEffect(() => {
         console.log('useEffect useEffect useEffect useEffect')
         if (bodyRef.current) {
+            console.log('~~~~', 'bodyRef.current.offsetHeight', bodyRef.current.offsetHeight, isActive
+            )
             if (isActive) {
                 // bodyRef.current.style.height = CollapsePanle.height + 'px'
                 // CollapsePanle.height = bodyRef.current.offsetHeight //做缓存，优化
                 setPanelHeight(bodyRef.current.offsetHeight)
-                bodyRef.current.style.height = panelHeight + 'px'
-                console.info(panelHeight + 'px')
+                bodyRef.current.style.height = bodyRef.current.offsetHeight + 'px'
+                // console.info(panelHeight + 'px')
+                // CollapsePanel.height = bodyRef.current.offsetHeight
 
-                console.log('存入缓存： CollapsePanle.height', CollapsePanle.height)
+                console.log('存入缓存： panelHeight', panelHeight)
             } else {
                 // bodyRef.current.style.height = '0px'
-                console.log('存入缓存： CollapsePanle.height', '-999')
+                console.log('存入缓存： panelHeight', '-999')
                 setPanelHeight(-999)
                 // CollapsePanle.height = -999
             }
@@ -51,9 +53,9 @@ function CollapsePanle(props: CollapsePanleProp) {
     }, [])
 
     //设置类名逻辑
-    const collapsePanleClassName = classNames(prefixCls, {})
+    const collapsePanelClassName = classNames(prefixCls, {})
 
-    const collapsePanleBodyClassName = classNames({
+    const collapsePanelBodyClassName = classNames({
         [`${prefixCls}-body`]: true,
         [`${prefixCls}-body-active`]: !hidden,
         [`${prefixCls}-body-inactive`]: hidden
@@ -61,34 +63,55 @@ function CollapsePanle(props: CollapsePanleProp) {
 
     function toggleOpen() {
         setActive(!isActive)
+        onOpen && onOpen(panel_key)
     }
 
-    function cacheHeight() {
+    // function cacheHeight() {
+    //     if (panelHeight !== -999) {
+    //         console.log('缓存中的：CollapsePanle.height', panelHeight)
+    //         return
+    //     } else {
+    //         if (bodyRef.current) {
+    //             // bodyRef.current.style.height = CollapsePanle.height + 'px'
+    //             bodyRef.current.style.display = 'block';
+    //             setPanelHeight(bodyRef.current.offsetHeight)//做缓存，优化
+    //             bodyRef.current.style.display = ''
+    //             console.log('存入缓存： panelHeight', panelHeight)
+    //         }
+    //     }
+    // }
+
+    function onEnter() {
+        console.log('onEnter')
+
         if (panelHeight !== -999) {
-            console.log('缓存中的：CollapsePanle.height', panelHeight)
-            return
+            //已经有缓存高度的，直接改变hidden，然后赋值panelHeight
+            if (bodyRef.current) {
+                bodyRef.current.style.display = 'block'
+            }
+
+
         } else {
+            //没有缓存高度的，先缓存高度，然后改变hidden,然后赋值panelHeight
+
             if (bodyRef.current) {
                 // bodyRef.current.style.height = CollapsePanle.height + 'px'
                 bodyRef.current.style.display = 'block';
                 setPanelHeight(bodyRef.current.offsetHeight)//做缓存，优化
-                bodyRef.current.style.display = ''
-                console.log('存入缓存： CollapsePanle.height', panelHeight)
+                // console.log('存入缓存： panelHeight', bodyRef.current.offsetHeight)
+                bodyRef.current.style.height = '0px';
             }
+
         }
-    }
-
-    function onEnter() {
-
-        cacheHeight()
-        setHidden(false)
-        if (bodyRef.current) {
-            bodyRef.current.style.height = '0px'
-        }
-
     }
 
     function onEntering() {
+        console.log('onEntering')
+        if (bodyRef.current) {
+            console.log('查看缓存：panelHeight ', panelHeight)
+            bodyRef.current.style.height = panelHeight + 'px'
+        }
+        setHidden(false)
 
     }
 
@@ -96,29 +119,27 @@ function CollapsePanle(props: CollapsePanleProp) {
         // if (bodyRef.current) {
         //     bodyRef.current.style.height = ''
         // }
-        if (bodyRef.current) {
-            bodyRef.current.style.height = panelHeight + 'px'
-        }
+        console.log('onEntered')
     }
 
     function onExit() {
-        cacheHeight()
+        console.log('onExit')
+        // cacheHeight()
         if (bodyRef.current) {
-            bodyRef.current.style.height = panelHeight + 'px'
+            bodyRef.current.style.height = '0px'
         }
 
     }
 
     function onExiting() {
-        if (bodyRef.current) {
-            bodyRef.current.style.height = '0px'
-        }
+        console.log('onExiting')
+
     }
 
     function onExited() {
-
+        console.log('onExited')
         if (bodyRef.current) {
-            bodyRef.current.style.height = ''
+            bodyRef.current.style.height = '0px'
             setHidden(true)
         }
 
@@ -131,7 +152,8 @@ function CollapsePanle(props: CollapsePanleProp) {
 
 
     return (
-        <div className={collapsePanleClassName}>
+
+        <div className={collapsePanelClassName}>
             <div className={`${prefixCls}-title`} onClick={() => {
                 //因为要有动画效果，所以我们必须获取 body 的高度，利用ref 获取原生dom ，获取offsetHeight，然后修改height属性，利用css transition去做
                 //默认情况下，不能在函数组件中使用ref属性，因为它们没有实例
@@ -148,17 +170,16 @@ function CollapsePanle(props: CollapsePanleProp) {
             </div>
 
             <Transition
-                in={isActive}
+                in={isActive} //in变为true，触发onEnter onEntering onEntered ;in变为false，触发onExit onExiting onExited
                 timeout={duration}
                 onEnter={onEnter}
                 onEntering={onEntering}
                 onEntered={onEntered}
-
                 onExit={onExit}
                 onExiting={onExiting}
                 onExited={onExited}
             >
-                <div className={collapsePanleBodyClassName} ref={bodyRef}>
+                <div className={collapsePanelBodyClassName} ref={bodyRef}>
                     <div className={`${prefixCls}-collapse-body-content`}>
                         {children}
                     </div>
@@ -168,8 +189,8 @@ function CollapsePanle(props: CollapsePanleProp) {
     )
 }
 
-CollapsePanle.defaultProps = {
-    prefixCls: 'coconut-collapsePanle'
+CollapsePanel.defaultProps = {
+    prefixCls: 'coconut-collapsePanel'
 }
-CollapsePanle.height = 0
-export default CollapsePanle;
+CollapsePanel.height = 0
+export default CollapsePanel;

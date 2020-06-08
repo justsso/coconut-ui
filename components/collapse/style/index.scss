@@ -6,11 +6,11 @@ $prefixCls: 'coconut';
   border-bottom: 0;
 }
 
-.#{$prefixCls}-collapsePanle {
+.#{$prefixCls}-collapsePanel {
   box-sizing: border-box;
   border-bottom: 1px solid #d6d6d6;
   &-title{
-    padding: 10px;
+    padding: 10px 5px;
   }
   &-body {
     transition: all .3s ease-in;

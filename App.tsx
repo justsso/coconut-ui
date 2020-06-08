@@ -8,8 +8,17 @@ import IconDemo from "./demos/icon";
 import Demos from "./demos";
 import CollapseDemo from './demos/collapse/index';
 import TransitionDemo from './demos/transition/index';
-
+import MyDemo from "./demos/demo";
+import LayoutDemo from "./demos/layout";
 const routes = [
+    {
+        path: '/layout',
+        main: <LayoutDemo />
+    },
+    {
+        path: '/collapse2',
+        main: <MyDemo />
+    },
     {
         path: '/collapse',
         main: <CollapseDemo />
@@ -63,14 +72,6 @@ class App extends React.Component {
                     }
                 </Switch>
 
-
-                <div className="mydiv">
-                    <div className="content">
-                        contentcontentcontentcontentcontentcontentcontentcontentcontentcontent
-                        contentcontentcontentcontentcontentcontentcontentcontentcontentcontent
-                    </div>
-
-                </div>
             </Router>
         )
     }

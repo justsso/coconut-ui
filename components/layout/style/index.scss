@@ -1,0 +1,45 @@
+$prefixCls: 'coconut-ui';
+
+@mixin Myborder() {
+  border: 1px solid #938f8f;
+}
+
+.#{$prefixCls}-layout {
+  display: flex;
+  flex-direction: column;
+Myborder() & -has-sider {
+  flex-direction: row;
+
+}
+
+  &-header {
+    width: 100%;
+    height: 60px;
+ @include Myborder()
+
+  }
+
+  &-sider {
+    flex: 0 0 200px;
+    height: 300px;
+    @include Myborder()
+
+
+  }
+
+  &-container {
+    height: 300px;
+    @include Myborder()
+
+
+  }
+
+  &-footer {
+    width: 100%;
+    height: 40px;
+    @include Myborder()
+
+
+  }
+
+}

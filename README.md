@@ -1,31 +1,31 @@
 基础组件：
-- [x] Button 按钮
-- [x] Icon 图标
-- [ ] 气泡框
+- [x] Button 按钮 react组件间 通信
+- [x] Icon 图标 svg css  
+- [ ] 气泡框 badge组件 css 定位定位
 - [ ] 面包屑
 - [ ] 下拉菜单
-- [ ] 分页
-- [ ] tag
+- [ ] 分页  数据逻辑 
+- [ ] tag 
 
-form有关的组件
+form有关的组件 ， 防抖
 
-- [ ] Switch
-- [ ] Checkbox
-- [ ] 级联选择
-- [ ] Slider
+- [ ] Switch  css定位
+- [ ] Checkbox  div伪装 css定位
+- [ ] 级联选择  动画
+- [ ] Slider 拖拽 定位
 - [ ] 日期选择
-- [ ] 输入框
-- [ ] 上传
-- [ ] 树型选择
+- [ ] 输入框  防xss攻击，防抖，文本溢出，省略号，placeholder，文本断行 word-break, white-space
+- [ ] 上传   promise
+- [ ] 树型选择 
 
 
-- [ ] 表格
-- [ ] 树型表格
-- [ ] 拖拽表格
+- [ ] 表格table react底层渲染机制，怎么性能优化
+- [ ] 树型表格  react底层渲染机制，怎么性能优化
+- [ ] 拖拽表格  
 
 数据展示：
 
-- [ ] Collapse 折叠面板
+- [ ] Collapse 折叠面板  动画
 - [ ] 走马灯
 - [ ] list
 - [ ] card
@@ -50,9 +50,36 @@ form有关的组件
 
 布局的组件
 - [ ] container模版
+- [ ] layout组件
 
 目标：
 
 - 按需加载
 - 支持多语言 
 -  换肤（黑暗模式）
+
+考虑到适用场景：
+
+2. 组件的性能优化：
+    图片、懒加载 base64  => 多图，九宫格图片，图片预览
+    防抖、  => input组件
+    react最小重新加载
+    一万个节点渲染，虚拟列表
+    防止重复点击
+    cdn
+    
+    
+3. 安全性：防止XSS攻击 ， input 组件
+7. 滚动事件要有节流，比如list组件 ，长列表优化
+8. 设计模式，继承之类的，比如通知栏,全局toast
+9. 底部弹出框  手势
+10. css布局 定位 层叠上下文 对应的各类弹出框
+11. setTimeout Promise  => 跑马灯
+12. 涉及到react底层的渲染 => table组件
+13. react 通信 => button组件
+
+整体：
+1. pc or 移动。pc
+5. 支持多语言
+6. 换肤
+7. webpack打包，组件按需加载
