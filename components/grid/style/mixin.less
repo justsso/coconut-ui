@@ -1,9 +1,13 @@
-@import "../../style/themes/default";
+@import "../../style/themes/default.less";
 /*混合器，使用@include引用*/
 //$map 有默认值
-@mixin res($key, $map: $--breakpoints) {
+//less 中的函数
+
+/*
+.res($key; $map: #--breakpoints) {
   @if (map_has_key($map, $key)) {
-    @media only screen and #{inspect(map-get($map, $key))} {
+    //@media only screen and #{inspect(map-get($map, $key))} {
+      @media only screen {
       @content;
     }
   } @else {
@@ -13,3 +17,5 @@
 
 /*map 语法*/
 //插值语句 #
+
+

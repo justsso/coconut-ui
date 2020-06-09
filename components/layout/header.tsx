@@ -1,10 +1,17 @@
 import React from "react";
 let prefix = 'coconut-ui';
 
-function Header(){
+
+interface HeaderPropsInterface {
+    children?: React.ReactNode
+    style?: React.CSSProperties
+    className?: string
+}
+
+function Header(props: HeaderPropsInterface){
     return (
         <div className={`${prefix}-layout-header`}>
-            Header
+            {props.children}
         </div>
     )
 }

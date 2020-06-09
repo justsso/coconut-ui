@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import RowContext from "./RowContext";
 import classNames from 'classnames';
-import './style/index.scss';
+import './style/index.less';
 
 type ColSpanType = number | string;
 

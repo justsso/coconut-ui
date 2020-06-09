@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/layout";
+import './index.less';
 
-let Container = Layout.Container
 let Sider = Layout.Sider
 
 class LayoutDemo extends React.Component {
@@ -22,37 +22,44 @@ class LayoutDemo extends React.Component {
                     Footer： 底部部分，只能放在 Layout 中
                 </p>
 
-                <div>
+                <div  className={'layout_demo'}  >
                     <h3> 上中下：</h3>
                     <Layout>
-                        <Layout.Header/>
-                        <Container/>
-                        <Layout.Footer/>
+                        <Layout.Header>
+                            Header
+                        </Layout.Header>
+                        <Layout.Container>
+                            Container
+                        </Layout.Container>
+                        <Layout.Footer>
+                            Footer
+                        </Layout.Footer>
                     </Layout>
-                </div>
-                <div>
+
+
                     <h3>侧边栏：</h3>
-                    <Layout hasSider={true}>
-                        <Sider/>
+                    <Layout>
+                        <Sider>Sider</Sider>
                         <Layout>
-                            <Layout.Header/>
-                            <Layout.Container/>
-                            <Layout.Footer/>
+                            <Layout.Header>Header</Layout.Header>
+                            <Layout.Container>Container</Layout.Container>
+                            <Layout.Footer>Footer</Layout.Footer>
                         </Layout>
-
                     </Layout>
-                </div>
-                <div>
+
+
                     <h3>常见布局：</h3>
-                    <Layout hasSider={false}>
-                        <Layout.Header/>
-                        <Layout hasSider={true}>
-                            <Layout.Container/>
-                            <Sider/>
+                    <Layout >
+                        <Layout.Header>Header</Layout.Header>
+
+                        <Layout >
+                            <Layout.Container>Container</Layout.Container>
+                            <Sider>Sider</Sider>
                         </Layout>
-                        <Layout.Footer/>
+                        <Layout.Footer>Footer</Layout.Footer>
 
                     </Layout>
+
                 </div>
 
             </div>

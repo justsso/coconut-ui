@@ -1,24 +1,24 @@
-@import "../../style/themes/default";
+@import "../../style/themes/default.less";
 @import url("//at.alicdn.com/t/font_1822453_7dqgod6wq3o.css");
 
-$baseCls: iconfont;
+@baseCls: iconfont;
 
-$prefixCls: coconut-icon;
+@prefixCls: coconut-icon;
 
-.#{$baseCls} {
+.@{baseCls} {
   display: inline-block; //transform属性对 inline 类型的元素不起作用
   transition: transform .3s;
-  width: $icon-size-md;
-  height: $icon-size-md;
+  width: @icon-size-md;
+  height: @icon-size-md;
   text-align: center;
   background-size: cover;
 }
 
-.#{$prefixCls} {
-  //color: $dark;
-  width: $icon-size-xxs;
-  height: $icon-size-xxs;
-  font-size: $icon-size-xxs;
+.@{prefixCls} {
+  //color: @dark;
+  width: @icon-size-xxs;
+  height: @icon-size-xxs;
+  font-size: @icon-size-xxs;
 
   &-spin {
     -webkit-animation: spin 1s linear infinite;
@@ -28,22 +28,22 @@ $prefixCls: coconut-icon;
   }
 
   &-middle {
-    width: $icon-size-md;
-    height: $icon-size-md;
-    font-size: $icon-size-md;
-    line-height: $icon-size-md;
+    width: @icon-size-md;
+    height: @icon-size-md;
+    font-size: @icon-size-md;
+    line-height: @icon-size-md;
   }
 
   &-large {
-    width: $icon-size-lg;
-    height: $icon-size-lg;
-    font-size: $icon-size-lg;
-    line-height: $icon-size-lg;
+    width: @icon-size-lg;
+    height: @icon-size-lg;
+    font-size: @icon-size-lg;
+    line-height: @icon-size-lg;
   }
   &-small {
-  width: $icon-size-xxs;
-  height: $icon-size-xxs;
-  font-size: $icon-size-xxs;
+  width: @icon-size-xxs;
+  height: @icon-size-xxs;
+  font-size: @icon-size-xxs;
   }
 
 }

@@ -3,7 +3,7 @@ import * as PropTypes from "prop-types";
 import RowContext from "./RowContext";
 import classNames from 'classnames';
 import {tuple} from "../_util/type";
-import './style/index.scss';
+import './style/index.less';
 
 export type Gutter = number;
 const RowAligns = tuple('top', 'middle', 'bottom', 'stretch');

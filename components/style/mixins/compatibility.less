@@ -2,19 +2,19 @@
 // Compatibility for browsers.
 
 // Placeholder text
-@mixin placeholder($color: $input-placeholder-color) {
+.placeholder(@color: @input-placeholder-color) {
   // Firefox
   &::-moz-placeholder {
-    color: $color;
+    color: @color;
     opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
   }
   // Internet Explorer 10+
   &:-ms-input-placeholder {
-    color: $color;
+    color: @color;
   }
   // Safari and Chrome
   &::-webkit-input-placeholder {
-    color: $color;
+    color: @color;
   }
 
   &:placeholder-shown {

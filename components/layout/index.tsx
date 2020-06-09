@@ -1,43 +1,52 @@
-import React, {ReactChild} from "react";
+import React, {useState} from "react";
 import classNames from "classnames";
-import "./style/index.scss"
+import "./style/index.less"
 
 import Sider from "./sider";
 import Header from "./header";
 import Footer from "./footer";
 import Container from "./container";
 
-let prefix = 'coconut-ui';
 
 interface LayoutPropInterface {
-    children: ReactChild[] | ReactChild,
+    prefixCls: string
+    children?: React.ReactNode
+    className?: string
+    style?: React.CSSProperties
     hasSider?: boolean
 }
 
+export let LayoutContext: React.Context<any> = React.createContext({})
+
 function Layout(props: LayoutPropInterface) {
-    let children = props.children
-    let {hasSider} = props
+    let {prefixCls, children, hasSider, className, style} = props
+    let [hasSiderState, setHasSider] = useState(hasSider || false)
+
+    function changeHasSider(hasSider: boolean) {
+        console.log('sider组件的值： ', hasSider)
+        setHasSider(hasSider)
+    }
 
 
-    //查看children中有没有sider，如果有，那么layout-has-sider将生效
-    let MyChildren = React.Children.map(children, ((child) => {
-        if (child instanceof Sider) {
-            hasSider = true
-        }
-        return child
-    }))
+    //查看children中有没有sider组件，如果有，那么layout-has-sider类名将生效
 
-    let layoutCls = classNames(`${prefix}-layout`, {
-        [`${prefix}-layout-has-sider`]: hasSider
+    let layoutCls = classNames(`${prefixCls}-layout`, {
+        [`${prefixCls}-layout-has-sider`]: hasSiderState,
+        className
     })
 
-    console.log(MyChildren, hasSider)
-
     return (
-        <div className={layoutCls}>
-            {MyChildren}
-        </div>
+        <LayoutContext.Provider value={{
+            changeHasSider
+        }}>
+            <div className={layoutCls} style={style}>
+                {children}
+            </div>
+        </LayoutContext.Provider>
     )
+}
+Layout.defaultProps = {
+    prefixCls: 'coconut-ui'
 }
 
 Layout.Header = Header

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import './index.scss';
+import './index.less';
 import CollapseItem from "./CollapseItem";
 import classNames from "classnames";
 //使用BEM CSS命名规范来

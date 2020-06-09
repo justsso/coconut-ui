@@ -1,0 +1,355 @@
+@import "../../style/themes/default.less";
+@import "mixin.less";
+
+
+.@{coconut-prefix}-row {
+  width: 100%;
+  overflow: hidden;
+
+  &-flex {
+    display: flex;
+    flex-flow: row wrap;
+
+    &::before, &::after {
+      display: flex;
+    }
+  }
+}
+
+//主轴对齐
+.@{coconut-prefix}-row-flex-start {
+  justify-content: flex-start;
+}
+
+.@{coconut-prefix}-row-flex-center {
+  justify-content: center;
+}
+
+.@{coconut-prefix}-row-flex-end {
+  justify-content: flex-end;
+}
+
+.@{coconut-prefix}-row-flex-space-between {
+  justify-content: space-between;
+}
+
+.@{coconut-prefix}-row-flex-space-around {
+  justify-content: space-around;
+}
+
+//纵轴对齐，由row组件传入控制
+
+.@{coconut-prefix}-row-align-top {
+  align-items: flex-start;
+}
+
+.@{coconut-prefix}-row-align-center {
+  align-items: center;
+}
+
+.@{coconut-prefix}-row-align-bottom {
+  align-items: flex-end;
+}
+
+//Col组件
+.@{coconut-prefix}-col {
+  float: left;
+  box-sizing: border-box;
+}
+
+each(range(0, 24, 1), {
+  // 包括 0 和 24 ,step = 1
+  //循环生成span
+  .@{coconut-prefix}-col-span-@{value} {
+    width: (1/24 * @value * 100) * 1%;
+  }
+
+  //循环生成offset //循环生成offset
+  .@{coconut-prefix}-col-offset-@{value} {
+    margin-left: (1 /24 * @value * 100) * 1%;
+  }
+
+  //循环生成order
+  .@{coconut-prefix}-col-order-@{value} {
+    order: @value
+  }
+
+  //  循环生成push
+  //  循环生成pull
+
+})
+
+//@xs: ~"(max-width: @{screen-sm})";
+@xs: ~"(max-width: @{screen-sm})";
+@sm: ~"(min-width: @{screen-sm})";
+@md: ~"(min-width: @{screen-md})";
+@lg: ~"(min-width: @{screen-lg})";
+@xl: ~"(min-width: @{screen-xl})";
+//@xl: (min-width: @{screen-xl});
+@xxl: ~"(min-width: @{screen-xxl})";
+
+//响应式
+@media @xs {
+  .@{coconut-prefix}-col-xs-0 {
+    display: none;
+  }
+
+  each(range(0, 24, 1), {
+    //span
+    .@{coconut-prefix}-col-xs-@{value} {
+      width: (1/ 24 * @value *100) * 1%;
+    }
+
+    //循环生成offset
+    .@{coconut-prefix}-col-xs-offset-@{value} {
+      margin-left: (1/24 * @value *100) * 1%;
+    }
+
+    //循环生成order
+    .@{coconut-prefix}-col-xs-order-@{value} {
+      order: @value;
+    }
+  })
+}
+
+
+@media @sm {
+    .@{coconut-prefix}-col-sm-0 {
+      display: none;
+    }
+      each(range(0, 24, 1), {
+        //span
+        .@{coconut-prefix}-col-sm-@{value} {
+          width: (1/ 24 * @value *100) * 1%;
+        }
+        //循环生成offset
+        .@{coconut-prefix}-col-sm-offset-@{value} {
+          margin-left: (1/24 * @value *100) * 1%;
+        }
+        //循环生成order
+        .@{coconut-prefix}-col-sm-order-@{value} {
+          order: @value;
+        }
+    })
+}
+
+
+@media @md {
+  .@{coconut-prefix}-col-sm-0 {
+    display: none;
+  }
+  each(range(0, 24, 1), {
+
+    //span
+    .@{coconut-prefix}-col-md-@{value} {
+      width: (1/ 24 * @value *100) * 1%;
+    }
+    //循环生成offset
+    .@{coconut-prefix}-col-md-offset-@{value} {
+      margin-left: (1/24 * @value *100) * 1%;
+    }
+    //循环生成order
+    .@{coconut-prefix}-col-md-order-@{value} {
+      order: @value;
+    }
+  })
+}
+
+@media @lg {
+  .@{coconut-prefix}-col-sm-0 {
+    display: none;
+  }
+  each(range(0, 24, 1), {
+
+    //span
+    .@{coconut-prefix}-col-lg-@{value} {
+      width: (1/ 24 * @value *100) * 1%;
+    }
+    //循环生成offset
+    .@{coconut-prefix}-col-lg-offset-@{value} {
+      margin-left: (1/24 * @value *100) * 1%;
+    }
+    //循环生成order
+    .@{coconut-prefix}-col-lg-order-@{value} {
+      order: @value;
+    }
+  })
+}
+
+@media @xxl {
+  .@{coconut-prefix}-col-xxl-0 {
+    display: none;
+  }
+  each(range(0, 24, 1), {
+
+    //span
+    .@{coconut-prefix}-col-xxl-@{value} {
+      width: (1/ 24 * @value *100) * 1%;
+    }
+    //循环生成offset
+    .@{coconut-prefix}-col-xxl-offset-@{value} {
+      margin-left: (1/24 * @value *100) * 1%;
+    }
+    //循环生成order
+    .@{coconut-prefix}-col-xxl-order-@{value} {
+      order: @value;
+    }
+  })
+}
+
+/**
+@for @{i} from 0 through 24 {
+  //through 包括 0 和 24
+  //循环生成span
+  .@{coconut-prefix}-col-span-@{i} {
+    width: (1/ 24 * @i *100) * 1%;
+  }
+
+  //循环生成offset
+  .@{coconut-prefix}-col-offset-@{i} {
+    margin-left: (1/24 * @i *100) * 1%;
+  }
+
+  //循环生成order
+  .@{coconut-prefix}-col-order-@{i} {
+    order: @i;
+  }
+
+  //  循环生成push
+  //  循环生成pull
+}
+
+//响应式
+ .res(xs) {
+  .@{coconut-prefix}-col-xs-0 {
+    display: none;
+  }
+  @for @i from 0 through 24 {
+
+    //span
+    .@{coconut-prefix}-col-xs-@{i} {
+      width: (1/ 24 * @i *100) * 1%;
+    }
+    //循环生成offset
+    .@{coconut-prefix}-col-xs-offset-@{i} {
+      margin-left: (1/24 * $i *100) * 1%;
+    }
+    //循环生成order
+    .@{coconut-prefix}-col-xs-order-@{i} {
+      order: @i;
+    }
+  }
+}
+*/
+
+/*
+
+ res(sm) {
+  .@{coconut-prefix}-col-sm-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+
+    //span
+    .@{coconut-prefix}-col-sm-@{i} {
+      width: (1/ 24 * $i *100) * 1%;
+    }
+    //循环生成offset
+    .@{coconut-prefix}-col-sm-offset-@{i} {
+      margin-left: (1/24 * $i *100) * 1%;
+    }
+    //循环生成order
+    .@{coconut-prefix}-col-sm-order-@{i} {
+      order: $i;
+    }
+  }
+}
+
+
+ res(md) {
+  .@{coconut-prefix}-col-md-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+
+    //span
+    .@{coconut-prefix}-col-md-@{i} {
+      width: (1/ 24 * $i *100) * 1%;
+    }
+    //循环生成offset
+    .@{coconut-prefix}-col-md-offset-@{i} {
+      margin-left: (1/24 * $i *100) * 1%;
+    }
+    //循环生成order
+    .@{coconut-prefix}-col-md-order-@{i} {
+      order: $i;
+    }
+  }
+}
+
+ res(lg) {
+  .@{coconut-prefix}-col-lg-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+
+    //span
+    .@{coconut-prefix}-col-lg-@{i} {
+      width: (1/ 24 * $i *100) * 1%;
+    }
+    //循环生成offset
+    .@{coconut-prefix}-col-lg-offset-@{i} {
+      margin-left: (1/24 * $i *100) * 1%;
+    }
+    //循环生成order
+    .@{coconut-prefix}-col-lg-order-@{i} {
+      order: $i;
+    }
+  }
+}
+
+ res(xl) {
+  .@{coconut-prefix}-col-xl-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+
+    //span
+    .@{coconut-prefix}-col-xl-@{i} {
+      width: (1/ 24 * $i *100) * 1%;
+    }
+    //循环生成offset
+    .@{coconut-prefix}-col-xl-offset-@{i} {
+      margin-left: (1/24 * $i *100) * 1%;
+    }
+    //循环生成order
+    .@{coconut-prefix}-col-xl-order-@{i} {
+      order: $i;
+    }
+  }
+}
+
+ res(xxl) {
+  .@{coconut-prefix}-col-xxl-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+
+    //span
+    .@{coconut-prefix}-col-xxl-@{i} {
+      width: (1/ 24 * $i *100) * 1%;
+    }
+    //循环生成offset
+    .@{coconut-prefix}-col-xxl-offset-@{i} {
+      margin-left: (1/24 * $i *100) * 1%;
+    }
+    //循环生成order
+    .@{coconut-prefix}-col-xxl-order-@{i} {
+      order: $i;
+    }
+  }
+}
+
+
+
+ */

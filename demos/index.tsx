@@ -5,6 +5,7 @@ class Demos extends React.Component<{}, {}> {
             <div>
                 <h5>已完成：</h5>
                 <ul>
+                    <li>Layout组件</li>
                     <li>Button组件</li>
                     <li>Icon组件</li>
                 </ul>

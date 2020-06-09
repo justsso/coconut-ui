@@ -2,7 +2,7 @@ p {
   margin: 0;
 }
 
-@mixin boxSizing {
+ .boxSizing() {
   box-sizing: border-box;
 }
 
@@ -16,13 +16,13 @@ p {
 
 .collapse-item__title {
   background-color: #7d7e80;
-  @include boxSizing();
+ .boxSizing();
   padding: 5px;
 }
 
 .collapse-item__body {
   background: #d7d7d9;
-  @include boxSizing();
+   .boxSizing();
   padding: 20px 10px;
   transition: height .3s ease-in;
   overflow: hidden;

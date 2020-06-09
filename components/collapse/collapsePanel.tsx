@@ -2,7 +2,7 @@ import React, {ReactNode, useEffect, useRef, useState} from "react";
 // import ReactDOM from "react-dom";
 import {Transition} from "react-transition-group";
 import classNames from "classnames";
-import './style/index.scss';
+import './style/index.less';
 import Icon from "../icon";
 import {panelKey} from "./panel";
 

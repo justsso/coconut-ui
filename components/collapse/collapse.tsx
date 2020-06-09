@@ -1,6 +1,6 @@
 import React, {ReactNode, useState} from "react";
 import classNames from "classnames";
-import './style/index.scss';
+import './style/index.less';
 import CollapsePanel from "./collapsePanel";
 import Panel, {PanelProp} from "./panel";
 

@@ -1,6 +1,6 @@
 import {Row, Col} from '../../components/grid';
 import React from 'react';
-import './index.scss';
+import './index.less';
 
 function Index() {
     return (
@@ -29,6 +29,7 @@ function Index() {
                 </tr>
                 <tr>
                     <td>justify</td>
+                    <td>水平排列方式</td>
                 </tr>
                 <tr>
                     <td>align</td>
@@ -56,7 +57,7 @@ function Index() {
                 </tr>
                 <tr>
                     <td>offset</td>
-                    <td>布局模式</td>
+                    <td>栅格左侧的间隔格数，间隔内不可以有栅格</td>
                 </tr>
                 <tr>
                     <td>order</td>
@@ -69,6 +70,12 @@ function Index() {
                 </tr>
                 </tbody>
             </table>
+
+            <h5>span 属性</h5>
+            <Row>
+                <Col span={2} className="my-col">Col-2</Col>
+                <Col span={8} className="my-col" offset={2}> offset2=2  span=8</Col>
+            </Row>
 
 
             <h3>gutter</h3>

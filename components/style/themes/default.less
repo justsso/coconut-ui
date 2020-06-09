@@ -1,0 +1,114 @@
+@coconut-prefix: coconut;
+@hd: 1px; // 基本单位
+// -------- Colors -----------
+@primary-color: #568eef;
+@info-color: #4ba0b5;
+@success-color: #53a451;
+@processing-color: #1890ff;
+@error-color: #cb444b;
+@highlight-color: #fcf8e5;
+@warning-color: #f6c344;
+@normal-color: #d9d9d9;
+@white: #fff;
+@black: #000;
+@light: #f2f2f5;
+@dark: #232830;
+@gray: #606266;
+@grayHover: #606266;
+@grayActive: #606266;
+@grayDark: #606266;
+
+@text-color: fade(@black, 65%);
+@font-size-base: 14px;
+@font-size-large: 16px;
+@font-size-small: 12px;
+
+
+@font-feature-settings-base: 'tnum';
+@font-variant-base: tabular-nums;
+@line-height-base: 1.5;
+@input-placeholder-color: fade_in(@black, 0.4);
+
+//button
+@button-height: 40 * @hd;
+@button-font-size: 16 * @hd;
+
+@button-height-sm: 30 * @hd;
+@button-font-size-sm: 13 * @hd;
+
+@button-height-lg: 48 *@hd;
+@button-font-size-lg: 18 * @hd;
+
+@primary-button-color: #568eef;
+@primary-button-fill-tap: fade_out(@primary-button-color, 0.5);
+
+@secondary-button-color: #3a3e45;
+@secondary-button-fill-tap: fade_out(@secondary-button-color, 0.5);
+
+@success-button-color: #53a451;
+@success-button-fill-tap: fade_out(@success-button-color, 0.5);
+
+@danger-button-color: @error-color;
+@danger-button-fill-tap: #b83539;
+
+@info-button-color: #4ba0b5;
+@info-button-fill-tap: fade_out(@info-button-color, 0.5);
+
+@light-button-color: #f2f2f5;
+@light-button-fill-tap: fade_out(@light-button-color, 0.5);
+
+@dark-button-color: @dark;
+@dark-button-fill-tap: fade_out(@dark-button-color, 0.5);
+
+@ghost-button-color: @primary-color; // 同时应用于背景、文字颜色、边框色
+@ghost-button-fill-tap: fade(@primary-color, 60%);
+
+@warning-button-color: @warning-color;
+@warning-button-fill-tap: fade_out(@warning-button-color, 0.5);
+
+
+@link-button-fill-tap: #ddd;
+@link-button-font-size: 16 * @hd;
+
+
+// 图标尺寸
+// ---
+@icon-size-xxs: 16 * @hd;
+@icon-size-xs: 18 * @hd;
+@icon-size-sm: 22 * @hd;
+@icon-size-md: 26 * @hd; // 导航条上的图标、grid的图标大小
+@icon-size-lg: 36 * @hd;
+
+
+
+
+//媒体查询
+@screen-xs: 480px;
+@screen-xs-min: @screen-xs;
+
+@screen-sm: 576px;
+@screen-sm-min: @screen-sm;
+
+@screen-md: 768px;
+@screen-md-min: @screen-md;
+
+@screen-lg: 992px;
+@screen-lg-min: @screen-lg;
+
+@screen-xl: 1200px;
+@screen-xl-min: @screen-xl;
+
+@screen-xxl: 1600px;
+@screen-xxl-min: @screen-xxl;
+
+//映射
+/*
+#--breakpoints() {
+xs : (max-width = @screen-sm); //max-width: 576px,包括576px
+sm : (min-width = @screen-sm); //min-width: 576px ，不包括576px
+md : (min-width = @screen-md);
+lg : (min-width = @screen-lg);
+xl : (min-width = @screen-xl);
+xxl : (min-width = @screen-xxl);
+};
+*/

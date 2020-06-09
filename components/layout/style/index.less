@@ -1,15 +1,12 @@
-$prefixCls: 'coconut-ui';
+@prefixCls: 'coconut-ui';
 
-@mixin Myborder() {
-  border: 1px solid #938f8f;
-}
 
-.#{$prefixCls}-layout {
+.@{prefixCls}-layout {
   display: flex;
   flex-direction: column;
   //如果layout作为子组件，那么flex:auto，代表 默认宽度是多少就是多少 flex:auto 是 flex: 1 1 auto的简写
   flex: auto;
-  @include Myborder();
+  background: #f5f7f9;
 
 
   &-has-sider {
@@ -19,23 +16,16 @@ $prefixCls: 'coconut-ui';
   &-header {
     width: 100%;
     height: 60px;
-    @include Myborder()
 
   }
 
   &-sider {
     flex: 0 0 200px;
-    height: 300px;
-    @include Myborder()
-
-
   }
 
   &-container {
-    height: 300px;
     //container 宽度默认占本来的宽度
     flex: auto;
-    @include Myborder()
 
 
   }
@@ -43,8 +33,6 @@ $prefixCls: 'coconut-ui';
   &-footer {
     width: 100%;
     height: 40px;
-    @include Myborder()
-
 
   }
 

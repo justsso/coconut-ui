@@ -1,2 +1,2 @@
-import './style/index.scss';
+import './style/index.less';
 export {default as Collapse} from './collapse'

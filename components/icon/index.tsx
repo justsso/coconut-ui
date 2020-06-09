@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from "classnames";
-import './style/index.scss';
+import './style/index.less';
 
 
 interface IconProp {
