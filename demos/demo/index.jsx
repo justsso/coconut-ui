@@ -35,25 +35,36 @@ class MyDemo extends Component {
 
         this.state = {
             isActive: true,
-            height1: 0
+            height1: 0,
+            open: false
         }
+
+        this.toggleOpen = this.toggleOpen.bind(this)
     }
 
     componentDidMount() {
+        let {isActive, open} = this.state;
         if (this.bodyRef.current) {
-            console.log( this.bodyRef.current.paddingTop, 29292992)
+            if (isActive) {  //相当于初识的，由父元素传进来的
+                if (open) {
+                    console.log(this.bodyRef.current.scrollHeight, 50)
+                    this.setState({height1: this.bodyRef.current.offsetHeight})
+                    this.bodyRef.current.style.height = this.bodyRef.current.offsetHeight + 'px'
+                } else {
+                    this.bodyRef.current.style.height = 0 + 'px'
+                }
+            }
             this.setState({height1: this.bodyRef.current.offsetHeight})
         }
     }
 
     onOpen() {
         //获取body高度
-
         let {isActive, height1} = this.state;
-        if(isActive) {
+        if (isActive) {
             //执行关闭
             this.bodyRef.current.style.height = '0px'
-        }else{
+        } else {
             //执行开启
             this.bodyRef.current.style.height = height1 + 'px';
         }
@@ -63,12 +74,56 @@ class MyDemo extends Component {
         })
     }
 
+    toggleOpen() {
+        let {open, height1} = this.state;
+        // window.getComputedStyle(this.bodyRef.current)
+
+        if (open) {
+            // 执行关闭，写入height 行内样式
+            this.bodyRef.current.style.height = '0px';
+            let timer = setTimeout(() => {
+                this.setState({
+                    open: !open
+                })
+                clearTimeout(timer)
+            }, 350)
+        } else {
+            //执行打开，有可能初识状态本来就是关闭的，所以这里分两种情况
+            if (height1) {
+                this.setState({
+                    open: !open
+                }, () => {
+                    let timer = setTimeout(() => {
+                        this.bodyRef.current.style.height = this.state.height1 + 'px';
+                        clearTimeout(timer)
+                    }, 50)
+                })
+            } else {
+                //初识是关闭
+                this.bodyRef.current.style.display = 'block';
+                this.bodyRef.current.style.height = '';
+                let height = this.bodyRef.current.offsetHeight
+                console.log(height, 105)
+                this.setState({
+                    height1: height
+                })
+                this.bodyRef.current.style.height = '0px'
+                this.setState({
+                    open: !open
+                }, () => {
+                    this.bodyRef.current.style.height = this.state.height1 + 'px';
+                })
+
+            }
+        }
+    }
+
     render() {
-        let {isActive} = this.state;
+        let {isActive, open} = this.state;
 
         const collapseItemBodyCls = classNames('collapse-item__body', {
-            // 'collapse-item__body_active': isActive,
-            // 'collapse-item__body_inactive': !isActive,
+            'collapse-item__body_active': open,
+            'collapse-item__body_inactive': !open,
         })
 
 
@@ -79,15 +134,28 @@ class MyDemo extends Component {
                         <div className="collapse-item__title " onClick={this.onOpen}>
                             我是标题
                         </div>
-                        <div className={collapseItemBodyCls} ref={this.bodyRef}>
-                            <p>第一行第一行第一行第一行第一行</p>
+                        <div className={collapseItemBodyCls} ref={this.bodyRef} onTransitionEnd={() => {
+                            console.log('transitionEnd事件')
+                        }}
+                             onTransitionEndCapture={() => {
+                                 console.log('onTransitionEndCapture事件')
+                             }}
+                        >
+                            <div className="collapse-item__bodyContent">
+                                <p>第一行第一行第一行第一行第一行</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <button onClick={() => {
-
-
-                }}  >获取collapse body的高度</button>
+                    let height = this.bodyRef.current.offsetHeight
+                    console.log(height, 'height')
+                    this.setState({
+                        height1: height
+                    })
+                }}>获取collapse body的高度{this.state.height1} </button>
+                <button onClick={this.toggleOpen}>关闭/打开
+                </button>
             </div>
         )
     }

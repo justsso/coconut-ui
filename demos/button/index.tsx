@@ -1,12 +1,13 @@
-import Button from "../../components/button/button";
 import React from 'react';
 import {apiData as data} from './data';
+import CodeView from "../Common/CodeView";
+import {Button} from "../../src/components";
 
 export default function Index() {
     return <div>
         <h2>Button</h2>
-        <p>
-            类型type:
+        <h4> 类型type</h4>
+        <CodeView>
             <Button type={"primary"}>primary</Button>
             <Button type={"secondary"}>secondary</Button>
             <Button type={"success"}>success</Button>
@@ -15,9 +16,9 @@ export default function Index() {
             <Button type={"info"}>info</Button>
             <Button type={"light"}>light</Button>
             <Button type={"dark"}>dark</Button>
-        </p>
-        <p>
-            镂空plain：
+        </CodeView>
+        <h4>镂空plain</h4>
+        <CodeView>
             <Button type={"primary"} plain={true}>primary</Button>
             <Button type={"secondary"} plain>secondary</Button>
             <Button type={"success"} plain>success</Button>
@@ -26,33 +27,39 @@ export default function Index() {
             <Button type={"info"} plain>info</Button>
             <Button type={"light"} plain>light</Button>
             <Button type={"dark"} plain>dark</Button>
-        </p>
-        <p>
-            尺寸size:
+        </CodeView>
+        <h4>尺寸size</h4>
+        <CodeView>
+
             <Button type={"primary"} plain={true} size={"large"}>大空心</Button>
             <Button type={"primary"} plain={true}>正常空心</Button>
             <Button type={"primary"} plain={true} size={"small"}>小空心</Button>
-        </p>
+        </CodeView>
 
-        <p>
-            禁用disabled:
+        <h4>禁用disabled</h4>
+        <CodeView>
             <Button type={"primary"} disabled> primary disabled</Button>
             <Button type={"primary"} disabled plain> primary disabled</Button>
             <Button type={"primary"} disabled size={"small"}> primary disabled</Button>
             <Button type={"primary"} disabled plain size={"small"}> primary disabled</Button>
-        </p>
-        <p>
-            圆角circle:
+            <p>
+            <Button type={"secondary"} disabled>secondary</Button>
+            </p>
+        </CodeView>
+            <h4>圆角circle</h4>
+        <CodeView>
+
             <Button type={"primary"} circle>circle</Button>
             <Button type={"primary"} circle size={"large"} plain>大circle</Button>
             <Button type={"primary"} circle size={"small"}>小circle</Button>
             <Button type={"secondary"} circle>secondary</Button>
             <Button type={"danger"} plain circle>danger</Button>
-        </p>
-        <p>
-            加载loading:
+        </CodeView>
+        <h4>加载loading</h4>
+        <CodeView>
+
             <Button type={"primary"} loading>加载中</Button>
-        </p>
+        </CodeView>
         <h2>API</h2>
         <div>
             <table>

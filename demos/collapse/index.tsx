@@ -1,5 +1,5 @@
 import React from "react";
-import {Collapse} from "../../components/collapse/index";
+import {Collapse} from "../../src/components/collapse/index";
 import {collapseData} from './data'
 import {collapsePanelData} from "./data";
 

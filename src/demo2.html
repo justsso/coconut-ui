@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .panel_title {
+            background: #7d7e80;
+            color: #fff;
+        }
+
+        .panel_body {
+            background: #53a451;
+            transition: height 0.5s ease;
+            overflow: hidden;
+        }
+
+        .panel_body_content {
+
+        }
+    </style>
+</head>
+<body>
+
+<div id="test">
+    <div class="panel_title">
+        我是标题
+    </div>
+    <div class="panel_body">
+        <div class="panel_body_content">
+            我是内容
+        </div>
+    </div>
+
+</div>
+<button onclick="getHeigth();">展开</button>
+<button onclick="deleteStyle();">关闭</button>
+<button onclick="addDiv()">添加div</button>
+<button onclick="getContentHeight();">获取content真正的高度</button>
+
+<script>
+    let panel_body =  document.querySelector('.panel_body')
+    let panel_body_content = document.querySelector('.panel_body_content')
+
+    function init(){
+        let realHeight = panel_body_content.scrollHeight
+        panel_body.style.height = realHeight + 'px'
+    }
+    init()
+
+    function getHeigth(e) {
+        //打开
+        let realHeight = panel_body_content.scrollHeight
+        panel_body.style.height = realHeight + 'px'
+    }
+
+    function deleteStyle(e) {
+        //关闭
+        panel_body.style.height = 0 + 'px'
+    }
+
+    function addDiv() {
+        let div = document.createElement('div')
+        div.innerHTML = '<div style="height: 50px">\n' +
+            '    hjhjkhjkh\n' +
+            '    就离开就离开\n' +
+            '    就离开就离开\n' +
+            '    <H3>dasf</H3>\n' +
+            '    \n' +
+            '</div>'
+        panel_body_content.appendChild(div)
+
+        //重新获取content的高度，也就是再执行一遍展开函数
+        getHeigth()
+
+    }
+
+    function getContentHeight() {
+        let height = panel_body_content.offsetHeight
+        console.log(height + 'px')
+    }
+
+
+
+
+</script>
+</body>
+</html>

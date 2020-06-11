@@ -1,0 +1,38 @@
+@import "../../style/themes/default";
+@import "~animate.css";
+
+.@{coconut-prefix}-panel {
+  border: 1px solid #e5e5e5;
+  border-bottom: 0;
+}
+
+.@{coconut-prefix}-panel {
+  box-sizing: border-box;
+  border-bottom: 1px solid #d6d6d6;
+  &-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 5px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  &-body {
+    transition: height 0.3s ease-in-out;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-top: 1px solid #d6d6d6;
+
+    &-content{
+      padding: 20px;
+    }
+
+    &-active{
+      display: block;
+    }
+    &-inactive{
+      display: none;
+    }
+  }
+}
+

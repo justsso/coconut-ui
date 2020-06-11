@@ -1,22 +1,26 @@
-import Icon from "../../components/icon";
+import Icon from "../../src/components/Icon/Icon";
 import React from "react";
+import CodeView from '../Common/CodeView';
 import {apiData as data} from "./data";
 
 export default function IconDemo() {
     return (
         <div>
             <h2>Icon</h2>
-            <p style={{color: "#000"}}>
-                size:
+
+            <h4>size </h4>
+
+            <CodeView>
                 默认大小<Icon className={'icon-book'}/>，
                 small<Icon size={"small"} className={'icon-book'}/>，
                 middle<Icon size={"middle"} className={'icon-book'} />，
                 large<Icon size={"large"} className={'icon-book'}/>
+            </CodeView>
+            <h4 >
+                className， 根据className 指定icon
+            </h4>
 
-            </p>
-            <p style={{color: "#000", display: "flex"}}>
-                className:
-            </p>
+            <CodeView>
             <pre style={{
                 wordBreak: "break-word"
             }}>
@@ -32,19 +36,27 @@ export default function IconDemo() {
                 icon-success<Icon size={"middle"} className={'icon-success'} />
                 icon-offline<Icon size={"middle"} className={'icon-offline'} />
             </pre>
-            <p>
+            </CodeView>
+            <h4>
                 是否自旋 spin：
-                <Icon style={{marginRight: '.5rem'}} className='icon-load' size={"middle"} spin/>
-            </p>
-            <p>
-                旋转 rotate：
+            </h4>
+
+            <CodeView>
+                <Icon style={{marginRight: '.5rem'}} className='icon-load' size={"middle"} spin/>ß
+            </CodeView>
+
+            <h4>
+                旋转 rotate
+            </h4>
+            <CodeView>
                 <Icon size={"middle"} className={'icon-my'} rotate={180} />
                 <Icon size={"middle"} className={'icon-my'} rotate={90} />
                 <Icon size={"middle"} className={'icon-my'} rotate={0} />
                 <Icon size={"middle"} className={'icon-my'} rotate={-90} />
-            </p>
-            <p>
-                自定义样式style:
+            </CodeView>
+            <h4>自定义样式style</h4>
+            <CodeView>
+
                 <Icon size={"middle"} className={'icon-book'}  style={{
                     color: 'green',
                     fontSize: '24px'
@@ -54,7 +66,7 @@ export default function IconDemo() {
                     fontSize: '24px'
                 }} />
 
-            </p>
+            </CodeView>
             <h2>API</h2>
             <div>
                 <table>

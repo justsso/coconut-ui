@@ -5,3 +5,4 @@ docs
 .docz
 yarn-error.log
 yarn.lock
+.vscode

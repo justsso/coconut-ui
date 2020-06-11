@@ -50,7 +50,7 @@ form有关的组件 ， 防抖
 
 布局的组件
 - [ ] container模版
-- [ ] layout组件
+- [x] layout组件
 
 目标：
 

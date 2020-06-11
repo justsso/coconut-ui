@@ -1,184 +1,171 @@
-import {Row, Col} from '../../components/grid';
+import { Row, Col } from '../../src/components/Grid';
 import React from 'react';
+import CodeView from '../Common/CodeView';
+
+import { rowData, colData } from './data'
 import './index.less';
+
 
 function Index() {
     return (
         <div>
-            &lt;Row&gt;
-            <table>
-                <thead>
-                <tr>
-                    <th>成员</th>
-                    <th>说明</th>
-                    <th>类型</th>
-                    <th>默认值</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr>
-                    <td>gutter</td>
-                    <td>栅格间隔</td>
-                    <td>number</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>type</td>
-                    <td>布局模式</td>
-                </tr>
-                <tr>
-                    <td>justify</td>
-                    <td>水平排列方式</td>
-                </tr>
-                <tr>
-                    <td>align</td>
-                </tr>
-                </tbody>
-            </table>
-            &lt;Col&gt;
-            <table>
-                <thead>
-                <tr>
-                    <th>成员</th>
-                    <th>说明</th>
-                    <th>类型</th>
-                    <th>默认值</th>
-                </tr>
-                </thead>
-                <tbody>
-
-
-                <tr>
-                    <td>span</td>
-                    <td>宽度</td>
-                    <td>number</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>offset</td>
-                    <td>栅格左侧的间隔格数，间隔内不可以有栅格</td>
-                </tr>
-                <tr>
-                    <td>order</td>
-                    <td>显示顺序</td>
-                    <td>值越小的在前面</td>
-                    <td>默认：0</td>
-                </tr>
-                <tr>
-                    <td>align</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h5>span 属性</h5>
-            <Row>
-                <Col span={2} className="my-col">Col-2</Col>
-                <Col span={8} className="my-col" offset={2}> offset2=2  span=8</Col>
-            </Row>
-
-
-            <h3>gutter</h3>
+            <h3>Row 组件 ： gutter属性，默认值为0</h3>
             <h4>gutter 默认</h4>
-            <Row>
-                <Col span={2}>
-                    <div className="my-col">col-2</div>
-                </Col>
-                <Col span={4}>
-                    <div className="my-col">col-4</div>
-                </Col>
-            </Row>
+            <CodeView>
+                <Row>
+                    <Col span={2}>
+                        <div className="my-col">col-2</div>
+                    </Col>
+                    <Col span={4}>
+                        <div className="my-col">col-4</div>
+                    </Col>
+                </Row>
+            </CodeView>
+
             <h4>gutter=16</h4>
-            <Row gutter={16}>
-                <Col span={4}>
-                    <div className={'my-col'}>col-4</div>
-                </Col>
-                <Col span={4}>
-                    <div className={'my-col'}>col-4</div>
-                </Col>
-                <Col span={8}>
-                    <div className={'my-col'}>col-8</div>
-                </Col>
-            </Row>
+            <CodeView>
+                <Row gutter={16}>
+                    <Col span={4}>
+                        <div className={'my-col'}>col-4</div>
+                    </Col>
+                    <Col span={4}>
+                        <div className={'my-col'}>col-4</div>
+                    </Col>
+                    <Col span={8}>
+                        <div className={'my-col'}>col-8</div>
+                    </Col>
+                </Row>
+            </CodeView>
             <h4>gutter=8</h4>
-            <Row gutter={8}>
-                <Col span={4}>
-                    <div className={'my-col'}>col-4</div>
-                </Col>
-                <Col span={4}>
-                    <div className={'my-col'}>col-4</div>
-                </Col>
-                <Col span={8}>
-                    <div className={'my-col'}>col-8</div>
-                </Col>
-            </Row>
-            <h3>offset</h3>
+            <CodeView>
+                <Row gutter={8}>
+                    <Col span={4}>
+                        <div className={'my-col'}>col-4</div>
+                    </Col>
+                    <Col span={4}>
+                        <div className={'my-col'}>col-4</div>
+                    </Col>
+                    <Col span={8}>
+                        <div className={'my-col'}>col-8</div>
+                    </Col>
+                </Row>
+            </CodeView>
+            <h3>Col 组件 ：offset属性</h3>
             <h4>offset=4，gutter=16 </h4>
 
-            <Row gutter={16}>
-                <Col span={4}>
-                    <div className="my-col">col-4</div>
-                </Col>
+            <CodeView>
+                <Row gutter={16}>
+                    <Col span={4} offset={16}>
+                        <div className="my-col">col-4 offset-16</div>
+                    </Col>
+                </Row>
+                <Row>
+                <Col span={4} offset={12}>
+                        <div className="my-col">col-4 offset-12</div>
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col span={4} offset={8}>
+                        <div className="my-col">col-4 offset-8</div>
+                    </Col>
+                </Row>
+                <Row>
                 <Col span={4} offset={4}>
-                    <div className="my-col">col-4</div>
-                </Col>
-            </Row>
+                        <div className="my-col">col-4 offset-4</div>
+                    </Col>
+                </Row>
+            </CodeView>
 
-            <h3>order 显示顺序, 在flex模式下起作用</h3>
+            <h3>Col组件： order 显示顺序, 在flex模式下起作用</h3>
             <h4>order作用在子元素上，默认是0，可以为负值。值越小的越靠前</h4>
-            <Row gutter={16} type={"flex"}>
-                <Col span={4} order={4}>
-                    <div className="my-col">1</div>
-                </Col>
-                <Col span={4} order={3}>
-                    <div className="my-col">2</div>
-                </Col>
-                <Col span={4} order={2}>
-                    <div className="my-col">3</div>
-                </Col>
-                <Col span={4} order={1}>
-                    <div className="my-col">4</div>
-                </Col>
-            </Row>
+
+            <CodeView>
+                <Row gutter={16} type={"flex"}>
+                    <Col span={4} order={4}>
+                        <div className="my-col">1, order=4</div>
+                    </Col>
+                    <Col span={4} order={3}>
+                        <div className="my-col">2, order=3</div>
+                    </Col>
+                    <Col span={4} order={2}>
+                        <div className="my-col">3, order=2</div>
+                    </Col>
+                    <Col span={4} order={1}>
+                        <div className="my-col">4, order=1</div>
+                    </Col>
+                </Row>
+            </CodeView>
 
             <h3>响应式，支持xs , sm , md , lg , xl , xxl</h3>
 
-            <Row gutter={16}>
-                <Col xs={2} sm={4} md={6} lg={8} xl={10} xxl={10}>
-                    <div className="my-col">1a</div>
-                </Col>
-                <Col xs={20} sm={16} md={12} lg={8} xl={4} xxl={4}>
-                    <div className="my-col">1c</div>
-                </Col>
-                <Col xs={2} sm={4} md={6} lg={8} xl={10} xxl={10}>
-                    <div className="my-col">1</div>
-                </Col>
-            </Row>
+            <CodeView>
+                <Row gutter={16}>
+                    <Col xs={2} sm={4} md={6} lg={8} xl={10} xxl={10}>
+                        <div className="my-col">xs={2} sm={4} md={6} lg={8} xl={10} xxl={10}</div>
+                    </Col>
+                    <Col xs={20} sm={16} md={12} lg={8} xl={4} xxl={4}>
+                        <div className="my-col">xs={20} sm={16} md={12} lg={8} xl={4} xxl={4}</div>
+                    </Col>
+                    <Col xs={2} sm={4} md={6} lg={8} xl={10} xxl={10}>
+                        <div className="my-col">xs={2} sm={4} md={6} lg={8} xl={10} xxl={10}</div>
+                    </Col>
+                </Row>
+            </CodeView>
 
             <h3>其他属性的响应式</h3>
-            <Row gutter={16}>
-                <Col xs={{span: 5, offset: 1}} lg={{span: 6, offset: 2}} md={{span: 4}}
-                     sm={{span: 3, offset: 3}}>
-                    <div className="my-col">1</div>
-                </Col>
-                <Col xs={{span: 11, offset: 1}} lg={{span: 6, offset: 2}} md={{span: 4, offset: 4}}
-                     sm={{span: 3, offset: 3}}>
-                    <div className="my-col">1</div>
-                </Col>
-                <Col xs={{span: 5, offset: 1}} lg={{span: 6, offset: 2}} md={{span: 4, offset: 8}}
-                     sm={{span: 3, offset: 3}}>
-                    <div className="my-col">1</div>
-                </Col>
-            </Row>
+            <CodeView>
+                <Row gutter={16}>
+                    <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }} md={{ span: 4 }}
+                        sm={{ span: 3, offset: 3 }}>
+                        <div className="my-col">1</div>
+                    </Col>
+                    <Col xs={{ span: 11, offset: 1 }} lg={{ span: 6, offset: 2 }} md={{ span: 4, offset: 4 }}
+                        sm={{ span: 3, offset: 3 }}>
+                        <div className="my-col">1</div>
+                    </Col>
+                    <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }} md={{ span: 4, offset: 8 }}
+                        sm={{ span: 3, offset: 3 }}>
+                        <div className="my-col">1</div>
+                    </Col>
+                </Row>
+            </CodeView>
 
+            <h2>API</h2>
+            <h4>Row 组件</h4>
+            <table>
+                <tbody>
+                    {
+                        rowData.map((item: string[], index: number) => {
+                            return <tr key={index}>
+                                {
+                                    item.map((td_item: string, td_index: number) => {
+                                        return <td key={td_index}>{td_item}</td>
+                                    })
+                                }
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
 
-            <h4>order 显示顺序, order作用在子元素上，默认是0，可以为负值。值越小的越靠前</h4>
-            <div className="flex">
-                <div className="flex-1 flex-item">1， order=2</div>
-                <div className="flex-2 flex-item">2，order默认</div>
-                <div className="flex-3 flex-item">3，order=-1</div>
-                <div className="flex-4 flex-item">4，order=1</div>
-            </div>
+            <h4>Col组件</h4>
+
+            <table>
+                <tbody>
+                    {
+                        colData.map((item: string[], index: number) => {
+                            return <tr key={index}>
+                                {
+                                    item.map((td_item: string, td_index: number) => {
+                                        return <td key={td_index}>{td_item}</td>
+                                    })
+                                }
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
+
         </div>
 
     )
