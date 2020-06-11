@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Transition} from "react-transition-group";
-import {Icon} from "../index";
+import Icon from "../Icon";
 import classNames from "classnames";
 import {BasicProps} from "../@types/common";
 import './style/index.less';

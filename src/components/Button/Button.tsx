@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classes from 'classnames';
 import './style/index.less';
-import Icon from "../Icon/Icon";
+import {Icon} from "../index";
 
 
 interface ButtonProps {
