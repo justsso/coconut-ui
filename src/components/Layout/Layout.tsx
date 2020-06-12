@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import classNames from "classnames";
+import PropTypes from "prop-types";
+import LayoutContext from "./LayoutContext";
 import "./style/index.less"
 
 import Sider from "../Sider";
@@ -15,7 +17,6 @@ interface LayoutPropInterface {
     hasSider?: boolean
 }
 
-export let LayoutContext: React.Context<any> = React.createContext({})
 
 function Layout(props: LayoutPropInterface) {
     let {prefixCls, children, hasSider, className, style} = props
@@ -47,6 +48,10 @@ function Layout(props: LayoutPropInterface) {
 
 Layout.defaultProps = {
     prefixCls: 'coconut-ui'
+}
+
+Layout.propTypes = {
+    children: PropTypes.elementType
 }
 
 Layout.Header = Header

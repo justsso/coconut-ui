@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from "react";
-import {LayoutContext} from '../Layout/Layout';
+import LayoutContext from "../Layout/LayoutContext";
 import classNames from "classnames";
 
 let prefix = 'coconut-ui';

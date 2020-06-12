@@ -3,6 +3,7 @@ import classNames from "classnames";
 import './style/index.less';
 import CollapsePanel from "./collapsePanel";
 import Panel, {PanelProp} from "./panel";
+import PropType from 'prop-types';
 
 type panelKey = number | string
 
@@ -48,7 +49,9 @@ function Collapse(props: CollapseProp) {
             let key = panel.props.panel_key;
             // const active = true
             const active = activeKey.includes(key); //当前panel是否展开
-
+            if(panel.type){
+                console.log(panel.type === Panel, 'type')
+            }
             return (
                 <CollapsePanel active={active}
                                panel_key={key}
@@ -75,6 +78,9 @@ function Collapse(props: CollapseProp) {
 Collapse.defaultProps = {
     prefixCls: 'coconut-collapse',
     accordion: false
+}
+Collapse.propType = {
+    children: [PropType.arrayOf(PropType.elementType)]
 }
 Collapse.Panel = Panel
 export default Collapse;

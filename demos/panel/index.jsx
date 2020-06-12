@@ -2,6 +2,7 @@ import React from "react";
 import {Panel} from "../../src/components";
 import {panelData} from "./data";
 import CodeView from "../Common/CodeView";
+import {PanelGroup} from "../../src/components";
 
 export default function Index() {
     return (

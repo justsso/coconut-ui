@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Transition} from "react-transition-group";
 import Icon from "../Icon";
+import PropType from "prop-types";
 import classNames from "classnames";
 import {BasicProps} from "../@types/common";
 import './style/index.less';
@@ -11,11 +12,13 @@ interface PanelProp extends BasicProps {
     children?: React.ReactChildren
     prefixCls: string
     showArrow?: boolean
+    onItemClick ?: (panelName: string | number) => {}
+    name: string | number
 }
 
 
 function Panel(props: PanelProp) {
-    let {children, prefixCls, title, expanded, showArrow} = props
+    let {children, prefixCls, title, expanded, showArrow, onItemClick, name} = props
     let [expanedState, setExpanedState] = useState(expanded);
     let initRotate = expanded ? 90 : 0;
     let [iconRotate, setIconRotate] = useState(initRotate);
@@ -38,18 +41,23 @@ function Panel(props: PanelProp) {
 
     //只会执行一次，根据expaned prop设置panelBody的高度
     useEffect(() => {
-        console.log('useEffect', expanded)
+        console.log( expanded, 44)
         if (expanded) {
             onEnter()
+            //展开 且 没有标题时，处理一下panelBody的borderTop
+            if(title===undefined){
+                onExited()
+            }
         } else {
-
             onExit()
+            onExited()
         }
-    }, [])
+    }, [expanded])
 
     //切换打开/关闭状态
     function toggleExpand() {
-        console.log('toggleExpand', expanedState)
+        onItemClick && onItemClick(name)
+        // console.log('toggleExpand', expanedState)
         if (expanedState) {
             setIconRotate(0)
         } else {
@@ -65,11 +73,10 @@ function Panel(props: PanelProp) {
 
     function onEnter() {
         let H = getContentHeight()
-        console.log(H, '真正的高度')
         if (panelContent.current && panelBody.current) {
+            panelBody.current.style.borderColor = '#d6d6d6';
             panelBody.current.style.height = H + 'px';
             setIconRotate(90)
-            console.log('setIconRotate 调用')
         }
     }
 
@@ -82,7 +89,7 @@ function Panel(props: PanelProp) {
     }
 
     function onExit() {
-        console.log('onExit')
+        // console.log('onExit')
         if (panelContent.current && panelBody.current) {
             panelBody.current.style.height = 0 + 'px';
             setIconRotate(0)
@@ -90,11 +97,14 @@ function Panel(props: PanelProp) {
     }
 
     function onExiting() {
-        console.log('onExiting')
+        // console.log('onExiting')
+
     }
 
     function onExited() {
-        console.log('onExited')
+        if (panelBody.current) {
+            panelBody.current.style.borderColor = 'transparent'
+        }
 
     }
 
@@ -130,6 +140,12 @@ function Panel(props: PanelProp) {
 Panel.defaultProps = {
     prefixCls: 'coconut-panel',
     expanded: true, //默认展开的
-    showArrow: true  //默认展示箭头
+    showArrow: true,  //默认展示箭头
+    onItemClick: () => {}
 }
+
+Panel.propType = {
+    onItemClick: PropType.func
+}
+
 export default Panel
