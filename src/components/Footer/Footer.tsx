@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import classNames from "classnames";
 import {BasicProps} from "../@types/common";
 
@@ -8,7 +8,7 @@ interface Interface extends BasicProps {
     children?: React.ReactNode
 }
 
-function Footer(props: Interface) {
+const Footer: FC<Interface> = props => {
     let {children, className, style} = props
     let footerCls = classNames({
         [`${prefix}-layout-footer`]: true,

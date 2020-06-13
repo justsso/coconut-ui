@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {FC, useContext, useEffect} from "react";
 import LayoutContext from "../Layout/LayoutContext";
 import classNames from "classnames";
 
@@ -10,7 +10,7 @@ interface SiderPropInterface {
     className?: string
 }
 
-function Sider(prop: SiderPropInterface) {
+const Sider: FC<SiderPropInterface> = prop => {
     const Context = useContext(LayoutContext);
     let {style, className, children} = prop;
 

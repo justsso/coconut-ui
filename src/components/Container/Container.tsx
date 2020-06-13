@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import classNames from "classnames";
 import {BasicProps} from "../@types/common";
 
@@ -9,7 +9,7 @@ interface ContainerPropInterface extends BasicProps {
 }
 
 
-function Container(props: ContainerPropInterface) {
+const Container: FC<ContainerPropInterface> = (props) => {
     let {children, className, style} = props
 
 

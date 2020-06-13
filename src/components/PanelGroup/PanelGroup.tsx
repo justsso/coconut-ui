@@ -8,7 +8,7 @@ import {BasicProps} from "../@types/common";
 interface PanelGroupInterface extends BasicProps {
     accordion?: boolean, //是否是手风琴效果
     prefixCls: string,
-    onChange?: (panelName: string | number) => {},
+    onChange?: (panelName: string | number) => void,
     defaultActiveName?: string | number | [],
     children: React.ReactElement
 }
@@ -53,7 +53,6 @@ function PanelGroup(props: PanelGroupInterface) {
 
 
     function renderPanels() {
-        console.log('renderPanels')
         return React.Children.map(children, (child, index) => {
             if (child.type) {
                 //如果没有传入name , 那么序号就是name

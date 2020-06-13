@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 let prefix = 'coconut-ui';
 
 
@@ -8,7 +8,7 @@ interface HeaderPropsInterface {
     className?: string
 }
 
-function Header(props: HeaderPropsInterface){
+const Header: FC<HeaderPropsInterface> = props => {
     return (
         <header className={`${prefix}-layout-header`}>
             {props.children}

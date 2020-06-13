@@ -11,7 +11,7 @@ import Container from "../Container";
 
 interface LayoutPropInterface {
     prefixCls: string
-    children?: React.ReactNode
+    children?:  React.ReactNode
     className?: string
     style?: React.CSSProperties
     hasSider?: boolean

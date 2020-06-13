@@ -46,6 +46,11 @@ const routes = [
         main: <PanelDemo/>
     },
     {
+        path: '/panelGroup',
+        title: 'panelGroup组件',
+        main: <PanelGroupDemo/>
+    },
+    {
         path: '/collapse',
         title: 'Collapse组件',
         main: <CollapseDemo/>
@@ -59,11 +64,6 @@ const routes = [
         path: '/transition',
         title: 'Transition Demo',
         main: <TransitionDemo in={true}/>
-    },
-    {
-        path: '/panelGroup',
-        title: '/panelGroup组件',
-        main: <PanelGroupDemo/>
     }
 ]
 

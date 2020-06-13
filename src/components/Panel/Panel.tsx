@@ -6,7 +6,7 @@ import classNames from "classnames";
 import {BasicProps} from "../@types/common";
 import './style/index.less';
 
-interface PanelProp extends BasicProps {
+export interface PanelProp extends BasicProps {
     title?: string | React.ReactNode
     expanded?: boolean
     children?: React.ReactChildren
@@ -17,7 +17,7 @@ interface PanelProp extends BasicProps {
 }
 
 
-function Panel(props: PanelProp) {
+const Panel: React.FC<PanelProp>  = props => {
     let {children, prefixCls, title, expanded, showArrow, onItemClick, name} = props
     let [expanedState, setExpanedState] = useState(expanded);
     let initRotate = expanded ? 90 : 0;
@@ -141,10 +141,9 @@ Panel.defaultProps = {
     prefixCls: 'coconut-panel',
     expanded: true, //默认展开的
     showArrow: true,  //默认展示箭头
-    onItemClick: () => {}
 }
 
-Panel.propType = {
+Panel.propTypes = {
     onItemClick: PropType.func
 }
 

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 import classNames from "classnames";
 import './style/index.less';
 
 
 interface IconProp {
-    prefixCls: string,
+    prefixCls?: string,
     style?: React.CSSProperties,
     size?: 'large' | 'small' | 'middle' | number,
     className?: string,
@@ -12,7 +12,7 @@ interface IconProp {
     spin?: boolean //是否旋转
 }
 
-function Icon(props: IconProp) {
+const Icon: FC<IconProp> = props => {
 
     const {size, rotate, spin, className, prefixCls, style} = props;
     const iconClassName = classNames('iconfont', className, prefixCls,
