@@ -3,12 +3,9 @@ import PropType from "prop-types";
 import classNames from "classnames";
 import {BasicProps} from "../@types/common";
 
-// type activeNameType = string | number | string [] | number [] | never
-
+//todo 通用参数需要合并
 interface PanelGroupInterface extends BasicProps {
     accordion?: boolean, //是否是手风琴效果
-    prefixCls: string,
-    onChange?: (panelName: string | number) => void,
     defaultActiveName?: string | number | [],
     children: React.ReactElement
 }
