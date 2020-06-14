@@ -6,7 +6,6 @@ import GridDemo from "../demos/grid/index";
 import ButtonDemo from "../demos/button/index"
 import IconDemo from "../demos/icon";
 import Demos from "../demos";
-import CollapseDemo from '../demos/collapse/index';
 import TransitionDemo from '../demos/transition/index';
 import MyDemo from "../demos/demo";
 import LayoutDemo from "../demos/layout";
@@ -49,11 +48,6 @@ const routes = [
         path: '/panelGroup',
         title: 'panelGroup组件',
         main: <PanelGroupDemo/>
-    },
-    {
-        path: '/collapse',
-        title: 'Collapse组件',
-        main: <CollapseDemo/>
     },
     {
         path: '/collapse2',

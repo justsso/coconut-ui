@@ -3,7 +3,7 @@ import React from "react";
 
 function Index() {
     return (
-        <PanelGroup onChange={(panelName) => {
+        <PanelGroup className={['a','b']} onChange={(panelName) => {
             console.log(panelName, '我改变了')
         }}
                     accordion

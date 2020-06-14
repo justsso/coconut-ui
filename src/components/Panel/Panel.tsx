@@ -7,6 +7,7 @@ import {BasicProps} from "../@types/common";
 import './style/index.less';
 
 export interface PanelProp extends BasicProps {
+    /** title of the panel  */
     title?: string | React.ReactNode
     expanded?: boolean
     children?: React.ReactChildren
@@ -18,7 +19,7 @@ export interface PanelProp extends BasicProps {
 
 
 const Panel: React.FC<PanelProp>  = props => {
-    let {children, prefixCls, title, expanded, showArrow, onItemClick, name} = props
+    let {children, prefixCls, title, expanded, showArrow, onItemClick, name, className, style} = props
     let [expanedState, setExpanedState] = useState(expanded);
     let initRotate = expanded ? 90 : 0;
     let [iconRotate, setIconRotate] = useState(initRotate);
@@ -27,7 +28,7 @@ const Panel: React.FC<PanelProp>  = props => {
 
     let panelBody: React.RefObject<HTMLDivElement> = React.createRef();
     let panelContent: React.RefObject<HTMLDivElement> = React.createRef();
-    const PanelClassName = classNames(prefixCls, {})
+    const PanelClassName = classNames(prefixCls, className && className.join(' '))
     const PanelTitleCls = classNames({
         [`${prefixCls}-title`]: true
     })
@@ -109,9 +110,9 @@ const Panel: React.FC<PanelProp>  = props => {
     }
 
     return (
-        <div className={PanelClassName}>
+        <div className={PanelClassName} style={style}>
             {title && <div className={PanelTitleCls} onClick={toggleExpand}>
-                {showArrow && <Icon className={'icon-icon-test3'} size={20} rotate={iconRotate} style={{
+                {showArrow && <Icon className={['icon-icon-test3']} size={20} rotate={iconRotate} style={{
                     transition: `all ${duration * 0.0008}s ease-in-out`
                 }}/>}
                 {title}

@@ -1,18 +1,28 @@
 import React, {FC} from "react";
-let prefix = 'coconut-ui';
+import {BasicProps} from "../@types/common";
+import classNames from "classnames";
 
-
-interface HeaderPropsInterface {
+interface HeaderPropsInterface extends BasicProps{
+    prefixCls?: string
     children?: React.ReactNode
-    style?: React.CSSProperties
-    className?: string
 }
 
 const Header: FC<HeaderPropsInterface> = props => {
+    let {prefixCls, children, className, style} = props;
+    const clasps = classNames({
+        [`${prefixCls}-layout-header`]: true,
+        [`${className?.join(' ') }`]: className
+
+    })
     return (
-        <header className={`${prefix}-layout-header`}>
-            {props.children}
+        <header className={clasps} style={style}>
+            {children}
         </header>
     )
 }
+
+Header.defaultProps = {
+    prefixCls: 'coconut-ui'
+}
+
 export default Header

@@ -4,17 +4,17 @@ import RowContext from "./RowContext";
 import classNames from 'classnames';
 import {tuple} from "../_util/type";
 import './style/index.less';
+import {BasicProps} from "../@types/common";
 
 export type Gutter = number;
 const RowAligns = tuple('top', 'middle', 'bottom', 'stretch');
 const RowJustify = tuple('start', 'center', 'end', 'space-around', 'space-between');
 
-export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface RowProps extends BasicProps {
     gutter: number,
     type?: string,
     align?: (typeof RowAligns)[number],
     justify?: (typeof RowJustify)[number],
-    prefixCls?: string
 }
 
 export interface RowState {
@@ -29,7 +29,6 @@ export default class Row extends React.Component<RowProps, RowState> {
         type: PropTypes.oneOf<'flex'>(['flex']),
         align: PropTypes.oneOf(RowAligns),
         justify: PropTypes.oneOf(RowJustify),
-        className: PropTypes.string,
         children: PropTypes.node,
         gutter: PropTypes.number,
         prefixCls: PropTypes.string
@@ -55,7 +54,7 @@ export default class Row extends React.Component<RowProps, RowState> {
             [`${prefixCls}-${type}`]: type,
             [`${prefixCls}-${type}-${justify}`]: type && justify,
             [`${prefixCls}-${type}-${align}`]: type && align
-        }, className);
+        }, className && className.join(' '));
 
 
         const rowStyle = {

@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import classes from 'classnames';
 import './style/index.less';
 import {Icon} from "../index";
+import {BasicProps} from "../@types/common";
 
 
-interface ButtonProps {
+interface ButtonProps extends BasicProps{
     prefixCls: string,
     type?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark',
     size?: 'large' | 'small',
@@ -12,7 +13,6 @@ interface ButtonProps {
     circle?: boolean,
     plain: boolean,
     loading: boolean,
-    className: string,
     onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
@@ -34,7 +34,7 @@ class Button extends Component<ButtonProps, ButtonState> {
 
 
     render() {
-        const {prefixCls, loading, className, size, type, disabled, circle, plain, children} = this.props;
+        const {prefixCls, loading, className, size, type, disabled, circle, plain, children, style} = this.props;
         const buttonClassName = classes({
             [prefixCls]: true,
             [`${prefixCls}-${type}`]: true,
@@ -43,15 +43,16 @@ class Button extends Component<ButtonProps, ButtonState> {
             [`${prefixCls}-circle`]: circle,
             [`${prefixCls}-plain`]: plain,
             [`${prefixCls}-loading`]: loading,
-            [className]: true
+            [`${className?.join(' ')}`]: className
         });
 
         return (
             <button
                 className={buttonClassName}
+                style={style}
             >
                 {
-                    loading ? <Icon style={{marginRight: '.5rem'}} className='icon-load' spin /> : null
+                    loading ? <Icon style={{marginRight: '.5rem'}} className={['icon-load']} spin /> : null
                 }
                 {children}
             </button>

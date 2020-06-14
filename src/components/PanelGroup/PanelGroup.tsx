@@ -3,15 +3,16 @@ import PropType from "prop-types";
 import classNames from "classnames";
 import {BasicProps} from "../@types/common";
 
-//todo 通用参数需要合并
+
 interface PanelGroupInterface extends BasicProps {
     accordion?: boolean, //是否是手风琴效果
     defaultActiveName?: string | number | [],
-    children: React.ReactElement
+    children: React.ReactElement,
+    onChange: (panelName : string | number) => void
 }
 
 function PanelGroup(props: PanelGroupInterface) {
-    let {children, prefixCls, defaultActiveName, accordion, onChange} = props;
+    let {children, prefixCls, defaultActiveName, accordion, onChange, className, style} = props;
     if (!defaultActiveName) {
         if (accordion) {
             defaultActiveName = []
@@ -79,11 +80,11 @@ function PanelGroup(props: PanelGroupInterface) {
     }
 
     const PanelGroupCls = classNames({
-        [prefixCls]: true
-    })
+        [ `${prefixCls}`]: true,
+    }, className && className?.join(' '))
 
     return (
-        <div className={PanelGroupCls}>
+        <div className={PanelGroupCls} style={style}>
             {renderPanels()}
         </div>
     )

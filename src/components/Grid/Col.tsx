@@ -3,6 +3,7 @@ import * as PropTypes from 'prop-types';
 import RowContext from "./RowContext";
 import classNames from 'classnames';
 import './style/index.less';
+import {BasicProps} from "../@types/common";
 
 type ColSpanType = number | string;
 
@@ -14,7 +15,7 @@ export interface ColSize {
     pull?: ColSpanType
 }
 
-export interface ColProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ColProps extends BasicProps{
     span?: ColSpanType,
     offset?: ColSpanType,
     prefixCls?: string,
@@ -33,7 +34,6 @@ class Col extends React.Component<ColProps, {}> {
     static propTypes = {
         span: PropTypes.number,
         offset: PropTypes.number,
-        className: PropTypes.string,
         children: PropTypes.node,
         order: PropTypes.number
     };
@@ -95,7 +95,7 @@ class Col extends React.Component<ColProps, {}> {
                 [`${prefixCls}-push-${push}`]: push,
                 [`${prefixCls}-pull-${pull}`]: pull
             },
-            className,
+            className && className?.join(' '),
             sizeClassObj   //响应式要覆盖前面的 span offset order push pull 属性，响应式优先级高
         );
 

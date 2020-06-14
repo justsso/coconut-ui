@@ -1,13 +1,11 @@
 import React, {FC} from 'react';
 import classNames from "classnames";
 import './style/index.less';
+import {BasicProps} from "../@types/common";
 
 
-interface IconProp {
-    prefixCls?: string,
-    style?: React.CSSProperties,
+interface IconProp extends BasicProps{
     size?: 'large' | 'small' | 'middle' | number,
-    className?: string,
     rotate?: number, //旋转角度
     spin?: boolean //是否旋转
 }
@@ -15,11 +13,12 @@ interface IconProp {
 const Icon: FC<IconProp> = props => {
 
     const {size, rotate, spin, className, prefixCls, style} = props;
-    const iconClassName = classNames('iconfont', className, prefixCls,
+    const iconClassName = classNames('iconfont',prefixCls,
         {
             [`${prefixCls}-${size}`]: typeof size !== "number" && typeof size !== "undefined",
             [`${prefixCls}-spin`]: spin
-        }
+        },
+        className && className?.join(' ')
     );
 
 

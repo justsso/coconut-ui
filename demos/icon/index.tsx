@@ -11,10 +11,10 @@ export default function IconDemo() {
             <h4>size </h4>
 
             <CodeView>
-                默认大小<Icon className={'icon-book'}/>，
-                small<Icon size={"small"} className={'icon-book'}/>，
-                middle<Icon size={"middle"} className={'icon-book'} />，
-                large<Icon size={"large"} className={'icon-book'}/>
+                默认大小<Icon className={['icon-book']}/>，
+                small<Icon size={"small"} className={['icon-book']}/>，
+                middle<Icon size={"middle"} className={['icon-book']} />，
+                large<Icon size={"large"} className={['icon-book']}/>
             </CodeView>
             <h4 >
                 className， 根据className 指定icon
@@ -24,17 +24,17 @@ export default function IconDemo() {
             <pre style={{
                 wordBreak: "break-word"
             }}>
-                icon-book <Icon size={"middle"} className={'icon-book'} />
-                icon-load <Icon size={"middle"} className={'icon-load'} />
-                icon-checkcircleo<Icon size={"middle"} className={'icon-checkcircleo'} />
-                icon-my<Icon size={"middle"} className={'icon-my'} />
-                icon-home<Icon size={"middle"} className={'icon-home'} />
-                icon-check<Icon size={"middle"} className={'icon-check'} />
-                icon-up<Icon size={"middle"} className={'icon-up'} />
-                icon-check-circle<Icon size={"middle"} className={'icon-check-circle'} />
-                icon-failure<Icon size={"middle"} className={'icon-failure'} />
-                icon-success<Icon size={"middle"} className={'icon-success'} />
-                icon-offline<Icon size={"middle"} className={'icon-offline'} />
+                icon-book <Icon size={"middle"} className={['icon-book']} />
+                icon-load <Icon size={"middle"} className={['icon-load']} />
+                icon-checkcircleo<Icon size={"middle"} className={['icon-checkcircleo']} />
+                icon-my<Icon size={"middle"} className={['icon-my']} />
+                icon-home<Icon size={"middle"} className={['icon-home']} />
+                icon-check<Icon size={"middle"} className={['icon-check']} />
+                icon-up<Icon size={"middle"} className={['icon-up']} />
+                icon-check-circle<Icon size={"middle"} className={['icon-check-circle']} />
+                icon-failure<Icon size={"middle"} className={['icon-failure']} />
+                icon-success<Icon size={"middle"} className={['icon-success']} />
+                icon-offline<Icon size={"middle"} className={['icon-offline']} />
             </pre>
             </CodeView>
             <h4>
@@ -42,26 +42,26 @@ export default function IconDemo() {
             </h4>
 
             <CodeView>
-                <Icon style={{marginRight: '.5rem'}} className='icon-load' size={"middle"} spin/>ß
+                <Icon style={{marginRight: '.5rem'}} className={['icon-load']} size={"middle"} spin/>ß
             </CodeView>
 
             <h4>
                 旋转 rotate
             </h4>
             <CodeView>
-                <Icon size={"middle"} className={'icon-my'} rotate={180} />
-                <Icon size={"middle"} className={'icon-my'} rotate={90} />
-                <Icon size={"middle"} className={'icon-my'} rotate={0} />
-                <Icon size={"middle"} className={'icon-my'} rotate={-90} />
+                <Icon size={"middle"} className={['icon-my']} rotate={180} />
+                <Icon size={"middle"} className={['icon-my']} rotate={90} />
+                <Icon size={"middle"} className={['icon-my']} rotate={0} />
+                <Icon size={"middle"} className={['icon-my']} rotate={-90} />
             </CodeView>
             <h4>自定义样式style</h4>
             <CodeView>
 
-                <Icon size={"middle"} className={'icon-book'}  style={{
+                <Icon size={"middle"} className={['icon-book']}  style={{
                     color: 'green',
                     fontSize: '24px'
                 }} />
-                <Icon size={"middle"} className={'icon-my'}  style={{
+                <Icon size={"middle"} className={['icon-my']}  style={{
                     color: 'green',
                     fontSize: '24px'
                 }} />

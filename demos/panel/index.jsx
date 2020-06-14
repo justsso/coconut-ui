@@ -2,7 +2,6 @@ import React from "react";
 import {Panel} from "../../src/components";
 import {panelData} from "./data";
 import CodeView from "../Common/CodeView";
-import {PanelGroup} from "../../src/components";
 
 export default function Index() {
     return (
@@ -11,7 +10,7 @@ export default function Index() {
             <h4>title: string | ReactNode</h4>
 
             <CodeView>
-                <Panel title={'123标题'} expanded>
+                <Panel title={'我是标题'} expanded>
                     <div>Panel1</div>
                     <div>哈哈哈哈我是内容</div>
                     <div>哈哈哈哈我是内容</div>

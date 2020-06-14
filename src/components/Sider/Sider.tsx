@@ -1,13 +1,12 @@
 import React, {FC, useContext, useEffect} from "react";
 import LayoutContext from "../Layout/LayoutContext";
 import classNames from "classnames";
+import {BasicProps} from "../@types/common";
 
 let prefix = 'coconut-ui';
 
-interface SiderPropInterface {
+interface SiderPropInterface extends BasicProps {
     children?: React.ReactNode
-    style?: React.CSSProperties
-    className?: string
 }
 
 const Sider: FC<SiderPropInterface> = prop => {
@@ -19,9 +18,10 @@ const Sider: FC<SiderPropInterface> = prop => {
     }, [])
 
     let siderCls = classNames({
-        [`${prefix}-layout-sider`]: true,
-        className
-    })
+            [`${prefix}-layout-sider`]: true
+        },
+        className && className.join(' ')
+    )
 
     return (
         <div className={siderCls} style={style}>

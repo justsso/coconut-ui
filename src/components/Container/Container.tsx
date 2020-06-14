@@ -2,7 +2,6 @@ import React, {FC} from "react";
 import classNames from "classnames";
 import {BasicProps} from "../@types/common";
 
-let prefix = 'coconut-ui';
 
 interface ContainerPropInterface extends BasicProps {
     children?: React.ReactNode
@@ -10,12 +9,13 @@ interface ContainerPropInterface extends BasicProps {
 
 
 const Container: FC<ContainerPropInterface> = (props) => {
-    let {children, className, style} = props
+    let {children, className, style,prefixCls} = props
 
 
     let containerCls = classNames({
-        [`${prefix}-layout-container`]: true,
-        className
+        [`${prefixCls}-layout-container`]: true,
+        [`${className?.join(' ')}`]: className
+
     })
 
     return (
@@ -23,6 +23,10 @@ const Container: FC<ContainerPropInterface> = (props) => {
             {children}
         </div>
     )
+}
+
+Container.defaultProps = {
+    prefixCls: 'coconut-ui'
 }
 
 export default Container
