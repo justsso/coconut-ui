@@ -1,25 +1,28 @@
-import React, {useEffect, useState} from "react";
-import {Transition} from "react-transition-group";
+import React, { useEffect, useState } from "react";
+import { Transition } from "react-transition-group";
 import Icon from "../Icon";
 import PropType from "prop-types";
 import classNames from "classnames";
-import {BasicProps} from "../@types/common";
+import { BasicProps } from "../@types/common";
 import './style/index.less';
 
 export interface PanelProp extends BasicProps {
-    /** title of the panel  */
+    /** 面板标题  */
     title?: string | React.ReactNode
+    /** 可折叠的 */
+    collapsible: boolean
+    /** 是否展开*/
     expanded?: boolean
     children?: React.ReactChildren
     prefixCls: string
     showArrow?: boolean
-    onItemClick ?: (panelName: string | number) => {}
+    onItemClick?: (panelName: string | number) => {}
     name: string | number
 }
 
 
-const Panel: React.FC<PanelProp>  = props => {
-    let {children, prefixCls, title, expanded, showArrow, onItemClick, name, className, style} = props
+const Panel: React.FC<PanelProp> = props => {
+    let { children, prefixCls, title, collapsible, expanded, showArrow, onItemClick, name, className, style } = props
     let [expanedState, setExpanedState] = useState(expanded);
     let initRotate = expanded ? 90 : 0;
     let [iconRotate, setIconRotate] = useState(initRotate);
@@ -42,11 +45,11 @@ const Panel: React.FC<PanelProp>  = props => {
 
     //只会执行一次，根据expaned prop设置panelBody的高度
     useEffect(() => {
-        console.log( expanded, 44)
+
         if (expanded) {
             onEnter()
             //展开 且 没有标题时，处理一下panelBody的borderTop
-            if(title===undefined){
+            if (title === undefined) {
                 onExited()
             }
         } else {
@@ -57,14 +60,15 @@ const Panel: React.FC<PanelProp>  = props => {
 
     //切换打开/关闭状态
     function toggleExpand() {
-        onItemClick && onItemClick(name)
-        // console.log('toggleExpand', expanedState)
-        if (expanedState) {
-            setIconRotate(0)
-        } else {
-            setIconRotate(90)
+        if (collapsible) {
+            onItemClick && onItemClick(name)
+            if (expanedState) {
+                setIconRotate(0)
+            } else {
+                setIconRotate(90)
+            }
+            setExpanedState(!expanedState)
         }
-        setExpanedState(!expanedState)
     }
 
     //获取panelContent高度
@@ -75,7 +79,7 @@ const Panel: React.FC<PanelProp>  = props => {
     function onEnter() {
         let H = getContentHeight()
         if (panelContent.current && panelBody.current) {
-            panelBody.current.style.borderColor = '#d6d6d6';
+            // panelBody.current.style.borderColor = '#d6d6d6';
             panelBody.current.style.height = H + 'px';
             setIconRotate(90)
         }
@@ -104,7 +108,7 @@ const Panel: React.FC<PanelProp>  = props => {
 
     function onExited() {
         if (panelBody.current) {
-            panelBody.current.style.borderColor = 'transparent'
+            // panelBody.current.style.borderColor = 'transparent'
         }
 
     }
@@ -114,7 +118,7 @@ const Panel: React.FC<PanelProp>  = props => {
             {title && <div className={PanelTitleCls} onClick={toggleExpand}>
                 {showArrow && <Icon className={['icon-icon-test3']} size={20} rotate={iconRotate} style={{
                     transition: `all ${duration * 0.0008}s ease-in-out`
-                }}/>}
+                }} />}
                 {title}
             </div>}
 
@@ -140,6 +144,7 @@ const Panel: React.FC<PanelProp>  = props => {
 
 Panel.defaultProps = {
     prefixCls: 'coconut-panel',
+    collapsible: true,
     expanded: true, //默认展开的
     showArrow: true,  //默认展示箭头
 }

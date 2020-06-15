@@ -29,7 +29,7 @@ class Button extends Component<ButtonProps, ButtonState> {
         circle: false,
         plain: false,
         loading: false,
-        className: '',
+        className: [],
     };
 
 

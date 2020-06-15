@@ -19,7 +19,6 @@ function Layout(props: LayoutPropInterface) {
     let [hasSiderState, setHasSider] = useState( false)
 
     function changeHasSider(hasSider: boolean) {
-        console.log('sider组件的值： ', hasSider)
         setHasSider(hasSider)
     }
 

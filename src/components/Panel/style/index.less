@@ -1,14 +1,11 @@
 @import "../../style/themes/default";
 @import "~animate.css";
 
-.@{coconut-prefix}-panel {
-  border: 1px solid #e5e5e5;
-  border-bottom: 0;
-}
+
 
 .@{coconut-prefix}-panel {
   box-sizing: border-box;
-  border-bottom: 1px solid #d6d6d6;
+  border: 1px solid #d6d6d6;
   &-title{
     display: flex;
     flex-direction: row;
@@ -21,7 +18,7 @@
     transition: height 0.3s ease-in-out;
     overflow: hidden;
     box-sizing: border-box;
-    border-top: 1px solid #d6d6d6;
+    // border-top: 1px solid #d6d6d6;
 
     &-content{
       padding: 20px;
@@ -33,6 +30,10 @@
     &-inactive{
       display: none;
     }
+  }
+
+  &~&{
+    border-top-color: transparent;
   }
 }
 
