@@ -46,7 +46,6 @@ function PanelGroup(props: PanelGroupInterface) {
             }
         }
         setActiveName(activeName)
-        console.log(activeName, 44)
     }
 
 

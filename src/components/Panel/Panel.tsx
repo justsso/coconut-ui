@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Transition } from "react-transition-group";
 import Icon from "../Icon";
 import PropType from "prop-types";
@@ -26,11 +26,20 @@ const Panel: React.FC<PanelProp> = props => {
     let [expanedState, setExpanedState] = useState(expanded);
     let initRotate = expanded ? 90 : 0;
     let [iconRotate, setIconRotate] = useState(initRotate);
-    // let [open, setOpen] = useState(expanded); //是否执行动画
+    let [height, setHeight] = useState(0);
+   
     const duration = 300
 
     let panelBody: React.RefObject<HTMLDivElement> = React.createRef();
-    let panelContent: React.RefObject<HTMLDivElement> = React.createRef();
+    // let panelContent: React.RefObject<HTMLDivElement> = React.createRef();
+
+    const measuredRef = useCallback(node => {
+        if(node !== null){
+            console.log(node.getBoundingClientRect().height, 38)
+            setHeight(node.getBoundingClientRect().height)
+        }
+    },[])
+
     const PanelClassName = classNames(prefixCls, className && className.join(' '))
     const PanelTitleCls = classNames({
         [`${prefixCls}-title`]: true
@@ -43,9 +52,7 @@ const Panel: React.FC<PanelProp> = props => {
         [`${prefixCls}-body-content`]: true
     })
 
-    //只会执行一次，根据expaned prop设置panelBody的高度
     useEffect(() => {
-
         if (expanded) {
             onEnter()
             //展开 且 没有标题时，处理一下panelBody的borderTop
@@ -56,7 +63,7 @@ const Panel: React.FC<PanelProp> = props => {
             onExit()
             onExited()
         }
-    }, [expanded])
+    }, [expanded, height])
 
     //切换打开/关闭状态
     function toggleExpand() {
@@ -72,15 +79,17 @@ const Panel: React.FC<PanelProp> = props => {
     }
 
     //获取panelContent高度
-    function getContentHeight() {
-        return panelContent.current ? panelContent.current.offsetHeight : null
-    }
+    // function getContentHeight() {
+    //     return panelContent.current ? panelContent.current.offsetHeight : null
+    // }
 
     function onEnter() {
-        let H = getContentHeight()
-        if (panelContent.current && panelBody.current) {
+        // let H = getContentHeight()
+        if ( panelBody.current) {
             // panelBody.current.style.borderColor = '#d6d6d6';
-            panelBody.current.style.height = H + 'px';
+            // panelBody.current.style.height = H + 'px';
+           
+            panelBody.current.style.height = height + 'px';
             setIconRotate(90)
         }
     }
@@ -95,7 +104,7 @@ const Panel: React.FC<PanelProp> = props => {
 
     function onExit() {
         // console.log('onExit')
-        if (panelContent.current && panelBody.current) {
+        if ( panelBody.current) {
             panelBody.current.style.height = 0 + 'px';
             setIconRotate(0)
         }
@@ -133,7 +142,7 @@ const Panel: React.FC<PanelProp> = props => {
                 onExited={onExited}
             >
                 <div className={PanelBodyCls} ref={panelBody}>
-                    <div className={PanelContentCls} ref={panelContent}>
+                    <div className={PanelContentCls} ref={measuredRef}>
                         {children}
                     </div>
                 </div>
