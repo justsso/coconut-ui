@@ -2,6 +2,6 @@
  * @description ui 侧边栏
  * @author justsso
  */
-import Sider from "./Sider";
+import Sider from './Sider';
 
-export default Sider
+export default Sider;

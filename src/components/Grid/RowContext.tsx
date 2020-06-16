@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface RowContextInterface {
-    gutter ?: number
+    gutter?: number;
 }
 
 let RowContext = React.createContext({

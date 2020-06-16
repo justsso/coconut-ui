@@ -1,9 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const merge = require('webpack-merge');
-var baseConfig = require('./webpack.base');
-
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+let baseConfig = require('./webpack.base');
 
 module.exports = merge(baseConfig, {
-    mode: "development",
+    mode: 'development',
     devServer: {
         port: 3100,
         open: true,
@@ -11,10 +12,10 @@ module.exports = merge(baseConfig, {
         contentBase: './build',
         proxy: {
             '/api': {
-                target: "http://localhost:3000"
+                target: 'http://localhost:3000'
             }
         },
         historyApiFallback: true
     },
-    devtool: "inline-source-map"
+    devtool: 'inline-source-map'
 });

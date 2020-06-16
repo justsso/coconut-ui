@@ -1,83 +1,86 @@
 import * as React from 'react';
-import {Route, Switch, Link, BrowserRouter as Router} from 'react-router-dom';
+import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom';
 
 import './index.less';
-import GridDemo from "../demos/grid/index";
-import ButtonDemo from "../demos/button/index"
-import IconDemo from "../demos/icon";
-import Demos from "../demos";
+import GridDemo from '../demos/grid/index';
+import ButtonDemo from '../demos/button/index';
+import IconDemo from '../demos/icon';
+import Demos from '../demos';
 import TransitionDemo from '../demos/transition/index';
-import MyDemo from "../demos/demo";
-import LayoutDemo from "../demos/layout";
-import PanelDemo from "../demos/panel";
-
+import MyDemo from '../demos/demo';
+import LayoutDemo from '../demos/layout';
+import PanelDemo from '../demos/panel';
 
 const routes = [
     {
         path: '/',
         title: '首页',
-        main: <Demos/>,
+        main: <Demos />,
         exact: true
     },
     {
         path: '/Layout',
         title: 'Layout布局组件',
-        main: <LayoutDemo/>
+        main: <LayoutDemo />
     },
     {
         path: '/Grid',
         title: 'Grid栅格',
-        main: <GridDemo/>,
+        main: <GridDemo />
     },
     {
         path: '/Button',
         title: 'Button组件',
-        main: <ButtonDemo/>,
+        main: <ButtonDemo />
     },
     {
         path: '/Icon',
         title: 'Icon组件',
-        main: <IconDemo/>
+        main: <IconDemo />
     },
     {
         path: '/panel',
         title: 'Panel组件',
-        main: <PanelDemo/>
+        main: <PanelDemo />
     },
     {
         path: '/collapse2',
         title: 'Collapse Demo',
-        main: <MyDemo/>
+        main: <MyDemo />
     },
     {
         path: '/transition',
         title: 'Transition Demo',
-        main: <TransitionDemo in={true}/>
+        main: <TransitionDemo in={true} />
     }
-]
+];
 
 class App extends React.Component {
-
-    render() {
+    public render() {
         return (
             <Router>
                 <div className="body">
-
-                    <nav className={'nav'}>
-                        <ul className={'text-lg antialiased leading-loose'}>
+                    <nav className="nav">
+                        <ul className="text-lg antialiased leading-loose">
                             {routes.map((item, index) => {
-                                return <li key={index}><Link to={item.path}>{item.title}</Link></li>
+                                return (
+                                    <li key={index}>
+                                        <Link to={item.path}>{item.title}</Link>
+                                    </li>
+                                );
                             })}
                         </ul>
                     </nav>
 
                     <div className="flex_auto">
                         <Switch>
-                            {
-                                routes.map((item, index) => {
-                                    return <Route path={item.path} children={item.main} exact={item.exact} key={index}/>
-                                })
-                            }
+                            {routes.map((item, index) => {
+                                return (
+                                    <Route path={item.path} exact={item.exact} key={index}>
+                                        {item.main}
+                                    </Route>
+                                );
+                            })}
                         </Switch>
                     </div>
                     <div className="nav_doc">
@@ -85,7 +88,7 @@ class App extends React.Component {
                     </div>
                 </div>
             </Router>
-        )
+        );
     }
 }
 

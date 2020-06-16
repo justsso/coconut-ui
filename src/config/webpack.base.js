@@ -1,29 +1,36 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CheckerPlugin} = require('awesome-typescript-loader');
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { CheckerPlugin } = require('awesome-typescript-loader');
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: {
-        app: [path.join(__dirname + './../index.tsx'), path.join(__dirname + './../public/index.html')],
+        app: [
+            path.join(__dirname + './../index.tsx'),
+            path.join(__dirname + './../public/index.html')
+        ]
     },
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
     output: {
-        path: path.join(__dirname, "../../build")
+        path: path.join(__dirname, '../../build')
     },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 exclude: /node_modules/,
-                loader: "ts-loader"
+                loader: 'ts-loader'
             },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             {
-                enforce: "pre",
+                enforce: 'pre',
                 test: /\.js$/,
                 loader: 'source-map-loader'
             },
@@ -31,7 +38,7 @@ module.exports = {
                 test: /\.jsx$/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ["@babel/preset-react"]
+                    presets: ['@babel/preset-react']
                 }
             },
             {
@@ -45,9 +52,7 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader'
-                ]
+                use: ['file-loader']
             },
             {
                 test: /\.(html)$/,
@@ -63,12 +68,12 @@ module.exports = {
         // new CleanWebpackPlugin(),
         new CheckerPlugin(),
         new HtmlWebpackPlugin({
-            filename: "index.html",
-            template: path.join(__dirname, "../public/index.html")
+            filename: 'index.html',
+            template: path.join(__dirname, '../public/index.html')
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].[chunkhash:8].css",
-            chunkFilename: "[id].css"
+            filename: '[name].[chunkhash:8].css',
+            chunkFilename: '[id].css'
         })
     ]
 };
