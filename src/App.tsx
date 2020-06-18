@@ -10,12 +10,19 @@ import TransitionDemo from '../demos/transition/index';
 import MyDemo from '../demos/demo';
 import LayoutDemo from '../demos/layout';
 import PanelDemo from '../demos/panel';
+import ListDemo from '../demos/list';
 
 const routes = [
     {
         path: '/',
         title: '首页',
         main: <Demos />,
+        exact: true
+    },
+    {
+        path: '/ListDemo',
+        title: '列表',
+        main: <ListDemo />,
         exact: true
     },
     {

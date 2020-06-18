@@ -1,19 +1,40 @@
-import React from 'react';
-import { BasicProps } from '../@types/common';
+import React, {Component} from 'react';
+import ListItem from './ListItem';
+import classNames from 'classnames';
+import {ListProps} from './List.d';
+import {ListContext} from "./ListContext";
+import './style/index.less';
 
-interface ListPropsInterface extends BasicProps {
-    size?: 'small' | 'default' | 'large';
-    footer?: string | React.ReactNode;
-    header?: string | React.ReactNode;
-    loading?: boolean;
-    loadMore?: string | React.ReactNode;
-    dataSource: any[];
-    renderItem: (item: object) => React.ReactNode;
+
+
+class List extends Component<ListProps> {
+    public static Item = ListItem;
+
+    protected static defaultProps = {
+        prefixCls: 'coconut-list',
+        size: 'md',
+        loading: false,
+        dataSource: [],
+        /** 是否有hover动效 */
+        hover: false
+    };
+
+    public render() {
+        let {children, size, prefixCls, hover, loading} = this.props;
+        const listCls = classNames({
+            [`${prefixCls}`]: true,
+            [`${prefixCls}-${size}`]: true,
+            [`${prefixCls}-loading`]: loading
+        })
+        return <ListContext.Provider value={{
+            size: size,
+            hover: hover
+        }}>
+            <div className={listCls}>{children}</div>
+        </ListContext.Provider>
+
+    }
 }
 
-const List: React.FC<ListPropsInterface> = (props) => {
-    let { children } = props;
-    return <div>{children}</div>;
-};
 
 export default List;

@@ -9,6 +9,7 @@
         "start": "cross-env NODE_ENV=production webpack-dev-server --config src/config/webpack.dev.js --color",
         "dev": "cross-env NODE_ENV=development webpack-dev-server --config src/config/webpack.dev.js --color",
         "lint": "npx eslint ./src --ext .js,.ts,tsx",
+        "stylelint": "npx stylelint src/*.less ",
         "eslint:fix": "eslint --fix"
     },
     "keywords": [
@@ -46,6 +47,10 @@
         "react-router-dom": "^5.1.2",
         "source-map-loader": "^0.2.4",
         "style-loader": "^0.23.1",
+        "stylelint": "^13.6.0",
+        "stylelint-config-prettier": "^8.0.1",
+        "stylelint-config-standard": "^20.0.0",
+        "stylelint-order": "^4.1.0",
         "ts-loader": "^6.0.4",
         "typescript": "^3.5.2",
         "webpack": "^4.34.0",

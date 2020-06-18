@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import './index.less';
+import DD from './cnm';
 import CollapseItem from "./CollapseItem";
 import classNames from "classnames";
 //使用BEM CSS命名规范来
@@ -129,6 +130,7 @@ class MyDemo extends Component {
 
         return (
             <div>
+                <DD name={'hello13'} />
                 <div className="collapse">
                     <div className="collapse__item collapse-item">
                         <div className="collapse-item__title " onClick={this.onOpen}>

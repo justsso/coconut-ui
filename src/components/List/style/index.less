@@ -1,2 +1,39 @@
+@import "../../style/themes/default.less";
+
+.@{coconut-prefix}-list {
+  // 当作上下线条
+  -webkit-font-smoothing: antialiased;
+
+  &-item {
+
+    // 当作上下线条
+    //box-shadow: 0 -1px 0 #e5e5ea, 0 1px 0 #e5e5ea;
+    border-bottom: 1px solid #e5e5ea;
+
+    &:first-child {
+      border-top: 1px solid #e5e5ea;
+    }
+
+    &-hover:hover {
+      background-color: #f2faff;
+      cursor: default;
+    }
+
+    &-sm {
+      padding: 8px 0;
+    }
+
+    &-md {
+      padding: 13px 0;
+    }
+
+    &-lg {
+      padding: 20px 0;
+    }
 
 
+
+
+  }
+
+}
