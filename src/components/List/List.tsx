@@ -5,8 +5,6 @@ import {ListProps} from './List.d';
 import {ListContext} from "./ListContext";
 import './style/index.less';
 
-
-
 class List extends Component<ListProps> {
     public static Item = ListItem;
 
@@ -32,7 +30,6 @@ class List extends Component<ListProps> {
         }}>
             <div className={listCls}>{children}</div>
         </ListContext.Provider>
-
     }
 }
 
