@@ -40,12 +40,10 @@ const Panel: React.FC<PanelProp> = (props) => {
 
     const duration = 300;
 
-    let panelBody: React.RefObject<HTMLDivElement> = React.createRef();
-    // let panelContent: React.RefObject<HTMLDivElement> = React.createRef();
+    let panelBody = React.useRef<HTMLDivElement>(null)
 
     const measuredRef = useCallback((node) => {
         if (node !== null) {
-            console.log(node.getBoundingClientRect().height, 38);
             setHeight(node.getBoundingClientRect().height);
         }
     }, []);

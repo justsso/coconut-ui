@@ -12,6 +12,7 @@ import LayoutDemo from './layout';
 import PanelDemo from './panel';
 import ListDemo from './list';
 import VRDemo from "./virtualRender";
+import VLDemo from "./virtualList/index";
 
 const routes = [
     {
@@ -63,15 +64,20 @@ const routes = [
     },
     {
         path: '/vrlist',
-        title: '虚拟渲染',
-        main: <VRDemo />
+        title: '虚拟渲染组件',
+        main: <VLDemo/>
+    },
+    {
+        path: '/vrlist2',
+        title: '虚拟渲染原生',
+        main: <VRDemo/>
     }
 ];
 
 class App extends React.Component {
     public render() {
         return (
-            <Router basename={'coconut-ui/build'}>
+            <Router>
                 <div className="body">
                     <nav className="nav">
                         <ul className="text-lg antialiased leading-loose">

@@ -14,8 +14,8 @@ class List extends Component<ListProps> {
         loading: false,
         dataSource: [],
         /** 是否有hover动效 */
-        hover: false
-    };
+        hover: false,
+    }
 
     public render() {
         let {children, size, prefixCls, hover, loading} = this.props;

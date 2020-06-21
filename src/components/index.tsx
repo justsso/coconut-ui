@@ -10,3 +10,4 @@ export { default as Header } from './Header';
 export { default as Container } from './Container';
 export { default as WhiteSpace } from './WhiteSpace/WhiteSpace';
 export { default as List } from './List/List';
+export { default as VirtualList} from './VirtualList/index';

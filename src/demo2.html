@@ -1,93 +1,177 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Title</title>
-        <style>
-            .panel_title {
-                background: #7d7e80;
-                color: #fff;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>虚拟列表</title>
+    <style>
+        ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .list_container {
+            box-sizing: border-box;
+            width: 400px;
+            height: 300px;
+            border: 1px solid #53a451;
+            overflow: hidden;
+            margin: 40px auto;
+
+        }
+
+        .list_item {
+            height: 30px;
+            line-height: 30px;
+            box-sizing: border-box;
+            border-top: 1px solid #a3a7a7;
+            border-bottom: 1px solid #a3a7a7;
+        }
+
+        .div {
+            height: 200px;
+            width: 300px;
+            border: 1px solid red;
+            box-sizing: border-box;
+            overflow: scroll;
+            position: relative;
+        }
+
+        .inner {
+            position: absolute;
+            height: 5000px;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: -1;
+        }
+
+        .content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            transform: translate3d(0, 0, 0);
+        }
+
+    </style>
+</head>
+<body>
+<!--<div class="list_container">-->
+<!--    <div class="list_top"></div>-->
+<!--    <div class="list_content"></div>-->
+<!--</div>-->
+
+<div class="div">
+    <div class="inner"></div>
+    <div class="content">
+        <p>jklj</p>
+        <p>789</p>
+        <p>jklj</p>
+        <p>789</p>
+        <p>jklj</p>
+        <p>789</p>
+        <p>jklj</p>
+        <p>789</p>
+        <p>jklj</p>
+        <p>789</p>
+        <p>jklj</p>
+        <p>789</p>
+    </div>
+</div>
+
+<input type="text" placeholder="防抖输入" id="input"/>
+
+<script>
+    const sum = 20000;
+    const itemHeight = 30;
+    const containerHeight = 300;
+    const container = document.querySelector('.list_container')
+
+
+
+
+    document.querySelector('.div').addEventListener('scroll', throttle(function (e) {
+        console.log('jdkahsjfhsdk')
+        console.log(e.target.scrollTop)
+    }, 50))
+
+
+    let doms = ''
+    for (let i = 0; i < 20; i++) {
+        doms += `<li class="list_item">${i + 1}</li>`
+    }
+    // container.innerHTML = doms
+    // container.style.paddingBottom = ((sum - 20) * itemHeight) + 'px'
+
+    //节流函数包装scroll事件回调函数，500ms内只响应第一次触发的
+
+    function throttle(fn, wait) {
+        let lastTime = 0
+        return function (...arg) {
+            let now = Date.now()
+            if ((now - lastTime) > wait) {
+                fn.apply(this, arg)
+                lastTime = now
             }
+        }
+    }
 
-            .panel_body {
-                background: #53a451;
-                transition: height 0.5s ease;
-                overflow: hidden;
-            }
 
-            .list a::before {
-                counter-increment: chapter;
-                content: 'Chapter ' counter(chapter) '. ';
-            }
-        </style>
-    </head>
-    <body>
-        <div id="test">
-            <div class="panel_title">
-                我是标题
-            </div>
-            <div class="panel_body">
-                <div class="panel_body_content">
-                    我是内容
-                </div>
-            </div>
-        </div>
-        <button onclick="getHeigth();">展开</button>
-        <button onclick="deleteStyle();">关闭</button>
-        <button onclick="addDiv()">添加div</button>
-        <button onclick="getContentHeight();">获取content真正的高度</button>
-        <h3>
-            测试 css content ，完成列表编号，鼠标不能选中
-        </h3>
+    // container.addEventListener('scroll', throttle(function (e) {
+    //     console.log(e.target.scrollTop)
+    //     handleListItem(e.target.scrollTop)
+    // }, 500))
 
-        <div class="list">
-            <p><a>hello</a></p>
-            <p><a>hello</a></p>
-            <p><a>hello</a></p>
-        </div>
-        <input type="checkbox" value="的发放" />
 
-        <script>
-            let panel_body = document.querySelector('.panel_body');
-            let panel_body_content = document.querySelector('.panel_body_content');
+    function handleListItem(scrollTop) {
+        let top_sum = scrollTop / itemHeight
+        console.log(top_sum)
+        let startIndex = Math.floor(top_sum)
+        let px = scrollTop % itemHeight
 
-            function init() {
-                let realHeight = panel_body_content.scrollHeight;
-                panel_body.style.height = realHeight + 'px';
-            }
-            init();
 
-            function getHeigth(e) {
-                //打开
-                let realHeight = panel_body_content.scrollHeight;
-                panel_body.style.height = realHeight + 'px';
-            }
+        let endIndex = startIndex + 11;
 
-            function deleteStyle(e) {
-                //关闭
-                panel_body.style.height = 0 + 'px';
-            }
 
-            function addDiv() {
-                let div = document.createElement('div');
-                div.innerHTML =
-                    '<div style="height: 50px">\n' +
-                    '    hjhjkhjkh\n' +
-                    '    就离开就离开\n' +
-                    '    就离开就离开\n' +
-                    '    <H3>dasf</H3>\n' +
-                    '    \n' +
-                    '</div>';
-                panel_body_content.appendChild(div);
+        let doms = ''
 
-                //重新获取content的高度，也就是再执行一遍展开函数
-                getHeigth();
-            }
+        for (let i = startIndex; i < endIndex; i++) {
+            doms += `<li>${i + 1}</li>`
+        }
+        container.innerHTML = doms
 
-            function getContentHeight() {
-                let height = panel_body_content.offsetHeight;
-                console.log(height + 'px');
-            }
-        </script>
-    </body>
+    }
+
+
+
+
+    //函数防抖，
+    function debounce(fn, wait) {
+        var timer = null;
+        return function (...arg) {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                fn.apply(this, arg)
+            }, wait)
+        }
+    }
+
+    let input = document.getElementById('input')
+    input.oninput = debounce(function (e) {
+        console.log(e.target.value)
+    }, 1000)
+
+    // input.oninput = function(e){
+    //     console.log(e.currentTarget.value)
+    // }
+</script>
+</body>
 </html>

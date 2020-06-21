@@ -1,0 +1,31 @@
+/**
+ * @description
+ * @author justsso
+ */
+@import '../../style/themes/default';
+
+.@{coconut-prefix}-virtualList {
+  position: relative;
+  overflow: auto;
+  border: 1px solid darkcyan;
+  &-infinite-list-phantom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+
+  &-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    &-item{
+      background: #7d7e80;
+      border: 1px solid #ffb459;
+      box-sizing: border-box;
+    }
+  }
+}
