@@ -54,11 +54,7 @@ const VirtualList: React.FC<VirtualListProps> = (props) => {
              onScroll={throttle(function (e) {
                  // 处理虚拟渲染
                  // 计算滚动的高度，=》开始渲染的index和最后的一个index，然后计算偏离px,设置transform:translate3D(0, y,0) y
-
                  let scrollTop = e.currentTarget.scrollTop; // 425
-
-
-
                  if((e.currentTarget.scrollHeight - scrollTop- containerHeight) < 200){
                      console.log('快到底了')
                      if (onReachBottom) {
