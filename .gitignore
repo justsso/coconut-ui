@@ -6,5 +6,4 @@ docs
 yarn-error.log
 yarn.lock
 .vscode
-.package-lock.json
-yarn.lock
+package-lock.json
