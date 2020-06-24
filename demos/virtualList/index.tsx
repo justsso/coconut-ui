@@ -7,7 +7,7 @@ import {VirtualList, List} from "../../src/components";
 import './index.less';
 import CodeView from "../Common/CodeView";
 import {virtualData} from './data';
-import Mock from 'mockjs'
+import Mock from 'mockjs';
 
 // 固定大数据
 let data1: any[] = []
@@ -74,7 +74,7 @@ const Demo = () => {
 
             <h4>固定的大数据数组: 20000个</h4>
             <CodeView>
-                <VirtualList containerHeight={406} data={data1} itemSize={itemSize + 20}
+                <VirtualList containerHeight={406} data={data1} itemSize={itemSize}
                              renderItem={(item, key) => {
                                  return (<div key={key} style={{
                                      height: itemSize + 'px',
@@ -87,9 +87,9 @@ const Demo = () => {
                              }}
                 />
             </CodeView>
-            <h4>滚动到底部，onReachBottom()动态加载数据</h4>
+            <h4>懒加载：滚动到底部，onReachBottom()动态加载数据</h4>
             <CodeView>
-                <VirtualList containerHeight={406} data={data2} itemSize={itemSize + 20}
+                <VirtualList containerHeight={406} data={data2} itemSize={itemSize}
                              renderItem={(item, key) => {
                                  return (<div key={key} style={{
                                      height: itemSize + 'px',
@@ -115,12 +115,13 @@ const Demo = () => {
             <h4>使用List ListItem组件</h4>
             <CodeView>
                 <List hover>
-                    <VirtualList containerHeight={406} data={data2} itemSize={listItemH + 20}
+                    <VirtualList containerHeight={406} data={data2} itemSize={listItemH}
                                  renderItem={(item, key) => {
                                      return (<List.Item
                                          key={key}
                                          style={{
                                              height: listItemH + 'px',
+                                             boxSizing: "border-box"
                                          }}
                                      >
                                          <span>

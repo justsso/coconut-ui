@@ -3,12 +3,14 @@ import {BasicProps} from '../@types/common';
 import classNames from "classnames";
 import {ListContext} from "./ListContext";
 
-interface ItemPropInterface extends BasicProps {
+export interface ItemPropInterface extends BasicProps {
     children?: React.ReactNode;
+    index?: number,
+    draggable?: boolean,
 }
 
 const ListItem: React.FC<ItemPropInterface> = (props) => {
-    let {children, prefixCls, style, className} = props;
+    let {children, prefixCls, style, className, index} = props;
     const Context = useContext(ListContext);
     let {size, hover = false} = Context
 
@@ -20,7 +22,7 @@ const ListItem: React.FC<ItemPropInterface> = (props) => {
         [`${className?.join(' ')}`]: className
     })
 
-    return <div className={listItemCls} style={style}>{children}</div>;
+    return <div className={listItemCls} style={style} data-index={index} >{children}</div>;
 };
 
 ListItem.defaultProps = {

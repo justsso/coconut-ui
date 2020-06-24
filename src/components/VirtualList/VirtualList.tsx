@@ -27,6 +27,7 @@ interface VirtualListProps extends BasicProps {
     bufferScale?: number
 }
 
+// TODO： 子元素不定高度的计算还有点误差问题
 interface positionType {
     index: number,
     height: number,
@@ -101,9 +102,8 @@ const VirtualList: React.FC<VirtualListProps> = (props) => {
             </div>
         )
     } else if (estimatedItemSize && !itemSize) {
-        const visibleCount = Math.ceil(containerHeight / estimatedItemSize)
-        let [startIndex, setStartIndex] = useState(0)
-        let [endIndex, setendIndex] = useState(visibleCount);
+        const visibleCount = Math.ceil(containerHeight / estimatedItemSize);
+        let startIndex = 0; let endIndex  = visibleCount
         let [renderData, setRenderData] = useState<any>([]);
         let positions: positionType[] = []
         let allHeight = 0;
@@ -125,40 +125,20 @@ const VirtualList: React.FC<VirtualListProps> = (props) => {
             setRenderData(data.slice(startIndex, endIndex + visibleCount))
 
         }, [data.length])
+        const aboveCount = function () {
+            return Math.min(startIndex, bufferScale * visibleCount)
+        }
 
+        const belowCount = function () {
+            return Math.min(data.length - endIndex, bufferScale * visibleCount);
+        }
 
+        const visibleData = function () {
+            let start = startIndex - aboveCount();
+            let end = endIndex + belowCount();
+            return data.slice(start, end);
+        }
         // 每次滚动之后的操作
-        useEffect(() => {
-            function aboveCount() {
-                return Math.min(startIndex, bufferScale * visibleCount)
-            }
-
-            function belowCount() {
-                return Math.min(data.length - endIndex, bufferScale * visibleCount);
-            }
-
-            function visibleData() {
-                let start = startIndex - aboveCount();
-                let end = endIndex + belowCount();
-                return data.slice(start, end);
-            }
-
-
-            let startOffset;
-            if (startIndex >= 1) {
-                let size = positions[startIndex].top - (positions[startIndex - aboveCount()] ? positions[startIndex - aboveCount()].top : 0);
-                startOffset = positions[startIndex - 1].bottom - size;
-            } else {
-                startOffset = 0;
-            }
-
-            setTranslateY(startOffset)
-
-            // 渲染可视区的数据
-            setRenderData(visibleData())
-
-        }, [startIndex])
-
 
         return (
             <div className={ContainerCls}
@@ -171,21 +151,31 @@ const VirtualList: React.FC<VirtualListProps> = (props) => {
                      // 计算滚动的高度，=》开始渲染的index和最后的一个index，然后计算偏离px,设置transform:translate3D(0, y,0) y
 
                      let scrollTop = e.currentTarget.scrollTop; // 425
-                     let startIndex = getStartIndex(scrollTop, positions)
-                     let endIndex = startIndex + visibleCount + 6;  // 多渲染半屏
-                     setStartIndex(startIndex);
-                     setendIndex(endIndex);
+                      startIndex = getStartIndex(scrollTop, positions)
+                      endIndex = Math.min(startIndex + visibleCount, data.length);  // 多渲染半屏
+
                      console.log(positions)
                      console.log(startIndex, endIndex, 'startIndex, endIndex');
 
+                     let startOffset;
+                     if (startIndex >= 1) {
+                         let size = positions[startIndex].top - (positions[startIndex - aboveCount()] ? positions[startIndex - aboveCount()].top : 0);
+                         startOffset = positions[startIndex - 1].bottom - size;
+                     } else {
+                         startOffset = 0;
+                     }
+
+                     setTranslateY(startOffset)
+
+                     // 渲染可视区的数据
+                     setRenderData(visibleData())
+                     allHeight = positions[positions.length - 1].bottom
 
                      if ((e.currentTarget.scrollHeight - scrollTop - containerHeight) < 200) {
                          if (onReachBottom) {
                              onReachBottom()
                          }
                      }
-
-
                  }, 150)}>
                 <div className={PhantomCls} style={{height: allHeight + 'px'}}/>
                 <div className={ListCls} style={{
@@ -195,7 +185,7 @@ const VirtualList: React.FC<VirtualListProps> = (props) => {
                     {
                         renderData.map((item: any, index: number) => {
                             return (
-                                <VirtualListItem key={index} index={index} onCalculatePosition={(node, index) => {
+                                <VirtualListItem key={index} index={item.index} onCalculatePosition={(node, index) => {
                                     let rect = node.getBoundingClientRect();
                                     let height = rect.height;
                                     let oldHeight = positions[index].height;
@@ -224,30 +214,31 @@ const VirtualList: React.FC<VirtualListProps> = (props) => {
 }
 
 function getStartIndex(scrollTop: number, positions: positionType[]): number {
-    return binarySearch(positions, scrollTop)
+    // return binarySearch(positions, scrollTop)
+    return positions.findIndex(item => item && item.bottom >= scrollTop)
 }
 
-// 二分法查找
-function binarySearch(list: positionType[], value: number): number {
-    let start = 0;
-    let end = list.length - 1;
-    let tempIndex = -1;
-    while (start <= end) {
-        let midIndex = Math.floor((start + end) / 2);
-        let midValue = list[midIndex].bottom;
-        if (midValue === value) {
-            return midIndex + 1;
-        } else if (midValue < value) {
-            start = midIndex + 1;
-        } else if (midValue > value) {
-            if (tempIndex === -1 || tempIndex > midIndex) {
-                tempIndex = midIndex;
-            }
-            end = end - 1;
-        }
-    }
-    return tempIndex;
-}
+// 二分法查找，找到第一个大于value的值
+// function binarySearch(list: positionType[], value: number): number {
+//     let start = 0;
+//     let end = list.length - 1;
+//     let tempIndex = -1;
+//     while (start <= end) {
+//         let midIndex = Math.floor((start + end) / 2);
+//         let midValue = list[midIndex].bottom;
+//         if (midValue === value) {
+//             return midIndex + 1;
+//         } else if (midValue < value) {
+//             start = midIndex + 1;
+//         } else if (midValue > value) {
+//             if (tempIndex === -1 || tempIndex > midIndex) {
+//                 tempIndex = midIndex;
+//             }
+//             end = end - 1;
+//         }
+//     }
+//     return tempIndex;
+// }
 
 
 VirtualList.defaultProps = {

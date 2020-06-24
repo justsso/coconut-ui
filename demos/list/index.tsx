@@ -14,7 +14,7 @@ const Index = () => {
             <h3>size</h3>
             <h4>sm</h4>
             <CodeView>
-                <List size={'sm'}>
+                <List size='sm'>
                     <List.Item>
                         <span>大家看肌肤立刻释放</span>
                     </List.Item>
@@ -71,9 +71,9 @@ const Index = () => {
             <CodeView>
                 <label>
                     是否加载
-                    <input type={'checkbox'} value={'是否加载'} onClick={() => setLoading(!loading)}/>
+                    <input type='checkbox' value='是否加载' onClick={() => setLoading(!loading)}/>
                 </label>
-                <List loading={loading} size={'sm'}>
+                <List loading={loading} size='sm'>
                     <List.Item>
                         黑夜给了我黑色的眼睛， 我却用它寻找光明。
                     </List.Item>
@@ -82,17 +82,16 @@ const Index = () => {
                     </List.Item>
                 </List>
             </CodeView>
+            <h3>sortable 是否可以排序</h3>
+            <p>
+                传给item的index必须是组内唯一的
+            </p>
 
-            <h3 onLoad={() => {
-            }}>滚动加载无限长列表：虚拟渲染技术、只渲染可见行，所以需要一个固定的视口容器</h3>
 
-            <List loading={loading} size={'sm'}>
-                {
-                    data.map((item, index) => {
-                        return <List.Item key={index}>{item+index}</List.Item>
-                    })
-                }
-            </List>
+            <h4>onSortStart</h4>
+            <h4>onSortMove</h4>
+            <h4>onSortEnd</h4>
+            <h4>onSort</h4>
 
             <h2>API</h2>
             <table>

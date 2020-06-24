@@ -21,6 +21,33 @@ h4{
   height: 100vh;
   overflow: scroll;
   border-right: 1px solid #f0f0f0;
+
+  .li_a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    margin: 6px 0;
+    padding: 4px 6px;
+  }
+
+  .active_li{
+    @primary-color: #568eef;
+    color: @primary-color;
+    background: fade(@primary-color, 20%);
+  }
+}
+
+
+
+a{
+  text-decoration: none;
+  color: #3a3e45;
+  &:hover{
+    color: #3498ff;
+  }
+  &:active{
+    color: #3498ff;
+  }
 }
 
 .flex_auto {
@@ -28,7 +55,6 @@ h4{
   flex: 1;
   height: 100vh;
   overflow: scroll;
-  margin-right: 220px;
 }
 
 .nav_doc {
@@ -62,6 +88,7 @@ ul {
 }
 
 //字体大小
+.text-base	{font-size: 1rem;}
 .text-lg {
   font-size: 1.125rem;
 }

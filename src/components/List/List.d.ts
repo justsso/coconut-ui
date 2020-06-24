@@ -1,6 +1,6 @@
 import React from 'react';
 import ListItem from './ListItem';
-import { BasicProps } from '../@types/common';
+import {BasicProps} from '../@types/common';
 
 export interface ListProps extends BasicProps {
     /** Priary content */
@@ -12,6 +12,8 @@ export interface ListProps extends BasicProps {
     loadMore?: string | React.ReactNode;
     /** 是否有hover动效 */
     hover?: boolean;
+    /** 是否可排序 */
+    sortable?: boolean;
 }
 
 interface ListComponent extends React.ComponentClass<ListProps> {
