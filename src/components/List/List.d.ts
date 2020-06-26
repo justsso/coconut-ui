@@ -2,7 +2,15 @@ import React from 'react';
 import ListItem from './ListItem';
 import {BasicProps} from '../@types/common';
 
-export interface ListProps extends BasicProps {
+// 排序时的回调函数
+export interface DragCallBack {
+    dragIndex: number,
+    enterIndex: number;
+    dragKey?: number | string,
+    enterKey?: number | string
+}
+
+export interface ListProps<T> extends BasicProps {
     /** Priary content */
     children?: React.ReactNode;
 
@@ -14,9 +22,13 @@ export interface ListProps extends BasicProps {
     hover?: boolean;
     /** 是否可排序 */
     sortable?: boolean;
+    dataSource?: T[];
+    renderItem?: (item: T, index: number) => {};
+    onSort?: (obj: DragCallBack) => void;
+    sortKey?: string|number
 }
 
-interface ListComponent extends React.ComponentClass<ListProps> {
+interface ListComponent extends React.ComponentClass<ListProps<any>> {
     Item: typeof ListItem;
 }
 

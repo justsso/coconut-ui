@@ -13,6 +13,7 @@ import PanelDemo from './panel';
 import ListDemo from './list';
 // import VRDemo from "./virtualRender";
 import VLDemo from "./virtualList/index";
+import AlertDemo from "./alert/index"
 
 const routes = [
     {
@@ -55,6 +56,12 @@ const routes = [
         path: '/List',
         title: 'List组件',
         main: <ListDemo/>,
+        exact: false
+    },
+    {
+        path: '/Alert',
+        title: 'Alert组件',
+        main: <AlertDemo />,
         exact: false
     },
     // {

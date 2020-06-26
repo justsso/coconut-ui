@@ -11,7 +11,7 @@ interface ButtonProps extends BasicProps {
     circle?: boolean;
     plain?: boolean;
     loading?: boolean;
-    onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
     children?: string;
 }
 
@@ -38,7 +38,8 @@ class Button extends Component<ButtonProps> {
             circle,
             plain,
             children,
-            style
+            style,
+            onClick
         } = this.props;
         const buttonClassName = classes({
             [prefixCls || '']: true,
@@ -52,7 +53,9 @@ class Button extends Component<ButtonProps> {
         });
 
         return (
-            <button className={buttonClassName} style={style}>
+            <button className={buttonClassName} style={style} onClick={(e) => {
+                onClick?.(e)
+            }}>
                 {loading ? (
                     <Icon style={{ marginRight: '.5rem' }} className={['icon-load']} spin />
                 ) : null}

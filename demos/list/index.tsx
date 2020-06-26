@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import {List} from '../../src/components';
 import {ListData} from "./data.js";
 import CodeView from "../Common/CodeView";
@@ -7,7 +7,17 @@ const Index = () => {
     let [loading, setLoading] = useState(false)
 
     let data = new Array(200)
-    data.fill( 'name: Mike')
+    data.fill('name: Mike')
+
+    let Data2 = [
+        {text: '111', name: 'Jack', description: 'hello world'},
+        {text: '222', name: 'Rose', description: 'beautify'},
+        {text: '333', name: '黛玉', description: '天上掉下个林妹妹'},
+        {text: '444', name: '宝钗', description: '宝钗贳酒'},
+        {text: '555', name: '张筱雨', description: '三百亿'}];
+
+
+    let [dragData, setDragData] = useState(Data2)
 
     return (
         <div>
@@ -92,6 +102,45 @@ const Index = () => {
             <h4>onSortMove</h4>
             <h4>onSortEnd</h4>
             <h4>onSort</h4>
+            {
+                /*
+                * <CodeView>
+                <DragSort data={dragData} renderItem={(item) => {
+                    return (<div>
+                        {item.text}-{item.name} -{item.description}
+                    </div>)
+                }}/>
+            </CodeView>
+                * */
+            }
+
+            <CodeView>
+                <List sortable dataSource={dragData} renderItem={(item, index) => {
+                    return (<div key={index}>
+                        {item.text}
+                        -{item.name}
+                        -{item.description}
+                    </div>)
+                }}
+                onSort={ (obj) => {
+                    if (obj.dragIndex > obj.enterIndex) {
+                        let deleChild = dragData.splice(obj.dragIndex, 1)[0];
+                        dragData.splice(obj.enterIndex, 0, deleChild);
+
+                        setDragData(
+                            dragData
+                        )
+
+                    } else if (obj.dragIndex < obj.enterIndex) {
+                        let delteChild = dragData.splice(obj.dragIndex, 1)[0]
+                        dragData.splice(obj.enterIndex, 0, delteChild)
+                        setDragData(dragData)
+                    }
+                }}
+
+                />
+
+            </CodeView>
 
             <h2>API</h2>
             <table>

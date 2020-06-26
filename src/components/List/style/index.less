@@ -8,7 +8,11 @@
 
     // 当作上下线条
     //box-shadow: 0 -1px 0 #e5e5ea, 0 1px 0 #e5e5ea;
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
+
     border-bottom: 1px solid #e5e5ea;
+    background: #fff;
 
     &:first-child {
       border-top: 1px solid #e5e5ea;
@@ -17,6 +21,10 @@
     &-hover:hover {
       background-color: #f2faff;
       cursor: default;
+    }
+
+    &-time {
+
     }
 
     &-sm {
@@ -30,8 +38,6 @@
     &-lg {
       padding: 20px 0;
     }
-
-
 
 
   }

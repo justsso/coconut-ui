@@ -1,0 +1,49 @@
+/**
+ * @description
+ * @author justsso
+ */
+
+@import "../../style/themes/default";
+
+#@{coconut-prefix}-alert-wrap {
+  position: fixed;
+  top: 5px;
+  left: 50%;
+
+}
+
+
+.@{coconut-prefix}-alert {
+  &-info {
+    background: #E9F5FE;
+  }
+
+  &-success {
+    background: #EDFAE1;
+  }
+
+  &-warn {
+    background: #FFF9E6;
+  }
+
+  &-error {
+    background: #FDE9EF;
+  }
+
+  &-item {
+    margin-left: -50%;
+    margin-top: 20px;
+
+    &-content {
+      max-width: 400px;
+      border-radius: 6px;
+      font-size: 14px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, .12), 0 0 10px rgba(0, 0, 0, .06);
+      padding: 20px;
+      color: #575757;
+      text-align: center;
+    }
+
+  }
+
+}
