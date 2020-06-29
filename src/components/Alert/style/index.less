@@ -5,11 +5,10 @@
 
 @import "../../style/themes/default";
 
-#@{coconut-prefix}-alert-wrap {
+.@{coconut-prefix}-alert-container {
   position: fixed;
   top: 5px;
   left: 50%;
-
 }
 
 
@@ -30,20 +29,39 @@
     background: #FDE9EF;
   }
 
-  &-item {
+  // 一条 alert
+  &-item-wrapper {
     margin-left: -50%;
     margin-top: 20px;
+    display: none;
 
-    &-content {
-      max-width: 400px;
-      border-radius: 6px;
-      font-size: 14px;
-      box-shadow: 0 4px 4px rgba(0, 0, 0, .12), 0 0 10px rgba(0, 0, 0, .06);
-      padding: 20px;
-      color: #575757;
-      text-align: center;
+  }
+  // 一条里面的内容
+  &-item-content {
+    max-width: 400px;
+    border-radius: 6px;
+    font-size: 14px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .12), 0 0 10px rgba(0, 0, 0, .06);
+    padding: 20px;
+    color: #575757;
+    text-align: center;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    &-body{
+      flex: 1;
     }
 
+    &-close{
+      justify-items: flex-end;
+    }
+  }
+
+
+  &-show{
+    display: block;
   }
 
 }

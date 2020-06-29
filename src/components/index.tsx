@@ -13,4 +13,3 @@ export { default as WhiteSpace } from './WhiteSpace/WhiteSpace';
 export { default as List } from './List/List';
 export { default as VirtualList} from './VirtualList/index';
 export { default as Alert} from './Alert/index';
-export { default as DragSort} from './DragSort/index';

@@ -1,3 +1,5 @@
+const OFF = 0;
+
 module.exports = {
     env: {
         browser: true,
@@ -13,5 +15,8 @@ module.exports = {
         sourceType: 'module'
     },
     plugins: ['react', '@typescript-eslint'],
-    rules: {}
+    rules: {
+        '@typescript-eslint/explicit-member-accessibility': OFF,
+        'max-params': [0, 20],   // 函数参数个数
+    }
 };

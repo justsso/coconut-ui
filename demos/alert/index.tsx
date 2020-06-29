@@ -10,8 +10,7 @@ function AlertDemo(){
         <div>
             <Row>
                 <Col span={4}>
-                    <Button onClick={(e) => {
-                        console.log(e.currentTarget)
+                    <Button onClick={() => {
                         Alert.info('hello');
                     }}  >打开</Button>
                 </Col>
