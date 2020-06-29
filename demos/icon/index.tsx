@@ -2,6 +2,8 @@ import Icon from '../../src/components/Icon/Icon';
 import React from 'react';
 import CodeView from '../Common/CodeView';
 import { apiData as data } from './data';
+import {Row, Col} from "../../src/components";
+import './index.less';
 
 export default function IconDemo() {
     return (
@@ -20,32 +22,52 @@ export default function IconDemo() {
             <h4>className， 根据className 指定icon</h4>
 
             <CodeView>
-                <pre
-                    style={{
-                        wordBreak: 'break-word'
-                    }}
-                >
-                    icon-book <Icon size="middle" className={['icon-book']} />
-                    icon-load <Icon size="middle" className={['icon-load']} />
-                    icon-checkcircleo
-                    <Icon size="middle" className={['icon-checkcircleo']} />
-                    icon-my
-                    <Icon size="middle" className={['icon-my']} />
-                    icon-home
-                    <Icon size="middle" className={['icon-home']} />
-                    icon-check
-                    <Icon size="middle" className={['icon-check']} />
-                    icon-up
-                    <Icon size="middle" className={['icon-up']} />
-                    icon-check-circle
-                    <Icon size="middle" className={['icon-check-circle']} />
-                    icon-failure
-                    <Icon size="middle" className={['icon-failure']} />
-                    icon-success
-                    <Icon size="middle" className={['icon-success']} />
-                    icon-offline
-                    <Icon size="middle" className={['icon-offline']} />
-                </pre>
+                <Row className={['icons_row']}>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-book']} />
+                        <span>icon-book</span>
+                    </Col>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-load']} />
+                        icon-load
+                    </Col>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-checkcircleo']} />
+                        icon-checkcircleo
+                    </Col>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-my']} />
+                        icon-my
+                    </Col>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-home']} />
+                        icon-home
+                    </Col>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-check']} />
+                        icon-check
+                    </Col>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-up']} />
+                        icon-up
+                    </Col>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-check-circle']} />
+                        icon-check-circle
+                    </Col>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-failure']} />
+                        icon-failure
+                    </Col>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-success']} />
+                        icon-success
+                    </Col>
+                    <Col span={6}>
+                        <Icon size="middle" className={['icon-offline']} />
+                        icon-offline
+                    </Col>
+                </Row>
             </CodeView>
             <h4>是否自旋 spin：</h4>
 
