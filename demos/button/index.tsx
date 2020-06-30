@@ -1,23 +1,37 @@
 import React from 'react';
-import { apiData as data } from './data';
+import {apiData as data} from './data';
 import CodeView from '../Common/CodeView';
-import { Button } from '../../src/components/index';
+import {Button} from '../../src/components/index';
+
+import CodePreview from "@uiw/react-code-preview";
 
 export default function Index() {
     return (
         <div>
             <h2>Button</h2>
             <h4> 类型type </h4>
-            <CodeView>
-                <Button type="primary">primary</Button>
-                <Button type="secondary">secondary</Button>
-                <Button type="success">success</Button>
-                <Button type="danger">danger</Button>
-                <Button type="warning">warning</Button>
-                <Button type="info">info</Button>
-                <Button type="light">light</Button>
-                <Button type="dark">dark</Button>
-            </CodeView>
+
+            <CodePreview
+                bgWhite={true}
+                code={`
+import { Button } from 'coconut';
+
+const Demo = () => (
+    <div>
+        <Button type="primary">primary</Button>
+        <Button type="secondary">secondary</Button>
+        <Button type="success">success</Button>
+        <Button type="danger">danger</Button>
+        <Button type="warning">warning</Button>
+        <Button type="info">info</Button>
+        <Button type="light">light</Button>
+        <Button type="dark">dark</Button>
+    </div>
+)
+ReactDOM.render(<Demo />, _mount_);
+            `}
+                dependencies={{Button}}
+            />
             <h4>镂空plain</h4>
             <CodeView>
                 <Button type="primary" plain={true}>
@@ -106,15 +120,15 @@ export default function Index() {
             <div>
                 <table>
                     <tbody>
-                        {data.map((item, index: number) => {
-                            return (
-                                <tr key={index}>
-                                    {item.map((td_item, td_index) => {
-                                        return <td key={td_index}>{td_item}</td>;
-                                    })}
-                                </tr>
-                            );
-                        })}
+                    {data.map((item, index: number) => {
+                        return (
+                            <tr key={index}>
+                                {item.map((td_item, td_index) => {
+                                    return <td key={td_index}>{td_item}</td>;
+                                })}
+                            </tr>
+                        );
+                    })}
                     </tbody>
                 </table>
             </div>

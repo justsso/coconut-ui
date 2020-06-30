@@ -47,9 +47,10 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader'],
-                exclude: /node_modules/
+                use: ['style-loader', 'css-loader'],
+                // exclude: /node_modules/
             },
+            // { test: /\.css$/, loader: 'style-loader!css-loader'},
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: ['file-loader']
@@ -75,5 +76,8 @@ module.exports = {
             filename: '[name].[chunkhash:8].css',
             chunkFilename: '[id].css'
         })
-    ]
+    ],
+    externals: {
+        fs: "commonjs fs"
+    }
 };
