@@ -5,6 +5,11 @@
 
 @import "../../style/themes/default";
 
+@icon-info: #4796ec;
+@icon-success: #67a45b;
+@icon-warn: #f5b3bf;
+@icon-error: #e15241;
+
 .@{coconut-prefix}-alert-container {
   position: fixed;
   top: 5px;
@@ -13,55 +18,79 @@
 
 
 .@{coconut-prefix}-alert {
-  &-info {
-    background: #E9F5FE;
-  }
-
-  &-success {
-    background: #EDFAE1;
-  }
-
-  &-warn {
-    background: #FFF9E6;
-  }
-
-  &-error {
-    background: #FDE9EF;
-  }
 
   // 一条 alert
   &-item-wrapper {
-    margin-left: -50%;
-    margin-top: 20px;
-    display: none;
-
+    margin-bottom: 20px;
+    display: block;
   }
+
   // 一条里面的内容
   &-item-content {
+    display: inline-block;
+    position: relative;
     max-width: 400px;
-    border-radius: 6px;
     font-size: 14px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, .12), 0 0 10px rgba(0, 0, 0, .06);
-    padding: 20px;
     color: #575757;
     text-align: center;
+    padding: 20px;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .12), 0 0 10px rgba(0, 0, 0, .06);
+    border-radius: 6px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
 
-    &-body{
-      flex: 1;
+    &-info {
+      background: #E9F5FE;
+
+      &-close {
+        color: @icon-info;
+      }
     }
 
-    &-close{
-      justify-items: flex-end;
+    &-success {
+      background: #EDFAE1;
+
+      &-close {
+        color: @icon-success;
+      }
+    }
+
+    &-warn {
+      background: #FFF9E6;
+
+      &-close {
+        color: @icon-warn;
+      }
+    }
+
+    &-error {
+      background: #FDE9EF;
+
+      &-close {
+        color: @icon-error;
+      }
+    }
+
+    &-body {
+      text-align: left;
+      margin-right: 20px;
+      width: calc(100% - 20px);
+    }
+
+    &-close {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      padding-left: 10px;
+      height: 20px;
+      margin-top: -10px;
+
     }
   }
 
 
-  &-show{
-    display: block;
+  &-not-show {
+    display: none;
   }
 
 }

@@ -6,6 +6,7 @@
 import React from 'react';
 import './style/index.less';
 import NoticeManager from "./NoticeManager";
+import {AlertType} from "./index";
 
 const prefixCls = 'coconut';
 
@@ -18,7 +19,7 @@ class Alert {
     // _instance 属性，保存所有Alert的一个容器
     _instance: any = null
 
-    open(type: string, content: React.ReactNode | (() => React.ReactNode), duration?: number, onClose?: () => void) {
+    open(type: AlertType, content: React.ReactNode | (() => React.ReactNode), duration?: number, onClose?: () => void) {
 
         let next_item = {
             type: type,

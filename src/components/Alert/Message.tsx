@@ -6,6 +6,7 @@
 import React, {useEffect, useState} from 'react';
 // import {NoticeType} from "./NoticeManager";
 import classNames from "classnames";
+import {Icon} from "../index";
 
 
 interface MessageProps {
@@ -21,45 +22,52 @@ interface MessageProps {
 }
 
 const Message: React.FC<MessageProps> = (props) => {
-    let {show, onClose, id, className, content, duration, type} = props;
+    let {show, onClose, id, className, content, duration, type, closeable} = props;
 
     let [isShow, setShow] = useState(show)
     let baseClassName = className;
 
 
     useEffect(() => {
-        let timer = setTimeout(() => {
-            setShow(false)
-            onClose?.(id)
-        }, duration)
+        if (duration !== 0) {
+            let timer = setTimeout(() => {
+                setShow(false)
+                onClose?.(id)
+            }, duration)
 
-        return () => {
-            clearTimeout(timer)
+            return () => {
+                clearTimeout(timer)
+            }
         }
-
-
-    }, [])
+    }, [duration])
     const cls = classNames({
         [`${baseClassName}-item-wrapper`]: true,
-        [`${baseClassName}-${type}`]: true,
-        [`${baseClassName}-show`]: isShow,
+        [`${baseClassName}-not-show`]: !isShow,
+    })
+    const contentCls = classNames({
+        [`${baseClassName}-item-content`]: true,
+        [`${baseClassName}-item-content-${type}`]: true
     })
 
 
     return (
         <div className={cls}>
-            <div className={`${baseClassName}-item-content`}>
+            <div className={contentCls}>
                 <div className={`${baseClassName}-item-content-body`}>
                     {content}
                 </div>
-                <div
+                {closeable && <div
                     className={`${baseClassName}-item-content-close`}
                     onClick={() => {
+                        console.log('onClick', id)
+                        setShow(false)
                         if (onClose) {
                             onClose(id)
                         }
-                    }}>x
-                </div>
+                    }}
+                >
+                    <Icon className={['icon-close', `${baseClassName}-item-content-${type}-close`]} size='small'/>
+                </div>}
             </div>
         </div>
     )

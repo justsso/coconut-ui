@@ -95,7 +95,6 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
     public add(item: NoticeType) {
         console.log('add')
         let {notices} = this.state;
-        console.log(item, item.key, typeof item.key)
         item.key = typeof item.key === "undefined" ? getUid() : item.key
         item.show = true
         console.log(item, 101)
@@ -109,14 +108,14 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
         }
     }
 
-    public actualRemove(key: string) {
+    public actualRemove(key?: string) {
         let {notices} = this.state;
 
         notices = notices.filter((item) => {
             return item.key !== key
         })
 
-        this.setState({notices})
+        this.setState({notices: notices})
     }
 
     public removeAll() {
@@ -132,7 +131,11 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
             return <Message
                     key={index}
                     show={show}
-                    onClose={onClose}
+                    onClose={(key) => {
+                        console.log('要关闭的key', key)
+                        this.actualRemove(key)
+                        onClose?.()
+                    }}
                     id={key}
                     className={className}
                     content={content}
@@ -141,7 +144,6 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
                     closeable={closeable}
                 />
         })
-
         return elements
     }
 
