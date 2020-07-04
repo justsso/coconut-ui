@@ -13,6 +13,8 @@ export default function Index() {
 
             <CodePreview
                 bgWhite={true}
+                bordered={false}
+                className='code-view-wrapper'
                 code={`
 import { Button } from 'coconut';
 

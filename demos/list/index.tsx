@@ -21,7 +21,9 @@ const Index = () => {
 
     return (
         <div>
-            <h3>size</h3>
+            <h2>List</h2>
+            <p>列表组件</p>
+            <h3>大小size</h3>
             <h4>sm</h4>
             <CodeView>
                 <List size='sm'>
