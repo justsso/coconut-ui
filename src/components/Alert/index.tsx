@@ -32,19 +32,22 @@ function closeAll() {
     alert.closeAll()
 }
 
+function addIcon(type: AlertType, content: React.ReactElement | string) {
+    return (<div>
+        <Icon className={[`icon-${type}_filled`]} size='small' rotate={0} style={{
+            color: AlertIconColor[type],
+            paddingRight: '4px',
+            fontSize: '14px',
+        }}/>
+        {content}
+    </div>)
+}
+
 // 包装函数
 function proxy(type: AlertType) {
-    return (content: React.ReactNode | string, duration?: number, onClose?: () => void) => {
-        let ContentNode = <div>
-            <Icon className={[`icon-${type}_filled`]} size='small' style={{
-                color: AlertIconColor[type],
-                paddingRight: '4px',
-                fontSize: '14px'
-            }}/>
-            {content}
-        </div>
+    return (content: React.ReactElement | string, duration?: number, onClose?: () => void) => {
 
-        alert.open(type, ContentNode, duration, onClose)
+        alert.open(type, addIcon(type, content), duration, onClose)
         return {
             close: close
         }

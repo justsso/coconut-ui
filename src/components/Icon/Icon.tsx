@@ -24,17 +24,17 @@ const Icon: FC<IconProp> = (props) => {
     return (
         <span
             className={iconClassName}
-            style={Object.assign(
-                style ? style : {},
-                { transform: `rotate(${rotate}deg)` },
-                size
+            style={({
+                ...(style ? style : {}),
+                transform: `rotate(${rotate}deg)`,
+                ...(size
                     ? {
                           width: size + 'px',
                           height: size + 'px',
                           lineHeight: size + 'px'
                       }
-                    : {}
-            )}
+                    : {})
+            })}
         />
     );
 };

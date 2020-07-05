@@ -3,74 +3,79 @@
  * @author justsso
  */
 
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 // import {NoticeType} from "./NoticeManager";
 import classNames from "classnames";
 import {Icon} from "../index";
+import {BasicProps} from "../@types/common";
 
-
-interface MessageProps {
-    show: boolean,
-    className?: string[],
-    onClose?: (key?: string) => void,
+interface MessageProps extends BasicProps {
+    onClose: () => void,
     type: string,
-    duration: number,
+    duration?: number,
     closeable: boolean,
     content: React.ReactNode | string,
-    id: string,
-    key: number
+    baseClassName?: string,
+    transitionClsName?: string
 }
 
-const Message: React.FC<MessageProps> = (props) => {
-    let {show, onClose, id, className, content, duration, type, closeable} = props;
+class Message extends React.Component<MessageProps> {
+    closeTimer: NodeJS.Timeout | null = null
 
-    let [isShow, setShow] = useState(show)
-    let baseClassName = className;
-
-
-    useEffect(() => {
-        if (duration !== 0) {
-            let timer = setTimeout(() => {
-                setShow(false)
-                onClose?.(id)
+    componentDidMount() {
+        let {duration} = this.props;
+        if (duration) {
+            this.closeTimer = setTimeout(() => {
+                this.close()
             }, duration)
-
-            return () => {
-                clearTimeout(timer)
-            }
         }
-    }, [duration])
-    const cls = classNames({
-        [`${baseClassName}-item-wrapper`]: true,
-        [`${baseClassName}-not-show`]: !isShow,
-    })
-    const contentCls = classNames({
-        [`${baseClassName}-item-content`]: true,
-        [`${baseClassName}-item-content-${type}`]: true
-    })
+    }
 
+    close() {
+        this.clearCloseTimer()
+        this.props.onClose()
+    }
 
-    return (
-        <div className={cls}>
-            <div className={contentCls}>
-                <div className={`${baseClassName}-item-content-body`}>
-                    {content}
+    clearCloseTimer() {
+        if (this.closeTimer) {
+            clearTimeout(this.closeTimer);
+            this.closeTimer = null;
+        }
+    }
+
+    componentWillUnmount() {
+        console.log('Message-componentWillUnmount', this.closeTimer)
+        this.clearCloseTimer()
+    }
+
+    render() {
+        let {content, type, closeable, style, transitionClsName, baseClassName} = this.props;
+        const cls = classNames({
+            [`${baseClassName}-item-wrapper`]: true,
+            [`${transitionClsName}`]: true
+        })
+        const contentCls = classNames({
+            [`${baseClassName}-item-content`]: true,
+            [`${baseClassName}-item-content-${type}`]: true
+        })
+        return (
+            <div className={cls} style={style}>
+                <div className={contentCls}>
+                    <div className={`${baseClassName}-item-content-body`}>
+                        {content}
+                    </div>
+                    {closeable && <div
+                        className={`${baseClassName}-item-content-close`}
+                        onClick={() => {
+                            this.close()
+                        }}
+                    >
+                        <Icon className={['icon-close', `${baseClassName}-item-content-${type}-close`]} size='small'/>
+                    </div>}
                 </div>
-                {closeable && <div
-                    className={`${baseClassName}-item-content-close`}
-                    onClick={() => {
-                        console.log('onClick', id)
-                        setShow(false)
-                        if (onClose) {
-                            onClose(id)
-                        }
-                    }}
-                >
-                    <Icon className={['icon-close', `${baseClassName}-item-content-${type}-close`]} size='small'/>
-                </div>}
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Message;
