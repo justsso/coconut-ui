@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {List} from '../../src/components';
+import {List, Alert} from '../../src/components';
 import {ListData} from "./data.js";
 import CodeView from "../Common/CodeView";
 
@@ -98,12 +98,9 @@ const Index = () => {
             <p>
                 传给item的index必须是组内唯一的
             </p>
-
-
-            <h4>onSortStart</h4>
-            <h4>onSortMove</h4>
-            <h4>onSortEnd</h4>
-            <h4>onSort</h4>
+            <h4>onSortStart，在控制台打印相关参数</h4>
+            <h4>onSortMove， 在控制台打印相关参数</h4>
+            <h4>onSort 回调函数，使用Alert弹出页面</h4>
             {
                 /*
                 * <CodeView>
@@ -124,22 +121,26 @@ const Index = () => {
                         -{item.description}
                     </div>)
                 }}
-                onSort={ (obj) => {
-                    if (obj.dragIndex > obj.enterIndex) {
-                        let deleChild = dragData.splice(obj.dragIndex, 1)[0];
-                        dragData.splice(obj.enterIndex, 0, deleChild);
-
-                        setDragData(
-                            dragData
-                        )
-
-                    } else if (obj.dragIndex < obj.enterIndex) {
-                        let delteChild = dragData.splice(obj.dragIndex, 1)[0]
-                        dragData.splice(obj.enterIndex, 0, delteChild)
-                        setDragData(dragData)
-                    }
-                }}
-
+                      onSort={(obj) => {
+                          Alert.info(JSON.stringify(obj))
+                          if (obj.dragIndex > obj.enterIndex) {
+                              let deleChild = dragData.splice(obj.dragIndex, 1)[0];
+                              dragData.splice(obj.enterIndex, 0, deleChild);
+                              setDragData(
+                                  dragData
+                              )
+                          } else if (obj.dragIndex < obj.enterIndex) {
+                              let delteChild = dragData.splice(obj.dragIndex, 1)[0]
+                              dragData.splice(obj.enterIndex, 0, delteChild)
+                              setDragData(dragData)
+                          }
+                      }}
+                      onSortMove={(obj) => {
+                          console.log('排序中', obj)
+                      }}
+                      onSortStart={(obj) => {
+                          console.log('开始排序', obj)
+                      }}
                 />
 
             </CodeView>

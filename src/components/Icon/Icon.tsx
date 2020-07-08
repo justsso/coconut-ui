@@ -18,6 +18,7 @@ const Icon: FC<IconProp> = (props) => {
             [`${prefixCls}-${size}`]: typeof size !== 'number' && typeof size !== 'undefined',
             [`${prefixCls}-spin`]: spin
         },
+
         className?.join(' ')
     );
 

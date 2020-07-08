@@ -13,7 +13,6 @@ export interface DragCallBack {
 export interface ListProps<T> extends BasicProps {
     /** Priary content */
     children?: React.ReactNode;
-
     /** List尺寸 */
     size?: 'sm' | 'md' | 'lg';
     loading?: boolean;
@@ -25,6 +24,8 @@ export interface ListProps<T> extends BasicProps {
     dataSource?: T[];
     renderItem?: (item: T, index: number) => {};
     onSort?: (obj: DragCallBack) => void;
+    onSortStart?: (obj: DragCallBack) => void;
+    onSortMove?: (obj: DragCallBack) => void;
     sortKey?: string|number
 }
 

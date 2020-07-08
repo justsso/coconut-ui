@@ -12,7 +12,7 @@ export interface ItemPropInterface extends BasicProps {
 }
 
 const ListItem: React.FC<ItemPropInterface> = (props) => {
-    let {children, prefixCls, style, className, index} = props;
+    let {children, prefixCls, style, className, index, sortKey} = props;
     const Context = useContext(ListContext);
     let {
         size, hover = false, sortable,
@@ -33,7 +33,7 @@ const ListItem: React.FC<ItemPropInterface> = (props) => {
 
 
     function dragStart(e: React.DragEvent<HTMLDivElement>) {
-        setDragIndex(Number(e.currentTarget.dataset.index))
+        setDragIndex(Number(e.currentTarget.dataset.index), sortKey)
     }
 
     function dragEnd() {
@@ -43,7 +43,7 @@ const ListItem: React.FC<ItemPropInterface> = (props) => {
     function dragEnter(e: React.DragEvent<HTMLDivElement>) {
         let enterIndex = Number(e.currentTarget.dataset.index);
         // if (enterIndex !== Context.dragIndex) {
-        setEnterIndex(enterIndex)
+        setEnterIndex(enterIndex, sortKey)
         // translate 变换, 其他的都归位，当前的移动
         handleDragEnter()
         // }

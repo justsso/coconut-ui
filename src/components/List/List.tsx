@@ -36,7 +36,9 @@ class List extends Component<ListProps<any>, ListState> {
     }
     public obj: DragData = {
         dragIndex: -1,
-        enterIndex: -1
+        dragKey: undefined,
+        enterIndex: -1,
+        enterKey: undefined
     }
 
     private constructor(props: ListProps<any>) {
@@ -55,13 +57,14 @@ class List extends Component<ListProps<any>, ListState> {
     }
 
 
+    // 拖动时，元素的transform计算变换
     public handleTranslateStyle() {
         if (this.obj.enterIndex < this.obj.dragIndex) {
             let translateStyleArr = this.state.translateStyleArr;
             for (let i = 0; i < translateStyleArr.length; i++) {
-                if(i>=this.obj.enterIndex&&i<this.obj.dragIndex){
+                if (i >= this.obj.enterIndex && i < this.obj.dragIndex) {
                     translateStyleArr[i] = {transform: `translate(0, 100%)`, transitionDuration: '300ms'};
-                }else{
+                } else {
                     translateStyleArr[i] = {transform: 'translate(0,0)', transitionDuration: '0ms'};
                 }
             }
@@ -69,9 +72,9 @@ class List extends Component<ListProps<any>, ListState> {
         } else if (this.obj.enterIndex > this.obj.dragIndex) {
             let translateStyleArr = this.state.translateStyleArr;
             for (let i = 0; i < translateStyleArr.length; i++) {
-                if(i>this.obj.dragIndex&&i<=this.obj.enterIndex){
+                if (i > this.obj.dragIndex && i <= this.obj.enterIndex) {
                     translateStyleArr[i] = {transform: `translate(0, -100%)`, transitionDuration: '300ms'};
-                }else{
+                } else {
                     translateStyleArr[i] = {transform: 'translate(0,0)', transitionDuration: '0ms'};
                 }
             }
@@ -126,7 +129,6 @@ class List extends Component<ListProps<any>, ListState> {
 
         // 要做排序的话，ListItem必须要有index，代表编号，内部实现
 
-
         return <ListContext.Provider value={{
             size: size,
             hover: hover,
@@ -135,13 +137,15 @@ class List extends Component<ListProps<any>, ListState> {
             handleDragEnter: this.handleTranslateStyle,
             dragIndex: this.obj.dragIndex,
             enterIndex: this.obj.enterIndex,
-            setDragIndex: (dragIndex: number): void => {
-                console.log('开始拖动了', dragIndex);
+            setDragIndex: (dragIndex: number, dragKey: string): void => {
                 this.obj.dragIndex = dragIndex;
+                this.obj.dragKey = dragKey;
+                this.props.onSortStart?.(this.obj)
             },
-            setEnterIndex: (enterIndex: number) => {
-                console.log('开始进入了', enterIndex)
-                this.obj.enterIndex = enterIndex
+            setEnterIndex: (enterIndex: number, enterKey: string) => {
+                this.obj.enterIndex = enterIndex;
+                this.obj.enterKey = enterKey;
+                this.props.onSortMove?.(this.obj)
             }
         }}>
             <div className={listCls}>
@@ -153,8 +157,8 @@ class List extends Component<ListProps<any>, ListState> {
                         </ListItem>
                     })
                 }
-                { loading && (<div className={loadingDivCls}>
-                    <Icon className={['icon-load']} size="middle" spin style={{color: '#696969'}} />
+                {loading && (<div className={loadingDivCls}>
+                    <Icon className={['icon-load']} size="middle" spin style={{color: '#696969'}}/>
                 </div>)
                 }
                 {children}
@@ -174,7 +178,6 @@ class List extends Component<ListProps<any>, ListState> {
             translateStyleArr: translateStyleArr
         })
     }
-
 }
 
 
