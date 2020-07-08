@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import {ListProps} from './List.d';
 import {ListContext} from "./ListContext";
 import './style/index.less';
+import {Icon} from "../index";
 
 interface ListState {
     renderData: any[],
@@ -116,9 +117,12 @@ class List extends Component<ListProps<any>, ListState> {
         let {children, size, prefixCls, hover, loading, sortable = false, renderItem, sortKey} = this.props;
         let {renderData} = this.state;
         const listCls = classNames({
-            [`${prefixCls}`]: true,
-            [`${prefixCls}-loading`]: loading
+            [`${prefixCls}`]: true
         });
+
+        const loadingDivCls = classNames({
+            [`${prefixCls}-loading`]: loading
+        })
 
         // 要做排序的话，ListItem必须要有index，代表编号，内部实现
 
@@ -148,6 +152,10 @@ class List extends Component<ListProps<any>, ListState> {
                             {renderItem?.(item, index)}
                         </ListItem>
                     })
+                }
+                { loading && (<div className={loadingDivCls}>
+                    <Icon className={['icon-load']} size="middle" spin style={{color: '#696969'}} />
+                </div>)
                 }
                 {children}
             </div>
