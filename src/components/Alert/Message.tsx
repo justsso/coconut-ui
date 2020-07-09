@@ -8,6 +8,10 @@ import React from 'react';
 import classNames from "classnames";
 import {Icon} from "../index";
 import {BasicProps} from "../@types/common";
+import Transition from "react-transition-group/Transition";
+import {transitionStyles} from "./NoticeManager";
+
+const timeout = 300;
 
 interface MessageProps extends BasicProps {
     onClose: () => void,
@@ -17,10 +21,21 @@ interface MessageProps extends BasicProps {
     content: React.ReactNode | string,
     baseClassName?: string,
     transitionClsName?: string
+    remove: (id: string) => void,
+    id: string
 }
 
 class Message extends React.Component<MessageProps> {
     closeTimer: NodeJS.Timeout | null = null
+    state = {
+        show: true
+    }
+
+    constructor(props: MessageProps) {
+        super(props);
+        this.close = this.close.bind(this);
+
+    }
 
     componentDidMount() {
         let {duration} = this.props;
@@ -30,6 +45,7 @@ class Message extends React.Component<MessageProps> {
             }, duration);
         }
     }
+
     componentWillUnmount() {
         console.log('Message-componentWillUnmount', this.closeTimer)
         this.clearCloseTimer()
@@ -43,39 +59,53 @@ class Message extends React.Component<MessageProps> {
         }
     }
 
-    close = () => {
-        // eslint-disable-next-line @typescript-eslint/no-invalid-this
+    close(){
+        this.setState({
+            show: false
+        })
+
         this.clearCloseTimer();
-        // eslint-disable-next-line @typescript-eslint/no-invalid-this
-        this.props.onClose()
+        this.props.onClose();
     }
 
     render() {
-        let {content, type, closeable, style, transitionClsName, baseClassName} = this.props;
-        const cls = classNames({
-            [`${baseClassName}-item-wrapper`]: true,
-            [`${transitionClsName}`]: true
-        })
+        let {content, type, closeable, style,  baseClassName, id} = this.props;
+        const {show} = this.state;
+
         const contentCls = classNames({
             [`${baseClassName}-item-content`]: true,
             [`${baseClassName}-item-content-${type}`]: true
         })
         return (
-            <div className={cls} style={style}>
-                <div className={contentCls}>
-                    <div className={`${baseClassName}-item-content-body`}>
-                        {content}
+            <Transition
+                in={show}
+                timeout={timeout}
+                onExited={() => this.props.remove(id)}
+            >
+                {<T extends keyof transitionStyles>(state: T) => {
+                    const transitionCls = `${baseClassName}-${state}`;
+                    const cls = classNames({
+                        [`${baseClassName}-item-wrapper`]: true,
+                        [`${transitionCls}`]: true
+                    })
+                    return <div className={cls} style={style}>
+                        <div className={contentCls}>
+                            <div className={`${baseClassName}-item-content-body`}>
+                                {content}
+                            </div>
+                            {closeable && <div
+                                className={`${baseClassName}-item-content-close`}
+                                onClick={() => {
+                                    this.close()
+                                }}
+                            >
+                                <Icon className={['icon-close', `${baseClassName}-item-content-${type}-close`]}
+                                      size='small'/>
+                            </div>}
+                        </div>
                     </div>
-                    {closeable && <div
-                        className={`${baseClassName}-item-content-close`}
-                        onClick={() => {
-                            this.close()
-                        }}
-                    >
-                        <Icon className={['icon-close', `${baseClassName}-item-content-${type}-close`]} size='small'/>
-                    </div>}
-                </div>
-            </div>
+                }}
+            </Transition>
         )
     }
 }

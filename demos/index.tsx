@@ -14,6 +14,7 @@ import ListDemo from './list';
 // import VRDemo from "./virtualRender";
 import VLDemo from "./virtualList/index";
 import AlertDemo from "./alert/index"
+import SkeletonDemo from "./skeleton/index";
 
 const routes = [
     {
@@ -80,6 +81,12 @@ const routes = [
         main: <VLDemo/>,
         exact: false
     },
+    {
+        path: '/skeleton',
+        title: '占位符',
+        main: <SkeletonDemo />,
+        exact: false
+    }
     // {
     //     path: '/vrlist2',
     //     title: '虚拟渲染原生',

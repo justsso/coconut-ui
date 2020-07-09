@@ -6,7 +6,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Message from "./Message";
-import Transition from "react-transition-group/Transition";
 import classNames from "classnames";
 
 let id = 0;
@@ -50,9 +49,8 @@ export interface NoticeType {
     closeable: boolean,
 }
 
-const timeout = 300;
 
-interface transitionStyles {
+export interface transitionStyles {
     entering: React.CSSProperties,
     entered: React.CSSProperties,
     exiting: React.CSSProperties,
@@ -119,8 +117,6 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
         if (!notices.find(notice => notice.key === item.key)) {
             this.setState({
                 notices: [...notices, item]
-            }, () => {
-                console.log(this.state.notices, 106)
             })
         }
     }
@@ -150,10 +146,27 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
     }
 
     actualRemove(key: string) {
-        const Key = this.getKey(key);
+         console.log('执行 actualRemove', key)
+        // const Key = this.getKey(key);
+        // this.setState(preState => {
+        //     return {
+        //         notices: preState.notices.filter(item => item.key !== Key)
+        //     }
+        // })
+        const findIndexByKey = (key: string) : number=> {
+            let findIndex = -1;
+            for (let i = 0; i < this.state.notices.length; i++) {
+                if(this.state.notices[i].key === key){
+                    findIndex = i
+                }
+            }
+            return findIndex;
+        };
+
+        const index = findIndexByKey(key);
         this.setState(preState => {
             return {
-                notices: preState.notices.filter(item => item.key !== Key)
+                notices: preState.notices.splice(index, 1)
             }
         })
     }
@@ -177,34 +190,24 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
     render() {
         let {notices} = this.state;
         const {className, classPrefix, style} = this.props;
-        console.log(notices, 'render')
         const elements = notices.map((item, index) => {
             // Message 组件是真正的消息展示组件，有key 、show  onClose  ，key相当于id属性，当调用onClose时要回传key给父组件
-            const {show, key, onClose, className, content, duration, closeable, type} = item;
-            return (<Transition
-                key={index}
-                in={show}
-                timeout={timeout}
-                onExited={() => this.actualRemove(key)}
-            >
-                {<T extends keyof transitionStyles>(state: T) => {
-                    console.log(state, 201)
-                    const transitionCls = `${classPrefix}-${state}`
-                    return <Message
+            const { key, onClose, className, content, duration, closeable, type} = item;
+            return (
+                    <Message
+                        key={index}
+                        id={key}
                         baseClassName={className}
                         onClose={() => {
-                            console.log('要关闭的key', key)
-                            this.remove(key);
                             onClose?.()
                         }}
-                        transitionClsName={transitionCls}
                         content={content}
                         duration={duration}
                         type={type}
                         closeable={closeable}
+                        remove={() => this.actualRemove(key)}
                     />
-                }}
-            </Transition>)
+        )
         })
 
         const classes = classNames(classPrefix, className);
@@ -213,10 +216,6 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
                 {elements}
             </div>
         )
-    }
-
-     componentWillUnmount() {
-        console.log('NoticeManager-componentWillUnmount')
     }
 }
 

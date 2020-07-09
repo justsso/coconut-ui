@@ -46,7 +46,6 @@ function addIcon(type: AlertType, content: React.ReactElement | string) {
 // 包装函数
 function proxy(type: AlertType) {
     return (content: React.ReactElement | string, duration?: number, onClose?: () => void) => {
-
         alert.open(type, addIcon(type, content), duration, onClose)
         return {
             close: close

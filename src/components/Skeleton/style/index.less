@@ -1,0 +1,87 @@
+/**
+ * @description
+ * @author justsso
+ */
+
+@prefixClas: c-skeleton;
+@skeleton-title-width: 60px;
+@skeleton-title-height: 15px;
+@skeleton-row-background-color: #f2f3f5;
+@skeleton-row-margin-top: 8px;
+@skeleton-row-height: 10px;
+@skeleton-row-width: 120px;
+@skeleton-action-height: 30px;
+@skeleton-action-width: 60px;
+@skeleton-aciton-mr: 20px;
+@skeleton-animation-duration: 1.2s;
+
+.@{prefixClas} {
+
+  display: flex;
+  align-items: center;
+  padding: 20px 30px;
+  background: #fff;
+  //中间的内容区
+  &-content {
+    flex: 1;
+    padding-top: 16px;
+  }
+
+
+  //头像
+  &-avatar {
+    background: @skeleton-row-background-color;
+    margin-right: 15px;
+
+    &-round {
+      border-radius: 50%;
+    }
+  }
+
+
+  // 标题
+  &-title {
+    width: @skeleton-title-width;
+    height: @skeleton-title-height;
+    margin-bottom: @skeleton-row-margin-top;
+  }
+
+  //右侧动作
+  &-action {
+    width: @skeleton-action-width;
+    height: @skeleton-action-height;
+    background: @skeleton-row-background-color;
+    margin-left: @skeleton-aciton-mr;
+  }
+
+
+  // 行数
+  &-rows {
+
+  }
+
+  &-row {
+    width: @skeleton-row-width;
+    height: @skeleton-row-height;
+    background: @skeleton-row-background-color;
+    margin-bottom: @skeleton-row-margin-top;
+  }
+
+  &-avatar, &-title, &-row-item {
+    height: @skeleton-title-height;
+    background: @skeleton-row-background-color;
+  }
+
+  //动画，统一刷新的感觉，一个动画，无限循环
+  &-animate {
+    animation: skeleton-blink  @skeleton-animation-duration  ease-in-out infinite;
+  }
+
+}
+
+@keyframes skeleton-blink {
+  50% {
+    opacity: .4;
+  }
+}
+

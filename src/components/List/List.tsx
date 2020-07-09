@@ -41,7 +41,7 @@ class List extends Component<ListProps<any>, ListState> {
         enterKey: undefined
     }
 
-    private constructor(props: ListProps<any>) {
+     public constructor(props: ListProps<any>) {
         super(props);
         this.state = {
             renderData: props.dataSource || [],
