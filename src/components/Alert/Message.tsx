@@ -26,15 +26,15 @@ class Message extends React.Component<MessageProps> {
         let {duration} = this.props;
         if (duration) {
             this.closeTimer = setTimeout(() => {
-                this.close()
-            }, duration)
+                this.close();
+            }, duration);
         }
     }
-
-    close() {
+    componentWillUnmount() {
+        console.log('Message-componentWillUnmount', this.closeTimer)
         this.clearCloseTimer()
-        this.props.onClose()
     }
+
 
     clearCloseTimer() {
         if (this.closeTimer) {
@@ -43,9 +43,11 @@ class Message extends React.Component<MessageProps> {
         }
     }
 
-    componentWillUnmount() {
-        console.log('Message-componentWillUnmount', this.closeTimer)
-        this.clearCloseTimer()
+    close = () => {
+        // eslint-disable-next-line @typescript-eslint/no-invalid-this
+        this.clearCloseTimer();
+        // eslint-disable-next-line @typescript-eslint/no-invalid-this
+        this.props.onClose()
     }
 
     render() {

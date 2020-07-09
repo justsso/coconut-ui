@@ -10,7 +10,7 @@ function AlertDemo() {
     return (
         <div>
             <h2>Alert</h2>
-            <h4>duration 默认时间3000ms</h4>
+            <h4>duration 默认时间 2000ms</h4>
             <Row>
                 <Col span={4}>
                     <Button onClick={() => {
@@ -59,7 +59,6 @@ function AlertDemo() {
                 </Col>
                 <Col span={4}>
                     <Button type='danger' onClick={() => {
-                        console.log('ererw')
                         Alert.error(' 错误的消息', 0, () => {
                             console.log('关闭错误消息')
                         });

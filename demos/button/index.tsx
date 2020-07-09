@@ -3,19 +3,19 @@ import {apiData as data} from './data';
 import CodeView from '../Common/CodeView';
 import {Button} from '../../src/components/index';
 
-import CodePreview from "@uiw/react-code-preview";
+// import CodePreview from "@uiw/react-code-preview";
 
 export default function Index() {
     return (
         <div>
             <h2>Button</h2>
             <h4> 类型type </h4>
-
-            <CodePreview
-                bgWhite={true}
-                bordered={false}
-                className='code-view-wrapper'
-                code={`
+            { /*
+                <CodePreview
+                    bgWhite={true}
+                    bordered={false}
+                    className='code-view-wrapper'
+                    code={`
 import { Button } from 'coconut';
 
 const Demo = () => (
@@ -32,8 +32,9 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
             `}
-                dependencies={{Button}}
-            />
+                    dependencies={{Button}}
+                />
+          */  }
             <h4>镂空plain</h4>
             <CodeView>
                 <Button type="primary" plain={true}>

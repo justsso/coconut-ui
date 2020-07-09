@@ -60,7 +60,7 @@ const routes = [
     },
     {
         path: '/Alert',
-        title: 'Alert组件',
+        title: 'Alert全局提示',
         main: <AlertDemo />,
         exact: false
     },

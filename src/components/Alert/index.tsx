@@ -24,7 +24,7 @@ export interface AlertFunProp {
 const alert = new Alert();
 
 
-function close(key?: string) {
+function close(key: string) {
     alert.close(key)
 }
 

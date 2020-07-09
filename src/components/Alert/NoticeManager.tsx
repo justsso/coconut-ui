@@ -6,21 +6,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Message from "./Message";
-import {BasicProps} from "../@types/common";
 import Transition from "react-transition-group/Transition";
-
-const prefixCls = 'coconut-alert';
+import classNames from "classnames";
 
 let id = 0;
 const getUid = () => {
     id += 1;
-    return `${Date.now()}-${id}`
+    return `notification-${Date.now()}-${id}`
 }
 
 
-export interface NoticeManagerProp extends BasicProps {
+export interface NoticeManagerProp {
     duration?: number,
-    getContainer?: () => HTMLElement
+    getContainer?: () => HTMLElement,
+    className?: string,
+    style?: React.CSSProperties,
+    classPrefix?: string
 }
 
 interface NoticeManagerState {
@@ -49,19 +50,7 @@ export interface NoticeType {
     closeable: boolean,
 }
 
-const timeout = 100;
-
-// const defaultStyle = {
-//     transition: `opacity ${timeout}ms ease-in-out`,
-//     opacity: 0,
-// }
-
-const transitionStyles: transitionStyles = {
-    entering: {opacity: 1, transform: 'scaleY(1)', transformOrigin: '0% 0%'},
-    entered: {opacity: 1, transform: 'scaleY(1)', transformOrigin: '0% 0%'},
-    exiting: {opacity: 0, transform: 'scaleY(0.8)', transformOrigin: '0% 0%'},
-    exited: {opacity: 0, transform: 'scaleY(0.8)', transformOrigin: '0% 0%'},
-};
+const timeout = 300;
 
 interface transitionStyles {
     entering: React.CSSProperties,
@@ -73,11 +62,10 @@ interface transitionStyles {
 
 class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerState> {
 
-    public static getInstance(callback: (node: InstanceType) => void) {
+     static getInstance( props: NoticeManagerProp ,  callback: (node: InstanceType) => void) {
 
         let wrap = document.createElement('div')
-        let body = document.documentElement || document.body;
-        wrap.className = `${prefixCls}-container`;
+        let body = document.documentElement || document.body; //  因为这是一个复用的全局弹出窗，所以类名应该由调用者传入
         body.appendChild(wrap)
 
         let called = false;
@@ -107,7 +95,7 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
             callback(instance)
         }
 
-        ReactDOM.render(<NoticeManager ref={ref}/>, wrap)
+        ReactDOM.render(<NoticeManager {... props} ref={ref}/>, wrap)
     }
 
     private constructor(props: NoticeManagerProp) {
@@ -115,6 +103,11 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
         this.state = {
             notices: []
         }
+        this.add = this.add.bind(this);
+        this.getKey = this.getKey.bind(this);
+        this.remove = this.remove.bind(this);
+        this.actualRemove = this.actualRemove.bind(this);
+        this.removeAll = this.removeAll.bind(this);
     }
 
     add(item: NoticeType) {
@@ -132,8 +125,17 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
         }
     }
 
+    getKey(key?: string): string {
+        const {notices} = this.state;
+        let _key = key || '';
+        if (typeof key === 'undefined' && notices.length) {
+            _key = notices[notices.length - 1].key;
+        }
+        return _key;
+    }
+
     remove(key?: string) {
-        let {notices} = this.state;
+        const {notices} = this.state;
         let Key = this.getKey(key)
         const NextNotices = notices.map(item => {
             if (item.key === Key) {
@@ -141,44 +143,30 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
             }
             return item
         })
-        const callback = () => {
-            setTimeout(() => {
-                this.actualRemove(key)
-            }, 1000)
-        }
+
         this.setState({
             notices: NextNotices
-        }, callback)
+        })
     }
 
-    actualRemove(key?: string) {
+    actualRemove(key: string) {
         const Key = this.getKey(key);
         this.setState(preState => {
             return {
-                notices: preState.notices.filter(item => {
-                    return item.key !== Key
-                })
+                notices: preState.notices.filter(item => item.key !== Key)
             }
         })
     }
 
-
-    getKey(key?: string) {
-        const {notices} = this.state;
-        let _key = key;
-        if (typeof key === 'undefined' && notices.length) {
-            _key = notices[notices.length - 1].key;
-        }
-        return _key;
-    }
-
     removeAll() {
-        let {notices} = this.state;
+        const {notices} = this.state;
         this.setState({
             notices: notices.map(item => ({
-                ...item, show: false
+                ...item,
+                show: false
             }))
-        }, () => {
+        },
+            () => {
             setTimeout(() => {
                 const notices = this.state.notices.filter(notice => notice.show);
                 this.setState({notices: notices});
@@ -186,25 +174,23 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
         })
     }
 
-    public render() {
+    render() {
         let {notices} = this.state;
+        const {className, classPrefix, style} = this.props;
         console.log(notices, 'render')
-        let elements = notices.map((item, index) => {
+        const elements = notices.map((item, index) => {
             // Message 组件是真正的消息展示组件，有key 、show  onClose  ，key相当于id属性，当调用onClose时要回传key给父组件
-            let {show, key, onClose, className, content, duration, closeable, type} = item;
+            const {show, key, onClose, className, content, duration, closeable, type} = item;
             return (<Transition
                 key={index}
                 in={show}
                 timeout={timeout}
+                onExited={() => this.actualRemove(key)}
             >
                 {<T extends keyof transitionStyles>(state: T) => {
                     console.log(state, 201)
-                    const transitionCls = `${prefixCls}-${state}`
+                    const transitionCls = `${classPrefix}-${state}`
                     return <Message
-                        // style={{
-                        //     ...defaultStyle,
-                        //     ...transitionStyles[state]
-                        // }}
                         baseClassName={className}
                         onClose={() => {
                             console.log('要关闭的key', key)
@@ -220,10 +206,16 @@ class NoticeManager extends React.Component<NoticeManagerProp, NoticeManagerStat
                 }}
             </Transition>)
         })
-        return elements
+
+        const classes = classNames(classPrefix, className);
+        return (
+            <div className={classes} style={style}>
+                {elements}
+            </div>
+        )
     }
 
-    public componentWillUnmount() {
+     componentWillUnmount() {
         console.log('NoticeManager-componentWillUnmount')
     }
 }

@@ -88,21 +88,25 @@
     }
   }
 
+  &-exited,
+  &-entering {
+    opacity: 0;
+  }
+
   &-entered {
-    animation-name: alertMoverIn;
-    animation: 100ms ease-in-out;
-    transform-origin: 0 0;
+    animation: alertMoverIn 300ms ease-in forwards;
   }
 
   &-exiting {
-    animation-name: alertMoveOut;
-    animation: 100ms ease-in-out;
+    animation: alertMoveOut 300ms ease-out forwards;
   }
 
+  // The same to @keyframe alertMoveOut  100%.
   &-exited {
-    opacity: 0;
+    transform-origin: 0% 0%;
     transform: scaleY(0.8);
-    transform-origin: 0 0;
+    max-height: 0;
+    overflow: hidden;
   }
 }
 
