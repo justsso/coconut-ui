@@ -2,20 +2,9 @@
  * @description
  * @author justsso
  */
+@import "../../style/themes/default";
 
-@prefixClas: c-skeleton;
-@skeleton-title-width: 60px;
-@skeleton-title-height: 15px;
-@skeleton-row-background-color: #f2f3f5;
-@skeleton-row-margin-top: 8px;
-@skeleton-row-height: 10px;
-@skeleton-row-width: 120px;
-@skeleton-action-height: 30px;
-@skeleton-action-width: 60px;
-@skeleton-aciton-mr: 20px;
-@skeleton-animation-duration: 1.2s;
-
-.@{prefixClas} {
+.@{coconut-prefix}-skeleton {
 
   display: flex;
   align-items: center;
@@ -79,6 +68,7 @@
 
 }
 
+// 闪烁动画
 @keyframes skeleton-blink {
   50% {
     opacity: .4;

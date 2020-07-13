@@ -83,7 +83,7 @@ const routes = [
     },
     {
         path: '/skeleton',
-        title: '占位符',
+        title: 'Skeleton骨架屏',
         main: <SkeletonDemo />,
         exact: false
     }
