@@ -19,7 +19,8 @@ export interface RowProps extends BasicProps {
 
 export default class Row extends React.Component<RowProps> {
     protected static defaultProps = {
-        gutter: 0
+        gutter: 0,
+        type: 'flex'
     };
     protected static propTypes = {
         type: PropTypes.oneOf<'flex'>(['flex']),

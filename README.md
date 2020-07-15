@@ -25,18 +25,17 @@ form有关的组件 ， 防抖
 
 数据展示：
 
-- [ ] Collapse 折叠面板  动画
+- [x] Collapse 折叠面板  动画
 - [ ] 走马灯
-- [ ] list
+- [x] list
 - [ ] card
 - [ ] tabs
 
 反馈类型：
-- [ ] alert
-- [ ] 全局toast
-- [ ] 通知
+- [x] 全局alert
+- [ ] 全局通知
 - [ ] 进度条
-- [ ] 骨架屏
+- [x] 骨架屏
 - [ ] loading 
 
 
@@ -49,7 +48,7 @@ form有关的组件 ， 防抖
 - [ ] 虚拟滚动
 
 布局的组件
-- [ ] container模版
+- [x] container模版
 - [x] layout组件
 
 目标：
@@ -65,7 +64,7 @@ form有关的组件 ， 防抖
     防抖、  => input组件
     react最小重新加载
     
-   - [x] 一万个节点渲染，虚拟列表
+   - [x] 一万个节点渲染，虚拟列表virtual List
    
     防止重复点击
     cdn

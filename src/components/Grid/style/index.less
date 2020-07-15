@@ -4,7 +4,7 @@
 
 .@{coconut-prefix}-row {
   width: 100%;
-  overflow: hidden;
+
 
   &-flex {
     display: flex;
@@ -114,23 +114,24 @@ each(range(0, 24, 1), {
 
 
 @media @sm {
-    .@{coconut-prefix}-col-sm-0 {
-      display: none;
+  .@{coconut-prefix}-col-sm-0 {
+    display: none;
+  }
+
+  each(range(0, 24, 1), {
+    //span
+    .@{coconut-prefix}-col-sm-@{value} {
+      width: (1/ 24 * @value *100) * 1%;
     }
-      each(range(0, 24, 1), {
-        //span
-        .@{coconut-prefix}-col-sm-@{value} {
-          width: (1/ 24 * @value *100) * 1%;
-        }
-        //循环生成offset
-        .@{coconut-prefix}-col-sm-offset-@{value} {
-          margin-left: (1/24 * @value *100) * 1%;
-        }
-        //循环生成order
-        .@{coconut-prefix}-col-sm-order-@{value} {
-          order: @value;
-        }
-    })
+    //循环生成offset
+    .@{coconut-prefix}-col-sm-offset-@{value} {
+      margin-left: (1/24 * @value *100) * 1%;
+    }
+    //循环生成order
+    .@{coconut-prefix}-col-sm-order-@{value} {
+      order: @value;
+    }
+  })
 }
 
 
@@ -138,6 +139,7 @@ each(range(0, 24, 1), {
   .@{coconut-prefix}-col-sm-0 {
     display: none;
   }
+
   each(range(0, 24, 1), {
 
     //span
@@ -159,6 +161,7 @@ each(range(0, 24, 1), {
   .@{coconut-prefix}-col-sm-0 {
     display: none;
   }
+
   each(range(0, 24, 1), {
 
     //span
@@ -180,6 +183,7 @@ each(range(0, 24, 1), {
   .@{coconut-prefix}-col-xxl-0 {
     display: none;
   }
+
   each(range(0, 24, 1), {
 
     //span

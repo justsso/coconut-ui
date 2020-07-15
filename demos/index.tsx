@@ -15,6 +15,7 @@ import ListDemo from './list';
 import VLDemo from "./virtualList/index";
 import AlertDemo from "./alert/index"
 import SkeletonDemo from "./skeleton/index";
+import TooltipDemo from "./Tooltip/index";
 
 const routes = [
     {
@@ -63,6 +64,12 @@ const routes = [
         path: '/Alert',
         title: 'Alert全局提示',
         main: <AlertDemo />,
+        exact: false
+    },
+    {
+        path: '/Tooltip',
+        title: 'Tooltip 文字提示',
+        main: <TooltipDemo/>,
         exact: false
     },
     // {

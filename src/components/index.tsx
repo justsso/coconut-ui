@@ -9,9 +9,10 @@ export { default as Sider } from './Sider';
 export { default as Footer } from './Footer';
 export { default as Header } from './Header';
 export { default as Container } from './Container';
-export { default as WhiteSpace } from './WhiteSpace/WhiteSpace';
-export { default as List } from './List/List';
+export { default as WhiteSpace } from './WhiteSpace';
+export { default as List } from './List';
 export { default as VirtualList} from './VirtualList/index';
 export { default as Alert} from './Alert/index';
 export { default as Skeleton} from './Skeleton/index';
 export {default as addMessage} from './Alert2/Alert'
+export { default as Tooltip} from './Tooltip';
