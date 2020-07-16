@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {Route, Switch, NavLink, BrowserRouter as Router} from 'react-router-dom';
+import Loadable from '@loadable/component';
 
 import './index.less';
-import GridDemo from './grid/index';
-import ButtonDemo from './button/index';
 import IconDemo from './icon';
 import Demos from './index/index';
 // import TransitionDemo from './transition/index';
@@ -16,7 +15,8 @@ import VLDemo from "./virtualList/index";
 import AlertDemo from "./alert/index"
 import SkeletonDemo from "./skeleton/index";
 import TooltipDemo from "./Tooltip/index";
-
+const GridLoadable = Loadable(() => import('./grid/index'));
+const ButtonLoadable = Loadable(() => import('./button/index'));
 const routes = [
     {
         path: '/',
@@ -27,19 +27,19 @@ const routes = [
     {
         path: '/Layout',
         title: 'Layout布局组件',
-        main: <LayoutDemo/>,
+        main: <LayoutDemo />,
         exact: false
     },
     {
         path: '/Grid',
         title: 'Grid栅格',
-        main: <GridDemo/>,
+        main: <GridLoadable/>,
         exact: false
     },
     {
         path: '/Button',
         title: 'Button组件',
-        main: <ButtonDemo/>,
+        main: <ButtonLoadable/>,
         exact: false
     },
     {
