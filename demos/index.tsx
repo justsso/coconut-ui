@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Route, Switch, NavLink, BrowserRouter as Router} from 'react-router-dom';
-import Loadable from '@loadable/component';
+import loadable from '@loadable/component';
 
 import './index.less';
 import IconDemo from './icon';
@@ -8,15 +8,20 @@ import Demos from './index/index';
 // import TransitionDemo from './transition/index';
 // import MyDemo from './demo';
 import LayoutDemo from './layout';
-import PanelDemo from './panel';
-import ListDemo from './list';
+// import PanelDemo from './panel';
+// import ListDemo from './list';
 // import VRDemo from "./virtualRender";
 import VLDemo from "./virtualList/index";
 import AlertDemo from "./alert/index"
-import SkeletonDemo from "./skeleton/index";
-import TooltipDemo from "./Tooltip/index";
-const GridLoadable = Loadable(() => import('./grid/index'));
-const ButtonLoadable = Loadable(() => import('./button/index'));
+// import SkeletonDemo from "./skeleton/index";
+// import TooltipDemo from "./Tooltip/index";
+const GridLoadable = loadable(() => import('./grid/index'));
+const ButtonLoadable = loadable(() => import('./button/index'));
+const PanelLoadable = loadable(() => import('./panel/index'));
+const ListLoadable = loadable(() => import('./list/index'));
+const SkeletonLoadable = loadable(() => import('./skeleton/index'));
+const TooltipLoadable = loadable(() => import('./Tooltip/index'));
+
 const routes = [
     {
         path: '/',
@@ -51,13 +56,13 @@ const routes = [
     {
         path: '/Panel',
         title: 'Panel组件',
-        main: <PanelDemo/>,
+        main: <PanelLoadable/>,
         exact: false
     },
     {
         path: '/List',
         title: 'List组件',
-        main: <ListDemo/>,
+        main: <ListLoadable/>,
         exact: false
     },
     {
@@ -69,7 +74,7 @@ const routes = [
     {
         path: '/Tooltip',
         title: 'Tooltip 文字提示',
-        main: <TooltipDemo/>,
+        main: <TooltipLoadable/>,
         exact: false
     },
     // {
@@ -91,7 +96,7 @@ const routes = [
     {
         path: '/skeleton',
         title: 'Skeleton骨架屏',
-        main: <SkeletonDemo />,
+        main: <SkeletonLoadable />,
         exact: false
     }
     // {

@@ -19,10 +19,14 @@
     z-index: 1000;
     overflow-wrap: break-word;
     word-break: keep-all;
+    box-sizing: border-box;
 
     &.top {
+      // top方位的tooltip，横向默认在中间
       top: calc(-100%);
+      //left: 50%;  // 相对定位父元素的宽度
       left: 0;
+      margin-left: -50%;  // 相对自己的宽度
     }
 
     &.bottom {

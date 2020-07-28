@@ -2,15 +2,13 @@
  * @description
  * @author justsso
  */
-import {Button, Row, Col, Alert, addMessage} from "../../src/components";
+import {Button, Row, Col, Alert} from "../../src/components";
 import React from 'react';
 import {apiData as data} from "./data";
 
 function AlertDemo() {
     return (
         <div>
-
-            <Button onClick={() => addMessage('231')}>点击</Button>
             <h2>Alert</h2>
             <h4>duration 默认时间 2000ms</h4>
             <Row>

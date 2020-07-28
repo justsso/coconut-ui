@@ -12,13 +12,14 @@ function Demo() {
     return (
         <div>
             <h2>Tooltip 文字提示</h2>
+            <p>当鼠标移动对应元素上方时，或者点击时，会显示Tooltip文字提示，气泡</p>
             <h4>
                 方位，设置position= top | bottom | left | right
             </h4>
             <div>
                 <Row type="flex">
                     <Col span={4} offset={2}>
-                        <Tooltip content="提示文字" position="top" trigger="hover">
+                        <Tooltip content="提示文字提示文字提示文字" position="top" trigger="hover">
                             <Button>top</Button>
                         </Tooltip>
                     </Col>

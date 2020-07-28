@@ -9,7 +9,7 @@ module.exports = merge(baseConfig, {
         port: 3100,
         open: true,
         hot: true,
-        contentBase: './build',
+        contentBase: './build', // 开启服务器启动路径
         proxy: {
             '/api': {
                 target: 'http://localhost:3000'
