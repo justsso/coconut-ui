@@ -14,6 +14,7 @@ interface TooltipPropsInterface extends BasicProps {
     position: 'top' | 'bottom' | 'right' | 'left',
 }
 
+const triangleWidth = 6;
 const positionMap = new Map()
 positionMap.set('top', 'bottom').set('left', 'right')
     .set('right', 'left').set('bottom', 'top')
@@ -27,6 +28,8 @@ const Tooltip: React.FC<TooltipPropsInterface> = (props) => {
     let childrenRef = useRef<HTMLDivElement>(null);
     let tooltipRef = useRef<HTMLDivElement>(null);
 
+    let [tooltipContentStyle, setTooltipContentStyle] = useState({})
+
     const contentCls = classNames(`${prefixCls}-content`, {
         [position]: true
     })
@@ -35,7 +38,6 @@ const Tooltip: React.FC<TooltipPropsInterface> = (props) => {
         [positionMap.get(position)]: true
     })
 
-    let tooltipContentStyle = {};
 
     useEffect(() => {
         let node = childrenRef.current;
@@ -46,8 +48,8 @@ const Tooltip: React.FC<TooltipPropsInterface> = (props) => {
 
     let getPosition = (node: HTMLDivElement | null) => {
         return [
-            node?.clientWidth,
-            node?.clientHeight
+            node?.clientWidth || 0,
+            node?.clientHeight || 0
         ]
     }
 
@@ -55,6 +57,7 @@ const Tooltip: React.FC<TooltipPropsInterface> = (props) => {
     return (
         <div className={prefixCls} role='tooltip'>
             <div
+                ref={childrenRef}
                 onMouseOver={() => {
                     trigger === 'hover' && setVisible(true)
                 }}
@@ -68,7 +71,9 @@ const Tooltip: React.FC<TooltipPropsInterface> = (props) => {
                     trigger === 'focus' && setVisible(true)
                 }}
                 onBlur={() => {
-                    setVisible(false)
+                    if (trigger === 'focus') {
+                        setVisible(false)
+                    }
                 }}
             >
                 {children}
@@ -78,13 +83,44 @@ const Tooltip: React.FC<TooltipPropsInterface> = (props) => {
                 timeout={AnimationTime}
                 classNames='fade'
                 unmountOnExit
-                onEntered={(node, appearance) => {
-                    console.log(node, appearance, 87)
+                onEntered={() => {
                     // 动态计算tooltip的具体定位
-                    let [w, h] = getPosition(tooltipRef.current)
-                    let [containerW, containerH] = getPosition(tooltipRef.current)
-                    console.log(w, h, containerW, containerH)
+                    let [tooltipW, tooltipH] = getPosition(tooltipRef.current)
+                    let [containerW, containerH] = getPosition(childrenRef.current)
+                    switch (position) {
+                        case "top":
+                            // 设置tooltip主体的位置
+                            setTooltipContentStyle({
+                                top: `-${tooltipH + 2 * triangleWidth}px`,
+                                left: `${(containerW - tooltipW) / 2}px`
+                            })
+                            // 设置三角箭头的位置
 
+                            break;
+                        case "bottom":
+                            setTooltipContentStyle({
+                                top: `${containerH + 2 * triangleWidth}px`,
+                                left: `${(containerW - tooltipW) / 2}px`
+                            })
+                            break;
+                        case "left":
+                            setTooltipContentStyle({
+                                left: `-${tooltipW + 2 * triangleWidth}px`,
+                                top: `${(containerH - tooltipH) / 2}px`
+                            })
+                            break;
+                        case "right":
+                            setTooltipContentStyle({
+                                left: `${containerW + 2 * triangleWidth}px`,
+                                top: `${(containerH - tooltipH) / 2}px`
+                            })
+                            break;
+                        default:
+                            setTooltipContentStyle({
+                                left: `${containerW}px`,
+                                top: `${(containerH - tooltipH) / 2}px`
+                            })
+                    }
 
                 }}
             >

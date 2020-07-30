@@ -23,25 +23,25 @@
 
     &.top {
       // top方位的tooltip，横向默认在中间
-      top: calc(-100%);
+      //top: calc(-100%);
       //left: 50%;  // 相对定位父元素的宽度
-      left: 0;
-      margin-left: -50%;  // 相对自己的宽度
+      //left: 0;
+      //margin-left: -50%;  // 相对自己的宽度
     }
 
     &.bottom {
-      bottom: calc(-100%);
-      left: 0;
+      //bottom: calc(-100%);
+      //left: 0;
     }
 
     &.left {
-      right: calc(100% + 2*@triangle-width);
-      top: 0;
+      //right: calc(100% + 2*@triangle-width);
+      //top: 0;
     }
 
     &.right {
-      left: calc(100% + 2*@triangle-width);
-      top: 0;
+      //left: calc(100% + 2*@triangle-width);
+      //top: 0;
     }
 
     &.visible {
@@ -64,14 +64,16 @@
       border: @triangle-width solid transparent;
       border-top-color: #272C36;;
       bottom: -2 *@triangle-width;
-      left: @tooltip-radius;
+      left: 50%;
+      transform: translateX(-@triangle-width);
     }
 
     &.top {
       border: @triangle-width solid transparent;
       border-bottom-color: #272C36;;
       top: -2 * @triangle-width;
-      left: @tooltip-radius;
+      left: 50%;
+      transform: translateX(-@triangle-width);
     }
 
 
@@ -79,14 +81,16 @@
       border: @triangle-width solid transparent;
       border-right-color: #272C36;;
       left: -2 * @triangle-width;
-      top: @tooltip-radius;
+      top: 50%;
+      transform: translateY(-@triangle-width);
     }
 
     &.right {
       border: @triangle-width solid transparent;
       border-left-color: #272C36;;
       right: -2 *@triangle-width;
-      top: @tooltip-radius;
+      top: 50%;
+      transform: translateY(-@triangle-width);
     }
   }
 }
@@ -101,6 +105,7 @@
 .fade-enter-active, .fade-appear-active {
   opacity: 1;
   transition: opacity 200ms ease-in;
+  transition-delay: 250ms;
 }
 
 //入场动画执行完毕后，保持状态
@@ -116,6 +121,7 @@
 .fade-exit-active {
   opacity: 0;
   transition: opacity 200ms ease-in;
+  transition-delay: 250ms;
 }
 
 .fade-exit-done {
